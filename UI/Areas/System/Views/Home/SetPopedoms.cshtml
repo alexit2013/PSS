@@ -1,0 +1,281 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetPopedoms</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script src="~/Scripts/build/dist/echarts-all.js"></script>
+    <style>
+        #roles_bd>tr{
+            cursor:pointer;
+        }
+        #roles_bd>tr:hover{
+            background-color:#808080;
+             color:white;
+        }
+        a{
+            cursor:pointer;
+        }
+        .xx {
+            background-color:#808080;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:10px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/System/Home/Index" class="am-icon-cog">&nbsp;&nbsp;系统管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">权限管理</span>
+        </div>
+    </div>
+
+    <div>
+        <div style="border:0px solid red;width:52%;height:500px;float:left;margin-left:3%;margin-top:40px;">
+            <table class="am-table">
+                <thead>
+                    <tr style="background-color:#0094ff;color:white;font-size:14px;">
+                        <td>编号</td><td>角色名称</td><td>角色描述</td><td align="center">操作</td>
+                    </tr>
+                </thead>
+                <tbody id="roles_bd">
+                </tbody>
+            </table>
+        </div>
+        <div style="border:0px solid red;width:45%;height:500px;float:left" id="main"></div>
+    </div>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-roles">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-user">编辑角色</span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd" style="height:400px;">
+                <div style="height:300px;float:left;width:500px;display:none;" id="add_role">
+                    <form class="am-form" onsubmit="return false">
+                        <table class="am-table">
+                            <tr style="background-color:#0c9b20;font-size:14px;color:white;">
+                                <td colspan="2" align="center">添加角色</td>
+                            </tr>
+                            <tr>
+                                <td>角色名称：</td>
+                                <td><input class="am-form-field am-text-sm" id="RoleName1" required /></td>
+                            </tr>
+                            <tr>
+                                <td>角色说明：</td>
+                                <td><input class="am-form-field am-text-sm" id="RoleDesc" /></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br />
+                                    <button class="am-btn am-btn-primary am-icon-save am-radius" style="margin-right:30px;" id="btn_save_role">保存</button>
+                                    <input type="reset" value="重置" class="am-btn am-btn-primary am-radius" />
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div style="height:400px;float:left;width:20px;">
+                    <i id="show_role" class="am-icon-angle-double-right am-close am-close-alt am-close-spin" title="添加角色" style="cursor:pointer;color:#0c9b20;"></i>
+                </div>
+                <div style="height:400px;float:left;width:500px;border:0px solid red" id="show_edit_role">
+                    <div id="tree" style="border:0px solid blue;width:400px;height:390px;overflow:auto;text-align:left;float:left">
+                        @*<input type="checkbox" style="display:none" />*@
+                    </div>
+                    <div style="float:left;">
+                        @Html.Hidden("edit_roleids")
+                        <button class="am-btn am-btn-primary am-radius am-icon-save" id="btn_save_Popedoms" style="margin-top:350px;">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .trees{
+            margin-left:30px;
+        }
+    </style>
+    <script>
+        //力向导向图属性设置
+        option = {
+            title: {
+                text: '权限图',
+                subtext: '及时数据',
+                x: 'center'
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: { show: true },
+                    dataView: { show: true, readOnly: false },
+                    magicType: {
+                        show: true,
+                        type: ['pie', 'funnel'],
+                        option: {
+                            funnel: {
+                                x: '25%',
+                                width: '50%',
+                                funnelAlign: 'left',
+                                max: 1548
+                            }
+                        }
+                    },
+                    restore: { show: true },
+                    saveAsImage: { show: true }
+                }
+            },
+            calculable: true,
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: '65%',
+                    center: ['50%', '60%'],
+                    data: []
+                }
+            ]
+        };
+        //-----------------------------------------------------------------------------------------------
+        $(function () {
+        
+           
+            $("#tree").delegate("a", "click", function () {
+                var a = $(this);
+                if ($(this).parent().children("div").css("display") == "none") {
+                    a.removeClass("am-icon-plus-square-o").addClass("am-icon-minus-square-o");
+                    $(this).parent().children("div").show(400);
+                } else {
+                    a.removeClass("am-icon-minus-square-o").addClass("am-icon-plus-square-o");
+                    $(this).parent().children("div").hide(400);
+                }
+            });
+            $.post("/System/Users/GetRoleAll", {}, function (data) {
+                $(data).each(function (k,v) {
+                    var tr = $(" <tr><td>" + v.RoleID + "</td><td>" + v.RoleName + "</td><td>" + v.RoleDesc + "</td><td align='center'><button style='font-size:10px;' class='am-btn am-btn-warning am-radius   am-btn-xs '   onclick='orderedit(\"" + v.RoleID + "\")'><span class='am-icon-pencil-square-o'></span> 编辑权限</button> </td> </tr>");
+                    $("#roles_bd").append(tr);
+                });
+            });
+            //添加角色
+            $("#btn_save_role").click(function () {
+                var RoleName = $("#RoleName1").val();
+                var RoleDesc = $("#RoleDesc").val();
+                if (RoleName.trim().length == 0) {
+                    $("#RoleName1").focus();
+                } else {
+                    var obj = { RoleName: RoleName, RoleDesc: RoleDesc };
+
+                    $.post("/System/Users/AddRole", obj, function (data) {
+                        if (data == "add_yes") {
+                            new tmm_alert1("add_modal", "提示", "添加成功");
+                            $("#edit-roles").modal('close');
+                        } else if (data == "add_no") {
+                            new tmm_alert("add_modal", "提示", "添加失败");
+                        } else {
+                            new tmm_alert("add_modal", "提示", data);
+                        }
+                        $("#add_modal").modal({ closeViaDimmer: 0 });
+                    });
+                }
+            });
+            //切换
+            $("#show_role").click(function () {
+                var tx = $(this);
+                if (tx.attr("class").indexOf("right") > 0) {
+                    tx.removeClass("am-icon-angle-double-right").addClass("am-icon-angle-double-left");
+                    $("#show_edit_role").addClass("div_right");
+                    $("#show_edit_role").hide(300);
+                    $("#add_role").show(300);
+                } else {
+                    tx.removeClass("am-icon-angle-double-left").addClass("am-icon-angle-double-right");
+                    $("#show_edit_role").removeClass("div_right");
+                    $("#show_edit_role").show(300);
+                    $("#add_role").hide(300);
+                }
+
+            });
+            //显示权限树
+            $.post("/System/Users/GetPopedomsAll", {}, function (data) {
+                var trress = $("#tree");
+                ptyes = data;
+                $(data).each(function (k, v) {
+                    if (v.PopParentID == 0) {
+                        var div = $("<div class='trees'  key='" + v.PopID + "'><input type='checkbox' value='" + v.PopID + "' name='xq' style='margin-right:3px;' /><a class='am-icon-plus-square-o' style='color:#0094ff'></a>&nbsp; <span>" + v.PopName + "</span><span >");
+                        addtrees(div);
+                        trress.append(div);
+                    }
+
+                });
+            });
+            //全选
+            $("#tree").delegate("input[type=checkbox][name=xq]", "click", function () {
+                var ckbx=$(this);
+                var ck = this.checked;
+                $(this).parent().find("input").prop("checked", ck);
+                $(this).parent().parent().find("input")[0].checked = ck;
+            });
+            //修改权限
+            $("#btn_save_Popedoms").click(function () {
+                var pdids = [];
+                var id = $("#edit_roleids").val();
+                $("input[type=checkbox]:checked").each(function (k,v) {
+                    pdids.push(v.value);
+                });
+                $.post("/System/Users/EditRolePopedoms", { id: id, list: pdids }, function (data) {
+                    if (data == "edit_yes") {
+                        $("#edit-roles").modal('close');
+                        new tmm_alert1("edit_modal", "提示", "成功！");
+                    } else if (data == "edit_no") {
+                        new tmm_alert("edit_modal", "提示", "失败！");
+                    } else {
+                        new tmm_alert("edit_modal", "提示", data);
+                    }
+                    $("#edit_modal").modal({ closeViaDimmer: 0, height: '135', width: '400' });
+                });
+            });
+            $("#roles_bd").delegate("tr", "click", function () {
+                var mp = echarts.init(document.getElementById("main"));
+                $("#roles_bd tr").removeClass("xx");
+                $(this).addClass("xx");
+                var id = $(this).children("td")[0].innerHTML;
+                option.series[0].data = [];
+                $.post("/System/Users/GetPopedomsByRoleIDStr", { id: id }, function (data) {
+                    $(data).each(function (k,v) {
+                        option.series[0].data.push({ value: 1, name: v.PopName });
+                    });
+                    mp.setOption(option);
+                });
+            });
+        });
+        function orderedit(id) {
+            $("#edit_roleids").val(id);
+            $("input[type=checkbox][name=xq]").removeAttr("checked");
+            $.post("/System/Users/GetPopedomsByRoleID", { id: id }, function (data) {
+                $(data).each(function (k,v) {
+                    $("input[type=checkbox][name=xq][value=" + v.PopID + "]").prop("checked", true);
+                });
+            });
+            $("#edit-roles").modal();
+        }
+        function addtrees(parent) {
+            var ptid = $(parent).attr("key");
+            $.each(ptyes, function (k, v) {
+                if (v.PopParentID == ptid) {
+                    var div = $("<div style='display:none'  key='" + v.PopID + "' class='trees'> <input type='checkbox' value='" + v.PopID + "' name='xq' style='margin-right:3px;' /> <a class='am-icon-plus-square-o' style='color:#0094ff' ></a>&nbsp; <span >" + v.PopName + "</span><span ></div>");
+                    addtrees(div);
+                    $(parent).append(div);
+                }
+            });
+        }
+    </script>
+    
+</body>
+</html>

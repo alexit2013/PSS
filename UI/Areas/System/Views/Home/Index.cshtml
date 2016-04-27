@@ -1,0 +1,43 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <style>
+        li:hover {
+            background-color: #ffd800;
+        }
+
+        li {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:80px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">系统管理</span>
+        </div>
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " style="margin-bottom:50px">
+            <li><a href="/System/Home/Admin" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-user"></i></span><br />操作员<br /></a></li>
+            <li><a href="/System/Home/SetPopedoms" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-gears"></i></span><br />权限管理<br /></a></li>
+            <li><a href="/System/Home/ReData" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-database"></i></span><br />数据备份<br /></a></li>
+            <li><a href="/System/Home/SetPrint" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-print"></i></span><br />打印设计<br /></a></li>
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/System/Home/SetSystem" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-gears"></i></span><br />系统设置<br /></a></li>
+            <li><a href="/System/Home/SystemLog" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-table"></i></span><br />系统日志<br /></a></li>
+        </ul>
+    </div>
+</body>
+</html>

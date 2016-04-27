@@ -1,0 +1,226 @@
+﻿@using UI.Models.Model;
+@using UI.Option.HtmlPage;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script src="~/Scripts/js/MyJs.js"></script>
+    
+
+    <style>
+        .d1{
+            /*border:1px solid red;*/
+            width:14%;
+            height:520px;
+            float:left;
+            overflow:auto;
+        }
+        .d2{
+            float:left;
+            width:85%;
+            height:520px;
+             /*border:1px solid red;*/
+             margin-left:1%;
+        }
+        .trees{
+            margin-left:15px;
+            color:#808080;
+        }
+        #tree>div{
+            cursor:pointer;
+        }
+        #tree span:hover{
+            color:#0026ff;
+        }
+        .ck{
+            color:#0094ff;
+            font-size:17px;
+        }
+        #tab_pro_bd>tr{
+            cursor:pointer;
+        }
+        .xxx{
+            background-color:#808080;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:10px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Stock/Home/Index" class="am-icon-cubes">&nbsp;&nbsp;库存管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">当前库存</span>
+        </div>
+        
+            <div class="d1" id="tree">
+                <div style="margin-left:15px;" ><span class="am-badge am-badge-primary am-text-sm">商品分类</span></div>
+            </div>
+        <div class="d2">
+            <div id="search_div" style="display:none">
+                <form class="am-form" id="xxx">
+                    <table style="font-size:11px;">
+                        <tr>
+                            <td>编号：</td>
+                            <td><input name="ProID" id="ProID" class="am-form-field am-text-xs" style="width:80px;" /></td>
+                            <td>名称：</td>
+                            <td><input name="ProName" id="ProName" class="am-form-field am-text-xs" style="width:80px;" /></td>
+                            <td>&nbsp;&nbsp;类别：</td>
+                            <td>
+                                <select name="PTID" id="PTID" data-am-selected="{btnWidth:80, btnSize: 'sm', btnStyle: 'secondary',searchBox: 1,maxHeight: 300}">
+                                    <option value="0">类别</option>
+                                    @{ foreach (ProductTypes item in ViewData["ptlist"] as List<ProductTypes>)
+                                        {
+                                            <option value="@item.PTID">@item.PTName</option>
+                                        }}
+                                </select>
+                            </td>
+                            <td>&nbsp;&nbsp;颜色：</td>
+                            <td>
+                                <select name="PCID" id="PCID" data-am-selected="{btnWidth:80, btnSize: 'sm', btnStyle: 'secondary',searchBox: 1,maxHeight: 300}">
+                                    <option value="0">颜色</option>
+                                    @{ foreach (ProductColor item in ViewData["pclist"] as List<ProductColor>)
+                                        {
+                                            <option value="@item.PCID">@item.PCName</option>
+                                        }}
+                                </select>
+                            </td>
+                            <td>&nbsp;&nbsp;规格：</td>
+                            <td>
+                                <select name="PUID" id="PUID" data-am-selected="{btnWidth:80, btnSize: 'sm', btnStyle: 'secondary',searchBox: 1,maxHeight: 300}">
+                                    <option value="0">规格</option>
+                                    @{ foreach (ProductUnit item in ViewData["pulist"] as List<ProductUnit>)
+                                        {
+                                            <option value="@item.PUID">@item.PUName</option>
+                                        }}
+                                </select>
+                            </td>
+                            <td>&nbsp;&nbsp;单位：</td>
+                            <td>
+                                <select name="PSID" id="PSID" data-am-selected="{btnWidth:80, btnSize: 'sm', btnStyle: 'secondary',searchBox: 1,maxHeight: 300}">
+                                    <option value="0">单位</option>
+                                    @{ foreach (ProductSpec item in ViewData["pslist"] as List<ProductSpec>)
+                                        {
+                                            <option value="@item.PSID">@item.PSName</option>
+                                        }}
+                                </select>
+                            </td>
+                            <td>&nbsp;&nbsp;仓库：</td>
+                            <td>
+                                <select name="DepotID" id="DepotID" data-am-selected="{btnWidth:80, btnSize: 'sm', btnStyle: 'secondary',searchBox: 1,maxHeight: 300}">
+                                    <option value="">仓库</option>
+                                    @{ foreach (Depots item in ViewData["dplist"] as List<Depots>)
+                                        {
+                                            <option value="@item.DepotID">@item.DepotName</option>
+                                        }}
+                                </select>
+                            </td>
+
+                            <td><div class=""><input type="button" class="am-btn am-btn-primary am-radius " id="btn_search" value="商品查询" style="width:80px;margin-left:20px;font-size:14px;" /></div> </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div>
+                <i id="show_div" class="am-icon-angle-double-down am-close am-close-alt am-close-spin" data-am-popover="{content:'切换查询',trigger:'hover focus'}"
+                   style="cursor:pointer;color:#0c9b20;margin-left:97%"></i>
+            </div>
+                <div><span class="am-badge am-badge-primary">库存信息</span></div>
+            <div style="width:70%;float:left;" >
+                <table class=" am-table" style="font-size:11px;">
+                    <thead> <tr style="font-size:12px;color:white; background-color:#0c9b20"><td>商品名称</td><td>商品编号</td><td>类别</td><td>单位</td><td>规格</td><td>颜色</td><td>仓库</td><td>库存数量</td><td>库存上限</td><td>库存下限</td><td>进价</td><td>预设进价</td><td>备注</td></thead>
+                    <tbody id="tab_pro_bd"></tbody>
+                </table>
+                <div style="margin-left:20%">
+                    @Html.GroupPage2("", "", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                    @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+                    @Html.Hidden("count", ViewData["count"])
+                </div>
+            </div>
+            <div style="float:left;width:29%;height:350px;" id="main"></div>
+            </div>
+        <script src="~/Scripts/build/dist/echarts-all.js"></script>
+        <script>
+            $(function () {
+                var mp = echarts.init(document.getElementById("main"));
+                option = {
+                    title: {
+                        text: '商品其它仓库库存',
+                        subtext: '实时数据',
+                        x: 'left'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'right',
+                        data: []
+                    },
+                    calculable: true,
+                    series: [
+                        {
+                            name: '其它仓库库存',
+                            type: 'pie',
+                            radius: '35%',
+                            center: ['50%', '60%'],
+                            data: []
+                        }
+                    ]
+                };
+                $("#tab_pro_bd").delegate("tr", "click", function () {
+                    $("#tab_pro_bd tr").removeClass("xxx");
+                    $(this).addClass("xxx");
+                    var id = $(this).children("td")[1].innerHTML;
+                    $.post("/Stock/NowStock/FindProByDepots", { id: id }, function (data) {
+                        var dpname = [];
+                        var pcount = [];
+                        $(data.dpname).each(function (k,v) {
+                            dpname.push(v);
+                        });
+                        $(data.procount).each(function (k, v) {
+                            pcount.push({value:v,name:dpname[k]});
+                        });
+                        option.legend.data = dpname;
+                        option.series[0].data = pcount;
+                        mp.dispose();
+                        mp = echarts.init(document.getElementById("main"));
+                        mp.setOption(option);
+                    });
+                });
+                mp.setOption(option);
+            });
+        </script>
+    </div>
+
+    <script src="~/Scripts/js/Stock/NowStockJavaScript.js"></script>
+    <script src="~/Scripts/js/FoundationJavaScript.js"></script>
+    <script>
+        $(function () {
+           new ProType();
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#show_div").click(function () {
+                var div = $(this);
+                if (div.attr("class").indexOf("up")>0) {
+                    div.removeClass("am-icon-angle-double-up").addClass("am-icon-angle-double-down");
+                    $("#search_div").slideUp(300);
+                } else {
+                    div.removeClass("am-icon-angle-double-down").addClass("am-icon-angle-double-up");
+                    $("#search_div").slideDown(300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

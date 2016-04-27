@@ -1,0 +1,269 @@
+﻿@using UI.Models.Model;
+@using UI.Option.HtmlPage;
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script src="~/Scripts/js/autoSetValueGetValue.js"></script>
+  
+    <script src="~/Scripts/js/MyJs.js"></script>
+    <style>
+        .tabcontent {
+            height: auto;
+        }
+
+        .input_right {
+            margin-right: 10px;
+        }
+
+        #probody tr {
+            cursor: pointer;
+        }
+          #stockin_body tr {
+            cursor: pointer;
+        }
+
+        #model_body tr {
+            cursor: pointer;
+        }
+
+            #stockin_body tr:hover {
+                background-color: #e8fcc3;
+            }
+
+        .ck {
+            background-color: #d5f79d;
+        }
+    </style>
+    
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:20px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/InStock/Home/Index" class="am-icon-bank">&nbsp;&nbsp;入库管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">采购入库</span>
+        </div>
+        <div>
+            <div class="am-tabs am-margin" data-am-tabs="{noSwipe: 1}">
+                <ul class="am-tabs-nav am-nav am-nav-tabs">
+                    <li id="tab_1" class="am-active"><a href="#tab1" class="am-icon-sign-in">采购入库管理</a></li>
+                    <li id="tab_2" ><a href="#tab2" class="am-icon-edit">编辑入库订单</a></li>
+                </ul>
+                <div class="am-tabs-bd">
+                    <div class="tabcontent am-tab-panel am-fade am-in am-active " id="tab1">
+                        <div id="search_div" style="display:none">
+                            <table style="font-size:13px;">
+                                <tr>
+                                    <td>入库编号：</td>
+                                    <td><input name="SIDID1" class="am-form-field am-text-xs" id="SIDID1" style="width:120px;" /></td>
+                                    <td>&nbsp;&nbsp;创建人：</td>
+                                    <td><input name="UsersName1" id="UsersName1" class="am-form-field am-text-xs" style="width:120px;" /></td>
+                                    <td>&nbsp;&nbsp;供货商：</td>
+                                    <td>
+                                        <select name="PPID1" id="PPID1" data-am-selected="{btnWidth: 120, btnSize: 'sm', btnStyle: 'secondary'}">
+                                            <option value="">选择供应商</option>
+                                            @{
+                                    foreach (ProductLend item in ViewData["prolendlist"] as List<ProductLend>)
+                                    {
+                                <option value="@item.PPID">@item.PPName</option>
+                                    }
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>&nbsp;&nbsp;仓库：</td>
+                                    <td>
+                                        <select name="DepotID1" id="DepotID1" data-am-selected="{btnWidth: 100, btnSize: 'sm', btnStyle: 'secondary'}">
+                                            <option value="">选择仓库</option>
+                                            @{
+                                    foreach (Depots item in ViewData["dplist"] as List<Depots>)
+                                    {
+                                <option value="@item.DepotID">@item.DepotName</option>
+                                    }
+                                            }
+                                        </select>
+                                    </td>
+                                    <td>&nbsp;&nbsp;收货始时间：</td>
+                                    <td><input class="am-form-field am-text-sm" name="SIDDate1" id="SIDDate1" style="width:110px;" data-am-datepicker readonly required placeholder="点击选择日期" /> </td>
+                                    <td>&nbsp;&nbsp;<input type="radio" name="SIDData" value="-1" checked="checked" />全部<br />&nbsp;&nbsp;<input type="radio" name="SIDData" value="1" />已审<br />&nbsp;&nbsp;<input type="radio" name="SIDData" value="0" />未审</td>
+                                    <td><div class=""><button class="am-btn am-btn-primary am-radius am-icon-search" id="brn_search1" style="width:80px;margin-left:20px;font-size:14px;">查询</button></div> </td>
+                                </tr>
+                            </table>
+                            </div>
+                        <div><i id="show_div" class="am-icon-angle-double-down am-close am-close-alt am-close-spin" data-am-popover="{content:'切换查询',trigger:'hover focus'}" style="cursor:pointer;color:#0c9b20;margin-left:97%"></i></div>
+                            <div style="width:71%;float:left;">
+                                <div>
+                                    <span class="am-badge am-badge-warning">采购入库信息</span>
+                                </div>
+                                <table class=" am-table am-table-bordered am-radius " style="font-size:12px;">
+                                    <thead> <tr style="font-size:14px;color:white; background-color:#0c9b20"><td>入库单编号</td><td>供货商</td><td>仓库</td><td>采购单编号</td><td>收货时间</td><td>送货单号</td><td>状态</td><td>备注</td><td align="center" style="width:180px;">操作</td></tr></thead>
+                                    <tbody id="stockin_body"> </tbody>
+                                </table>
+                                <div style="margin-left:50px;">
+                                    @Html.GroupPage1("/InStock/StockInDepot", "StockSPage", ViewData["count1"], "", 10, ViewData["PageIndex1"], "am-btn-secondary")
+                                    @Html.Hidden("MaxPageIndex1", ViewData["MaxPageIndex1"])
+                                    @Html.Hidden("count1", ViewData["count1"])
+                                </div>
+                            </div>
+                            <div style="width:28%;float:left;margin-left:1%;padding-top:30px;">
+                                <div><span class="am-badge am-badge-warning">采购入库详单</span></div>
+                                <table class=" am-table am-table-bordered  am-table-striped am-table-hover" style="font-size:12px;">
+                                    <thead> <tr style="font-size:14px;color:white; background-color:#0c9b20"><td>详单编号</td><td>商品名字</td><td>入库数量</td><td>单价</td><td>备注</td></tr></thead>
+                                    <tbody id="StockInDepotDetailbody"> </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    <div class="tabcontent am-tab-panel " id="tab2">
+                        <form class="am-form" id="form_order">
+                            <div style="position:absolute;background-color:#d5f79d;margin-left:80px;display:none;overflow:auto; width:600px;height:250px; " id="prodrown">
+                                <table class=" am-table am-table-bordered am-table-striped am-table-hover" style="font-size:13px;">
+                                    <thead> <tr style="font-size:14px;color:white; background-color:#0c9b20"><td>商品编号</td><td>商品名称</td><td>单位</td><td>规格</td><td>颜色</td><td>预设进价</td></tr></thead>
+                                    <tbody id="probody"></tbody>
+                                </table>
+                            </div>
+
+                            <div style="margin-bottom:10px;margin-left:1%">
+                                <table style="font-size:13px;">
+                                    <tr>
+                                        <td>入库单编号：</td>
+                                        <td><input id="SIDID" readonly="readonly"style="width:120px;" class="input-right am-form-field am-text-sm " placeholder="双击打开订单选择" required /></td>
+                                        <td>&nbsp;&nbsp;采购单编号：</td>
+                                        <td><input id="StockID" readonly="readonly" style="width:120px;" class="input-right am-form-field am-text-sm "  required /></td>
+                                        <td>&nbsp;&nbsp;供货商：</td>
+                                        <td>
+                                            <select id="PPID" name="PPID">
+                                                @{
+                                                    foreach (ProductLend item in ViewData["prolendlist"] as List<ProductLend>)
+                                                    {
+                                                        <option value="@item.PPID">@item.PPName</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>&nbsp;&nbsp;仓库：</td>
+                                        <td>
+                                            <select id="DepotID" name="DepotID">
+                                                @{
+                                                    foreach (Depots item in ViewData["dplist"] as List<Depots>)
+                                                    {
+                                                        <option value="@item.DepotID">@item.DepotName</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </td>
+                                        <td>&nbsp;&nbsp;收货时间：</td>
+                                        <td>
+                                            <input class="am-form-field am-text-sm" name="SIDDate" id="SIDDate" style="width:120px;" data-am-datepicker readonly required placeholder="点击选择日期" />
+                                        </td>
+                                        <td>
+                                            <input type="button" class="am-btn-primary am-btn am-radius" id="ConvertAdd" value="转为添加" style="margin-left:10%" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <hr />
+                            <div style="width:98%;margin-left:1%;margin-top:10px;overflow:auto;margin-bottom:100px;">
+                                <table onclick="hideproshow()" class="am-table am-table-bordered am-table-striped am-table-hover" style="font-size:13px;width:100%">
+                                    <thead> <tr style="font-size:14px;color:white; background-color:#0c9b20"><td style="width:100px;">商品编号</td><td>商品名称</td><td>单位</td><td>规格</td><td>颜色</td><td style="width:120px;">数量</td><td style="width:120px;">单价</td><td style="width:100px;">总金额</td><td style="width:160px;">备注</td><td align="center">操作</td></tr></thead>
+                                    <tbody id="orderbody">
+                                    </tbody>
+                                    @*<tfoot>
+                                        <tr><td colspan="10"><i id="Addtr" style="color:#ff6a00;" class="am-close am-close-alt am-close-spin" data-am-popover="{content:'添加一行',trigger:'hover'}">+</i></td></tr>
+                                    </tfoot>*@
+                                </table>
+                            </div>
+                            <div style="margin-left:1%">
+                                <table>
+                                    <tr>
+                                        <td>&nbsp;&nbsp;送货单号：</td>
+                                        <td><input class="am-form-field am-text-sm" name="SIDDeliver" id="SIDDeliver" style="width:140px;" placeholder="请输入送货单号" required /> </td>
+                                        <td>&nbsp;&nbsp;送费：</td>
+                                        <td><input class="am-form-field" type="number" name="SIDFreight" id="SIDFreight" placeholder="请输入运费" required /></td>
+                                        <td>&nbsp;&nbsp;备注：</td>
+                                        <td><textarea rows="2" cols="30" id="SIDDesc" name="SIDDesc"></textarea></td>
+                                        <td><input class="am-btn am-btn-primary am-radius" id="btn_addorder" type="button" value="保存" style="margin-left:30px;" /></td>
+                                        <td><input class="am-btn am-btn-danger am-radius" type="reset" value="重置" style="margin-left:30px;" /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="select_modal">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;"> 选择订单<a href="javascript: void(0)" style="color:white;" class="am-close am-close-spin" data-am-modal-close>&times;</a></div>
+            <div class="am-modal-bd" style="padding-top:20px;">
+                <form class="am-form" id="Search_form">
+                    <table style="font-size:13px;">
+                        <tr>
+                            <td>采购编号：</td>
+                            <td><input name="StockID" class="am-form-field am-text-xs" style="width:120px;" /></td>
+                            <td>&nbsp;&nbsp;创建人：</td>
+                            <td><input name="UsersName" class="am-form-field am-text-xs" style="width:100px;" /></td>
+                            <td>&nbsp;&nbsp;供货商：</td>
+                            <td>
+                                <select id="search_sel" name="PPID" data-am-selected="{btnWidth: 120, btnSize: 'sm', btnStyle: 'secondary'}">
+                                    <option value="">选择供应商</option>
+                                    @{
+                                        foreach (ProductLend item in ViewData["prolendlist"] as List<ProductLend>)
+                                        {
+                                            <option value="@item.PPID">@item.PPName</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td>&nbsp;&nbsp;下单始时间：</td>
+                            <td><input class="am-form-field am-text-sm" name="StockDate" style="width:110px;" data-am-datepicker readonly required placeholder="点击选择日期" /></td>
+                            <td>&nbsp;&nbsp;交货始时间：</td>
+                            <td><input class="am-form-field am-text-sm" name="StockInDate" style="width:110px;" data-am-datepicker readonly required placeholder="点击选择日期" /> </td>
+                            <td><div class=""><input type="button" class="am-btn am-btn-primary am-radius " id="brn_search" value="查询" style="width:80px;margin-left:10px;font-size:14px;" /></div> </td>
+                        </tr>
+                    </table>
+                </form>
+                <hr />
+                <table class=" am-table am-table-bordered am-radius am-table-striped am-table-hover " style="font-size:12px;">
+                    <thead> <tr style="font-size:14px;color:white; background-color:#0c9b20"><td>采购单编号</td><td>供货商</td><td>下单时间</td><td>预计交货时间</td><td>创建人</td><td>审核状态</td><td>备注</td></tr></thead>
+                    <tbody id="model_body"> </tbody>
+                </table>
+                <div style="margin-left:250px;">
+                    @Html.GroupPage2("/InStock/StockInDepot", "StockSPage", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                    @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+                    @Html.Hidden("count", ViewData["count"])
+                </div>
+            </div>
+            </div>
+        </div>
+
+  
+    <script src="~/Scripts/js/InStocks/InStocksJavaScript.js"></script>
+    <script>
+        $(function () {
+            $("#show_div").click(function () {
+                var div = $(this);
+                if (div.attr("class").indexOf("up")>0) {
+                    div.removeClass("am-icon-angle-double-up").addClass("am-icon-angle-double-down");
+                    $("#search_div").slideUp(300);
+                } else {
+                    div.removeClass("am-icon-angle-double-down").addClass("am-icon-angle-double-up");
+                    $("#search_div").slideDown(300);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

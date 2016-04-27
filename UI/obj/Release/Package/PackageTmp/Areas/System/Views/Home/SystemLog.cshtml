@@ -1,0 +1,87 @@
+﻿@using UI.Models.Model;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    
+    <style>
+        p{
+            cursor:pointer;
+        }
+        p:hover{
+            background-color:#b6ff00;
+           
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:10px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/System/Home/Index" class="am-icon-cog">&nbsp;&nbsp;系统管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">系统日志</span>
+        </div>
+    </div>
+    <div style="border:0px solid #808080; height:550px;width:75%;overflow:auto;float:left;font-size:12px;" class="content am-topbar admin-header" id="slog_content">
+        @{
+            foreach (SystemLog item in ViewData["sllist"] as List<SystemLog>)
+            {
+                <p style="margin-left:5px;" name="show"><font style="color:#000000;font-weight:bold;"> @item.time.Value.ToLocalTime() </font>: <font style="color:@(item.islog==1? "#0094ff" : "red");">@item.value </font></p>
+            }
+        }
+    </div>
+    <div style="float:right;width:260px;border:0px solid red;height:500px;padding-left:50px;">
+        <form method="post" action="/System/Home/GetSysLog">
+            <table>
+                <tr>
+                    <td>
+                        <input class="am-form-field am-text-xs" name="date_start" style="width:180px;" data-am-datepicker readonly required placeholder="开始时间" />
+                        <br /><br /><br /><br /><br /><br /><br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="am-form-field am-text-xs" name="date_end" style="width:180px;" data-am-datepicker readonly required placeholder="结束时间" />
+                        <br /><br /><br /><br /><br /><br /><br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="am-btn am-btn-warning" id="btn_search">
+                            <i class="am-icon-search"></i>
+                            查询
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+   <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/js/minified/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/js/minified/jquery.mousewheel.min.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.js"></script>
+    <script src="~/Scripts/js/MyJs.js"></script>
+    <script>
+        (function ($) {
+            $(window).load(function () {
+                $(".content").mCustomScrollbar({
+                    theme: "rounded-dark", //主题颜色
+                    horizontalScroll: false,//水平滚动条
+                    set_width: 900,
+                    scrollButtons: { enable: true }
+                });
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

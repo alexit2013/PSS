@@ -1,0 +1,242 @@
+﻿@using UI.Option.HtmlPage;
+@using UI.Models.Model;
+@{
+    List<ProductLend> list = ViewData["prolendlist"] as List<ProductLend>;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductLend</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/FoundationJavaScript.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+ 
+    <style>
+        table tbody tr{
+            cursor:pointer;
+        }
+    .add{
+        position:absolute;
+        cursor:pointer;
+        margin-top:4%;
+        margin-left:1px;
+    }
+        
+    </style>
+</head>
+<body>
+    <div> 
+        <div class="add"><span id="addshow" class="am-icon-btn am-close am-close-alt am-close-spin" style="color:white;font-size:40px;background-color:#b7b6b6">+</span></div>
+       
+        <div style="margin-bottom:20px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Foundation/Home/Index" class="am-icon-database">&nbsp;&nbsp;基础数据&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">供应商</span>
+        </div>
+        <div style="margin-left:10%;margin-bottom:10px;">
+            <div style="float:left;margin-right:10px;">
+                <select data-am-selected="{btnWidth: 80, btnSize: 'sm', btnStyle: 'secondary'}" id="seachtype">
+                    <option value="0">不限</option>
+                    <option value="1">编号</option>
+                    <option value="2">名称</option>
+                    <option value="3">公司</option>
+                    <option value="4">联系人</option>
+                    <option value="5">电话</option>
+                    <option value="6">地址</option>
+                </select>
+            </div>
+            <div style="width:360px;float:left;margin-right:20px;">
+                <input class="am-form-field am-round am-input-sm" id="seachcontent" placeholder="选择查询类型进行查询" />
+            </div>
+                <button class="am-btn am-btn-primary am-radius" id="seach"><i class="am-icon-search"></i>查询</button>
+            
+            </div>
+        <div style="width:90%;margin-left:5%;">
+            <table class="am-table am-table-striped am-table-hover table-main" style="color:#808080;width:100%;font-size:12px;">
+                <thead>
+                    <tr style ="font-size:14px;color:white; background-color:#0c9b20"><td>供货商编号</td><td>名称</td><td>公司名称</td><td>联系人</td><td>联系电话</td><td>地址</td><td>操作</td></tr>
+                </thead>
+                <tbody id="tabbody">
+                    @{
+                        foreach (ProductLend item in list)
+                        {
+                            <tr ondblclick="tr_dbl('@item.PPID','@item.PPName','@item.PPCompany','@item.PPMan','@item.PPTel','@item.PPAddress','@item.PPFax','@item.PPEmail','@item.PPUrl','@item.PPBank','@item.PPGoods','@item.PPDesc')">
+                                <th>@item.PPID</th>
+                                <th>@item.PPName</th>
+                                <th>@item.PPCompany</th>
+                                <th>@item.PPMan</th>
+                                <th>@item.PPTel</th>
+                                <th>@item.PPAddress</th>
+                                <th>
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="tr_dbl('@item.PPID','@item.PPName','@item.PPCompany','@item.PPMan','@item.PPTel','@item.PPAddress','@item.PPFax','@item.PPEmail','@item.PPUrl','@item.PPBank','@item.PPGoods','@item.PPDesc')"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                    <button class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="_delete('@item.PPID')"><span class="am-icon-trash-o"></span> 删除</button>
+                                </th>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <div style="width:100%;padding-left:15%;">
+                @Html.GroupPage2("Foundation/Home", "ProductLendPage", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                @Html.Hidden("PageIndex", ViewData["PageIndex"])
+                @Html.Hidden("fg", TempData["fg"])
+                @Html.Hidden("MaxPageIndex",ViewData["MaxPageIndex"])
+                @Html.Hidden("deleteid","0")
+            </div>
+        </div>
+
+        </div>
+
+
+    @*添加仓库*@
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-prolend">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-users"  id="prolendTitle"></span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <form class="am-form" onsubmit="return checkform()" id="proform"  method="post">
+                    <style>
+                        #edit{
+                            
+                        }
+                        #edit tr td{
+                            text-align:center;
+                        }
+                    </style>
+                    <table id="edit" align="center">
+                        <tr>
+                            <td>编号：</td>
+                            <td><div class="am-form-group"><input type="text" class="am-input-sm" id="PPID" readonly="readonly" maxlength="12" name="PPID" placeholder="请输入供货商编号" required /></div></td>
+                            <td>&nbsp;&nbsp;&nbsp;名称：</td>
+                            <td><div class=" am-form-group"><input type="text" class="am-input-sm" id="PPName" name="PPName" placeholder="请输入公司名称" required></div></td>
+                        </tr>
+                        <tr>
+                            <td> 公司：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPCompany" name="PPCompany" placeholder="请输入公司" required/></div></td>
+                            <td>  &nbsp;&nbsp;&nbsp;联系：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPMan" name="PPMan" placeholder="请输入联系人" required /></div></td>
+                        </tr>
+                        <tr>
+                            <td>电话：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm"  id="PPTel"  name="PPTel" placeholder="请输入电话" required/></div></td>
+                            <td>&nbsp;&nbsp;&nbsp; 地址：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPAddress" name="PPAddress" placeholder="请输入地址" required/></div></td>
+                        </tr>
+                        <tr>
+                            <td> 传真：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPFax" name="PPFax" placeholder="请输入传真" required/></div></td>
+                            <td>&nbsp;&nbsp;&nbsp;邮箱：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPEmail" name="PPEmail" placeholder="请输入邮箱" required/></div></td>
+                        </tr>
+                        <tr>
+                            <td>网址：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPUrl" name="PPUrl" placeholder="请输入网址"required ></div></td>
+                            <td>&nbsp;&nbsp;&nbsp; 银行：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPBank" name="PPBank" placeholder="请输入银行"required ></div></td>
+                        </tr>
+                        <tr>
+                            <td> 账号：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPGoods" name="PPGoods" placeholder="请输入账号" required></div></td>
+                            <td>&nbsp;&nbsp;&nbsp; 备注：</td>
+                            <td><div class="am-form am-form-group"><input type="text" class="am-input-sm" id="PPDesc" name="PPDesc" placeholder="请输入备注"></div></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                            <input class="am-btn am-btn-primary am-radius" type="submit" style="margin-right:20px;" value="保存">
+                                <input class="am-btn am-btn-primary am-radius" type="reset" value="清空" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var PageIndex = 1;
+        var MaxPageIndex = 0;
+        $(function () {
+            new action_alert();
+            MaxPageIndex = $("#MaxPageIndex").val();
+            //添加供货商
+            new ProductLend();
+            $("#tmm-loeading").modal("close");
+        });
+        //编辑供货商
+        function tr_dbl(PPID, PPName, PPCompany, PPMan, PPTel, PPAddress, PPFax, PPEmail, PPUrl, PPBank, PPGoods, PPDesc) {
+            $("#PPID").val(PPID);
+            //$("#ppidparent").hide();
+            $("#PPID").attr("readonly",true);
+            $("input[name=PPID]")[0].readonly = "readonly";
+            $("input[name=PPName]")[0].value = PPName;
+            $("input[name=PPCompany]")[0].value = PPCompany;
+            $("input[name=PPMan]")[0].value = PPMan;
+            $("input[name=PPTel]")[0].value = PPTel;
+            $("input[name=PPAddress]")[0].value = PPAddress;
+            $("input[name=PPFax]")[0].value = PPFax;
+            $("input[name=PPEmail]")[0].value = PPEmail;
+            $("input[name=PPUrl]")[0].value = PPUrl;
+            $("input[name=PPBank]")[0].value = PPBank;
+            $("input[name=PPGoods]")[0].value = PPGoods;
+            $("input[name=PPDesc]")[0].value = PPDesc;
+            $("#prolendTitle").text("编辑供应商信息");
+            $("#proform").attr("action", "/Foundation/Home/EditProductLend");
+
+            $("#add-prolend").modal({closeviaDimmer:0});
+        }
+        function _delete(id) {
+            $("#deleteid").val(id);
+            $("#delete_com").modal({ closeViaDimmer: 0 });
+        }
+        //分页查询
+        function shouye() {
+            PageIndex = 1;
+            page();
+        }
+        function weiye() {
+            PageIndex = MaxPageIndex;
+            page();
+        }
+        function xiayiye() {
+            PageIndex = PageIndex < MaxPageIndex ? PageIndex + 1 : PageIndex;
+            page();
+        }
+        function shangyiye() {
+            PageIndex = PageIndex > 1 ? PageIndex - 1 : PageIndex;
+            page();
+        }
+        function change(obj) {
+            PageIndex =parseInt( obj.value);
+            page();
+        }
+        function page() {
+            $("#SelPage option[value=" + PageIndex + "]").attr("selected", true);
+            $.post("/Foundation/Home/ProductLendPage", { PageIndex: PageIndex }, function (data) {
+                setPage(data);
+            });
+        }
+        function setPage(data) {
+            $("#tabbody tr").remove();
+            $(data).each(function (k, v) {
+                var tr = $("<tr ondblclick='tr_dbl(\"" + v.PPID + "\",\"" + v.PPName + "\",\"" + v.PPCompany + "\",\"" + v.PPMan + "\",\"" + v.PPTel + "\",\"" + v.PPAddress + "\",\"" + v.PPFax + "\",\"" + v.PPEmail + "\",\"" + v.PPUrl + "\",\"" + v.PPBank + "\",\"" + v.PPGoods + "\",\"" + v.PPDesc + "\")'></tr>");
+                var th1 = $("<th>" + v.PPID + "</th>");
+                var th2 = $("<th>" + v.PPName + "</th>");
+                var th3 = $("<th>" + v.PPCompany + "</th>");
+                var th4 = $("<th>" + v.PPMan + "</th>");
+                var th5 = $("<th>" + v.PPTel + "</th>");
+                var th6 = $("<th>" + v.PPAddress + "</th>");
+                var th7 = $("<th> <button class='am-btn am-btn-default am-btn-xs am-text-secondary' onclick='tr_dbl(\"" + v.PPID + "\",\"" + v.PPName + "\",\"" + v.PPCompany + "\",\"" + v.PPMan + "\",\"" + v.PPTel + "\",\"" + v.PPAddress + "\",\"" + v.PPFax + "\",\"" + v.PPEmail + "\",\"" + v.PPUrl + "\",\"" + v.PPBank + "\",\"" + v.PPGoods + "\",\"" + v.PPDesc + "\")'><span class='am-icon-pencil-square-o'></span> 编辑</button> <button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='_delete(\"" + v.PPID + "\")'><span class='am-icon-trash-o'></span> 删除</button></th>");
+                tr.append(th1).append(th2).append(th3).append(th4).append(th5).append(th6).append(th7);
+                $("#tabbody").append(tr);
+            });
+        }
+    </script>
+
+</body>
+</html>

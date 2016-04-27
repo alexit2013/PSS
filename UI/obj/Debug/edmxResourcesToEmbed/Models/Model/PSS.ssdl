@@ -1,0 +1,2115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PSSEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CheckDepot">
+    <Key>
+      <PropertyRef Name="CDID" />
+    </Key>
+    <Property Name="CDID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="CDDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="CDDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="CDState" Type="int" />
+  </EntityType>
+  <EntityType Name="CheckDepotDetail">
+    <Key>
+      <PropertyRef Name="CDDID" />
+    </Key>
+    <Property Name="CDDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CDID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="CDDAmount1" Type="int" />
+    <Property Name="DevAmount2" Type="int" />
+    <Property Name="CDDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Compose">
+    <Key>
+      <PropertyRef Name="ComposeID" />
+    </Key>
+    <Property Name="ComposeID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="ProID" Type="varchar" MaxLength="50" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ComposeDate" Type="datetime" />
+    <Property Name="ComposeDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ComposeState" Type="int" />
+    <Property Name="ComposeAmount" Type="int" />
+    <Property Name="ComposePrice" Type="numeric" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="ComposeDetail">
+    <Key>
+      <PropertyRef Name="CDID" />
+    </Key>
+    <Property Name="CDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComposeID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="varchar" MaxLength="50" />
+    <Property Name="CDAmount" Type="int" />
+    <Property Name="CDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="CDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="CustomerLevel">
+    <Key>
+      <PropertyRef Name="CLID" />
+    </Key>
+    <Property Name="CLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CLName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CLAgio" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerOrder">
+    <Key>
+      <PropertyRef Name="COID" />
+    </Key>
+    <Property Name="COID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="CusID" Type="char" MaxLength="14" />
+    <Property Name="CODate" Type="datetime" />
+    <Property Name="CORefDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="COState" Type="int" />
+    <Property Name="CODesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="CustomerOrderDetail">
+    <Key>
+      <PropertyRef Name="CODID" />
+    </Key>
+    <Property Name="CODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="COID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="CODAmount" Type="int" />
+    <Property Name="CODPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="CODDiscont" Type="int" />
+    <Property Name="CODDisPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="CODSale" Type="int" />
+    <Property Name="CODDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CusID" />
+    </Key>
+    <Property Name="CusID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="CLID" Type="int" />
+    <Property Name="CusName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CusCompany" Type="nvarchar" MaxLength="200" />
+    <Property Name="CusMan" Type="nvarchar" MaxLength="50" />
+    <Property Name="CusDesc" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Depots">
+    <Key>
+      <PropertyRef Name="DepotID" />
+    </Key>
+    <Property Name="DepotID" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="DepotName" Type="nvarchar" MaxLength="100" />
+    <Property Name="DepotMan" Type="nvarchar" MaxLength="100" />
+    <Property Name="DepotTel" Type="nvarchar" MaxLength="100" />
+    <Property Name="DepotAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="DepotDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="DepotStock">
+    <Key>
+      <PropertyRef Name="DSID" />
+    </Key>
+    <Property Name="DSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="DSAmount" Type="int" />
+    <Property Name="DSPrice" Type="numeric" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="DevolveDetail">
+    <Key>
+      <PropertyRef Name="DevDID" />
+    </Key>
+    <Property Name="DevDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DevID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="DevDAmount" Type="int" />
+    <Property Name="DevDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Devolves">
+    <Key>
+      <PropertyRef Name="DevID" />
+    </Key>
+    <Property Name="DevID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DevOutID" Type="char" MaxLength="6" />
+    <Property Name="DevInID" Type="char" MaxLength="6" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="DevDate" Type="datetime" />
+    <Property Name="DevDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DevState" Type="int" />
+  </EntityType>
+  <EntityType Name="InOutDepot">
+    <Key>
+      <PropertyRef Name="IODID" />
+    </Key>
+    <Property Name="IODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="IODType" Type="int" />
+    <Property Name="IODNum" Type="varchar" MaxLength="100" />
+    <Property Name="IODDate" Type="datetime" />
+    <Property Name="IODUser" Type="int" />
+    <Property Name="IODDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="InOutDepotDetail">
+    <Key>
+      <PropertyRef Name="IODDID" />
+    </Key>
+    <Property Name="IODDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IODID" Type="int" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="IODDAmount" Type="int" />
+    <Property Name="IODDPrice" Type="numeric" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="LostDetail">
+    <Key>
+      <PropertyRef Name="LDID" />
+    </Key>
+    <Property Name="LDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LostID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="LDAmount" Type="int" />
+    <Property Name="LDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="LDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Losts">
+    <Key>
+      <PropertyRef Name="LostID" />
+    </Key>
+    <Property Name="LostID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="LostDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="LostDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="LostState" Type="int" />
+  </EntityType>
+  <EntityType Name="OtherInDepot">
+    <Key>
+      <PropertyRef Name="OIDID" />
+    </Key>
+    <Property Name="OIDID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="OIDDate" Type="datetime" />
+    <Property Name="OIDUser" Type="int" />
+    <Property Name="OIDState" Type="int" />
+    <Property Name="OIDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="OtherInDepotDetail">
+    <Key>
+      <PropertyRef Name="OIDDID" />
+    </Key>
+    <Property Name="OIDDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="OIDID" Type="char" MaxLength="14" />
+    <Property Name="OIDDAmount" Type="int" />
+    <Property Name="OIDDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="OIDDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="OtherOutDepot">
+    <Key>
+      <PropertyRef Name="OODID" />
+    </Key>
+    <Property Name="OODID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="OODDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="OODState" Type="int" />
+    <Property Name="OODDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="OtherOutDepotDetail">
+    <Key>
+      <PropertyRef Name="OODDID" />
+    </Key>
+    <Property Name="OODDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OODID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="OODDAmount" Type="int" />
+    <Property Name="OODDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="OODDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="PayOffDetail">
+    <Key>
+      <PropertyRef Name="PODID" />
+    </Key>
+    <Property Name="PODID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="PODAmount" Type="int" />
+    <Property Name="PODPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="PODDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="PayOffs">
+    <Key>
+      <PropertyRef Name="POID" />
+    </Key>
+    <Property Name="POID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="PODate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="PODesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="POState" Type="int" />
+  </EntityType>
+  <EntityType Name="PopedomRole">
+    <Key>
+      <PropertyRef Name="PRID" />
+    </Key>
+    <Property Name="PRID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="PopID" Type="int" />
+  </EntityType>
+  <EntityType Name="Popedoms">
+    <Key>
+      <PropertyRef Name="PopID" />
+    </Key>
+    <Property Name="PopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PopName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PopParentID" Type="int" />
+    <Property Name="PopIsMenu" Type="bit" />
+    <Property Name="PopValue" Type="varchar" MaxLength="200" />
+    <Property Name="PopDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProduceInDepot">
+    <Key>
+      <PropertyRef Name="PIDID" />
+    </Key>
+    <Property Name="PIDID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="PIDDate" Type="datetime" />
+    <Property Name="PIDUser" Type="int" />
+    <Property Name="PIDState" Type="int" />
+    <Property Name="PDIDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProduceInDepotDeteil">
+    <Key>
+      <PropertyRef Name="PIDDID" />
+    </Key>
+    <Property Name="PIDDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="PIDID" Type="char" MaxLength="14" />
+    <Property Name="PIDDAmount" Type="int" />
+    <Property Name="PIDDPrice" Type="numeric" Precision="14" Scale="0" />
+    <Property Name="PIDDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProduceOutDepot">
+    <Key>
+      <PropertyRef Name="PODID" />
+    </Key>
+    <Property Name="PODID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="PODDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="PODState" Type="int" />
+    <Property Name="PODDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProduceOutDepotDetail">
+    <Key>
+      <PropertyRef Name="PODDID" />
+    </Key>
+    <Property Name="PODDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PODID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="PODDAmount" Type="int" />
+    <Property Name="PODDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="PODDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProductColor">
+    <Key>
+      <PropertyRef Name="PCID" />
+    </Key>
+    <Property Name="PCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PCName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProductLend">
+    <Key>
+      <PropertyRef Name="PPID" />
+    </Key>
+    <Property Name="PPID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="PPName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PPCompany" Type="nvarchar" MaxLength="200" />
+    <Property Name="PPMan" Type="nvarchar" MaxLength="50" />
+    <Property Name="PPTel" Type="nvarchar" MaxLength="100" />
+    <Property Name="PPAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="PPFax" Type="nvarchar" MaxLength="100" />
+    <Property Name="PPEmail" Type="varchar" MaxLength="100" />
+    <Property Name="PPUrl" Type="varchar" MaxLength="100" />
+    <Property Name="PPBank" Type="nvarchar" MaxLength="200" />
+    <Property Name="PPGoods" Type="varchar" MaxLength="100" />
+    <Property Name="PPDesc" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PTID" Type="int" />
+    <Property Name="PUID" Type="int" />
+    <Property Name="PCID" Type="int" />
+    <Property Name="PSID" Type="int" />
+    <Property Name="ProName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProJP" Type="varchar" MaxLength="100" />
+    <Property Name="ProTM" Type="varchar" MaxLength="100" />
+    <Property Name="ProWorkShop" Type="varchar" MaxLength="200" />
+    <Property Name="ProMax" Type="int" />
+    <Property Name="ProMin" Type="int" />
+    <Property Name="ProInPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="ProPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="ProDesc" Type="nvarchar" MaxLength="2000" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+  </EntityType>
+  <EntityType Name="ProductSpec">
+    <Key>
+      <PropertyRef Name="PSID" />
+    </Key>
+    <Property Name="PSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PSName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ProductTypes">
+    <Key>
+      <PropertyRef Name="PTID" />
+    </Key>
+    <Property Name="PTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PTParentID" Type="int" />
+    <Property Name="PTName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PTDes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ProductUnit">
+    <Key>
+      <PropertyRef Name="PUID" />
+    </Key>
+    <Property Name="PUID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PUName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="QuotePrice">
+    <Key>
+      <PropertyRef Name="QPID" />
+    </Key>
+    <Property Name="QPID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="CusID" Type="char" MaxLength="14" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="QPDate" Type="datetime" />
+    <Property Name="QPState" Type="int" />
+    <Property Name="QPDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="QuotePriceDetail">
+    <Key>
+      <PropertyRef Name="QPDID" />
+    </Key>
+    <Property Name="QPDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QPID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="QPDAmount" Type="int" />
+    <Property Name="QPDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="QPDDiscont" Type="int" />
+    <Property Name="QPDDisPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="QPDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RoleDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="SaleDepot">
+    <Key>
+      <PropertyRef Name="SDID" />
+    </Key>
+    <Property Name="SDID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="CusID" Type="char" MaxLength="14" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="SDDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SDState" Type="int" />
+    <Property Name="SDDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="COID" Type="char" MaxLength="14" />
+  </EntityType>
+  <EntityType Name="SaleDepotDetail">
+    <Key>
+      <PropertyRef Name="SDDID" />
+    </Key>
+    <Property Name="SDDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SDID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="SDDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SDDDiscount" Type="int" />
+    <Property Name="SDDDisPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SDDDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SDDAmount" Type="int" />
+  </EntityType>
+  <EntityType Name="SaleReturn">
+    <Key>
+      <PropertyRef Name="SRID" />
+    </Key>
+    <Property Name="SRID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="SDID" Type="char" MaxLength="14" />
+    <Property Name="CusID" Type="char" MaxLength="14" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="SRDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SRState" Type="int" />
+    <Property Name="SRDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="SaleReturnDetail">
+    <Key>
+      <PropertyRef Name="SRDID" />
+    </Key>
+    <Property Name="SRDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SRID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="SRDAmount" Type="int" />
+    <Property Name="SRDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SRDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="SplitDetail">
+    <Key>
+      <PropertyRef Name="SDID" />
+    </Key>
+    <Property Name="SDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SplitID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="SDAmount" Type="int" />
+    <Property Name="SDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Splits">
+    <Key>
+      <PropertyRef Name="SplitID" />
+    </Key>
+    <Property Name="SplitID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="SplitDate" Type="datetime" />
+    <Property Name="SplitDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="SplitState" Type="int" />
+    <Property Name="SplitAmount" Type="int" />
+    <Property Name="SplitPrice" Type="numeric" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="StockDetail">
+    <Key>
+      <PropertyRef Name="SDetailID" />
+    </Key>
+    <Property Name="SDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="StockID" Type="char" MaxLength="14" />
+    <Property Name="SDetailAmount" Type="int" />
+    <Property Name="SDetailPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SDetailDepAmount" Type="int" />
+    <Property Name="SDetailDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="StockInDepot">
+    <Key>
+      <PropertyRef Name="SIDID" />
+    </Key>
+    <Property Name="SIDID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PPID" Type="char" MaxLength="14" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="StockID" Type="char" MaxLength="14" />
+    <Property Name="SIDDate" Type="datetime" />
+    <Property Name="SIDDeliver" Type="varchar" MaxLength="100" />
+    <Property Name="SIDFreight" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SIDUser" Type="int" />
+    <Property Name="SIDData" Type="int" />
+    <Property Name="SIDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="StockInDepotDetail">
+    <Key>
+      <PropertyRef Name="SIDDID" />
+    </Key>
+    <Property Name="SIDDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="SIDID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SIDAmount" Type="int" />
+    <Property Name="SIDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="SIDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="StockReturn">
+    <Key>
+      <PropertyRef Name="KRID" />
+    </Key>
+    <Property Name="KRID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="PPID" Type="char" MaxLength="14" />
+    <Property Name="SIDID" Type="varchar" MaxLength="50" />
+    <Property Name="DepotID" Type="char" MaxLength="6" />
+    <Property Name="KRDate" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="KRState" Type="int" />
+    <Property Name="KRDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="StockReturnDetail">
+    <Key>
+      <PropertyRef Name="KRDID" />
+    </Key>
+    <Property Name="KRDID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KRID" Type="char" MaxLength="14" />
+    <Property Name="ProID" Type="int" />
+    <Property Name="KRDAmount" Type="int" />
+    <Property Name="KRDPrice" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="KRDDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Stocks">
+    <Key>
+      <PropertyRef Name="StockID" />
+    </Key>
+    <Property Name="StockID" Type="char" MaxLength="14" Nullable="false" />
+    <Property Name="PPID" Type="char" MaxLength="14" />
+    <Property Name="StockDate" Type="datetime" />
+    <Property Name="StockInDate" Type="datetime" />
+    <Property Name="StockUser" Type="int" />
+    <Property Name="StockState" Type="int" />
+    <Property Name="StockDesc" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="SystemLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="value" Type="text" />
+    <Property Name="islog" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UsersID" />
+    </Key>
+    <Property Name="UsersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserLoginName" Type="varchar" MaxLength="20" />
+    <Property Name="UserLoginPwd" Type="varchar" MaxLength="50" />
+    <Property Name="UsersTF" Type="bit" />
+  </EntityType>
+  <EntityType Name="UsersRole">
+    <Key>
+      <PropertyRef Name="URID" />
+    </Key>
+    <Property Name="URID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+  </EntityType>
+  <Association Name="FK_CheckDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="CheckDepot" Type="Self.CheckDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="CheckDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="CheckDepot" Type="Self.CheckDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="CheckDepot">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckDepotDetail_CheckDepot">
+    <End Role="CheckDepot" Type="Self.CheckDepot" Multiplicity="0..1" />
+    <End Role="CheckDepotDetail" Type="Self.CheckDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckDepot">
+        <PropertyRef Name="CDID" />
+      </Principal>
+      <Dependent Role="CheckDepotDetail">
+        <PropertyRef Name="CDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CheckDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="CheckDepotDetail" Type="Self.CheckDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="CheckDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrder_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="CustomerOrder">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrder_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="CustomerOrder">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrderDetail_CustomerOrder">
+    <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="0..1" />
+    <End Role="CustomerOrderDetail" Type="Self.CustomerOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="COID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetail">
+        <PropertyRef Name="COID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerOrderDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="CustomerOrderDetail" Type="Self.CustomerOrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="CustomerOrderDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_CustomerLevel">
+    <End Role="CustomerLevel" Type="Self.CustomerLevel" Multiplicity="0..1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerLevel">
+        <PropertyRef Name="CLID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="CLID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepotStock_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="DepotStock" Type="Self.DepotStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="DepotStock">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepotStock_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="DepotStock" Type="Self.DepotStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="DepotStock">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DevolveDetail_Devolves">
+    <End Role="Devolves" Type="Self.Devolves" Multiplicity="0..1" />
+    <End Role="DevolveDetail" Type="Self.DevolveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Devolves">
+        <PropertyRef Name="DevID" />
+      </Principal>
+      <Dependent Role="DevolveDetail">
+        <PropertyRef Name="DevID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DevolveDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="DevolveDetail" Type="Self.DevolveDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="DevolveDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Devolves_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="Devolves" Type="Self.Devolves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="Devolves">
+        <PropertyRef Name="DevInID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Devolves_Depots1">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="Devolves" Type="Self.Devolves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="Devolves">
+        <PropertyRef Name="DevOutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Devolves_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Devolves" Type="Self.Devolves" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="Devolves">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InOutDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="InOutDepot" Type="Self.InOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="InOutDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InOutDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="InOutDepot" Type="Self.InOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="InOutDepot">
+        <PropertyRef Name="IODUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InOutDepotDetail_InOutDepotDetail">
+    <End Role="InOutDepot" Type="Self.InOutDepot" Multiplicity="0..1" />
+    <End Role="InOutDepotDetail" Type="Self.InOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InOutDepot">
+        <PropertyRef Name="IODID" />
+      </Principal>
+      <Dependent Role="InOutDepotDetail">
+        <PropertyRef Name="IODID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InOutDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="InOutDepotDetail" Type="Self.InOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="InOutDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostDetail_Losts">
+    <End Role="Losts" Type="Self.Losts" Multiplicity="0..1" />
+    <End Role="LostDetail" Type="Self.LostDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Losts">
+        <PropertyRef Name="LostID" />
+      </Principal>
+      <Dependent Role="LostDetail">
+        <PropertyRef Name="LostID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="LostDetail" Type="Self.LostDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="LostDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Losts_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="Losts" Type="Self.Losts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="Losts">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Losts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Losts" Type="Self.Losts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="Losts">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherInDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="OtherInDepot" Type="Self.OtherInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="OtherInDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherInDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="OtherInDepot" Type="Self.OtherInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="OtherInDepot">
+        <PropertyRef Name="OIDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherInDepotDetail_OtherInDepot">
+    <End Role="OtherInDepot" Type="Self.OtherInDepot" Multiplicity="0..1" />
+    <End Role="OtherInDepotDetail" Type="Self.OtherInDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OtherInDepot">
+        <PropertyRef Name="OIDID" />
+      </Principal>
+      <Dependent Role="OtherInDepotDetail">
+        <PropertyRef Name="OIDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherInDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="OtherInDepotDetail" Type="Self.OtherInDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="OtherInDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherOutDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="OtherOutDepot" Type="Self.OtherOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="OtherOutDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherOutDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="OtherOutDepot" Type="Self.OtherOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="OtherOutDepot">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherOutDepotDetail_OtherOutDepot">
+    <End Role="OtherOutDepot" Type="Self.OtherOutDepot" Multiplicity="0..1" />
+    <End Role="OtherOutDepotDetail" Type="Self.OtherOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OtherOutDepot">
+        <PropertyRef Name="OODID" />
+      </Principal>
+      <Dependent Role="OtherOutDepotDetail">
+        <PropertyRef Name="OODID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OtherOutDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="OtherOutDepotDetail" Type="Self.OtherOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="OtherOutDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayOffDetail_PayOffs">
+    <End Role="PayOffs" Type="Self.PayOffs" Multiplicity="0..1" />
+    <End Role="PayOffDetail" Type="Self.PayOffDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PayOffs">
+        <PropertyRef Name="POID" />
+      </Principal>
+      <Dependent Role="PayOffDetail">
+        <PropertyRef Name="POID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayOffDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="PayOffDetail" Type="Self.PayOffDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="PayOffDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayOffs_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="PayOffs" Type="Self.PayOffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="PayOffs">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PayOffs_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="PayOffs" Type="Self.PayOffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="PayOffs">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PopedomRole_Popedoms">
+    <End Role="Popedoms" Type="Self.Popedoms" Multiplicity="0..1" />
+    <End Role="PopedomRole" Type="Self.PopedomRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Popedoms">
+        <PropertyRef Name="PopID" />
+      </Principal>
+      <Dependent Role="PopedomRole">
+        <PropertyRef Name="PopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PopedomRole_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="PopedomRole" Type="Self.PopedomRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="PopedomRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceInDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="ProduceInDepot" Type="Self.ProduceInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="ProduceInDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceInDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ProduceInDepot" Type="Self.ProduceInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="ProduceInDepot">
+        <PropertyRef Name="PIDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceInDepotDeteil_ProduceInDepot">
+    <End Role="ProduceInDepot" Type="Self.ProduceInDepot" Multiplicity="0..1" />
+    <End Role="ProduceInDepotDeteil" Type="Self.ProduceInDepotDeteil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceInDepot">
+        <PropertyRef Name="PIDID" />
+      </Principal>
+      <Dependent Role="ProduceInDepotDeteil">
+        <PropertyRef Name="PIDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceInDepotDeteil_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProduceInDepotDeteil" Type="Self.ProduceInDepotDeteil" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="ProduceInDepotDeteil">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceOutDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="ProduceOutDepot" Type="Self.ProduceOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="ProduceOutDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceOutDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ProduceOutDepot" Type="Self.ProduceOutDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="ProduceOutDepot">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceOutDepotDetail_ProduceOutDepot">
+    <End Role="ProduceOutDepot" Type="Self.ProduceOutDepot" Multiplicity="0..1" />
+    <End Role="ProduceOutDepotDetail" Type="Self.ProduceOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProduceOutDepot">
+        <PropertyRef Name="PODID" />
+      </Principal>
+      <Dependent Role="ProduceOutDepotDetail">
+        <PropertyRef Name="PODID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProduceOutDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProduceOutDepotDetail" Type="Self.ProduceOutDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="ProduceOutDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductColor">
+    <End Role="ProductColor" Type="Self.ProductColor" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductColor">
+        <PropertyRef Name="PCID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="PCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductSpec">
+    <End Role="ProductSpec" Type="Self.ProductSpec" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductSpec">
+        <PropertyRef Name="PSID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="PSID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductTypes">
+    <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductTypes">
+        <PropertyRef Name="PTID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="PTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductUnit">
+    <End Role="ProductUnit" Type="Self.ProductUnit" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductUnit">
+        <PropertyRef Name="PUID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="PUID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuotePrice_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="QuotePrice" Type="Self.QuotePrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="QuotePrice">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuotePrice_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="QuotePrice" Type="Self.QuotePrice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="QuotePrice">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuotePriceDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="QuotePriceDetail" Type="Self.QuotePriceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="QuotePriceDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuotePriceDetail_QuotePrice">
+    <End Role="QuotePrice" Type="Self.QuotePrice" Multiplicity="0..1" />
+    <End Role="QuotePriceDetail" Type="Self.QuotePriceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QuotePrice">
+        <PropertyRef Name="QPID" />
+      </Principal>
+      <Dependent Role="QuotePriceDetail">
+        <PropertyRef Name="QPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepot_CustomerOrder">
+    <End Role="CustomerOrder" Type="Self.CustomerOrder" Multiplicity="0..1" />
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerOrder">
+        <PropertyRef Name="COID" />
+      </Principal>
+      <Dependent Role="SaleDepot">
+        <PropertyRef Name="COID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepot_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="SaleDepot">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepot_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="SaleDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="SaleDepot">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepotDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="SaleDepotDetail" Type="Self.SaleDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="SaleDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDepotDetail_SaleDepot">
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="0..1" />
+    <End Role="SaleDepotDetail" Type="Self.SaleDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleDepot">
+        <PropertyRef Name="SDID" />
+      </Principal>
+      <Dependent Role="SaleDepotDetail">
+        <PropertyRef Name="SDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CusID" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="CusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_SaleDepot">
+    <End Role="SaleDepot" Type="Self.SaleDepot" Multiplicity="0..1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleDepot">
+        <PropertyRef Name="SDID" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="SDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturnDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="SaleReturnDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturnDetail_SaleReturn">
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="0..1" />
+    <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleReturn">
+        <PropertyRef Name="SRID" />
+      </Principal>
+      <Dependent Role="SaleReturnDetail">
+        <PropertyRef Name="SRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SplitDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="SplitDetail" Type="Self.SplitDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="SplitDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SplitDetail_Splits">
+    <End Role="Splits" Type="Self.Splits" Multiplicity="0..1" />
+    <End Role="SplitDetail" Type="Self.SplitDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Splits">
+        <PropertyRef Name="SplitID" />
+      </Principal>
+      <Dependent Role="SplitDetail">
+        <PropertyRef Name="SplitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Splits_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="Splits" Type="Self.Splits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="Splits">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Splits_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Splits" Type="Self.Splits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="Splits">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Splits_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Splits" Type="Self.Splits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="Splits">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="StockDetail" Type="Self.StockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="StockDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockDetail_Stocks">
+    <End Role="Stocks" Type="Self.Stocks" Multiplicity="0..1" />
+    <End Role="StockDetail" Type="Self.StockDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stocks">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="StockDetail">
+        <PropertyRef Name="StockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepot_Depots">
+    <End Role="ProductLend" Type="Self.ProductLend" Multiplicity="0..1" />
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductLend">
+        <PropertyRef Name="PPID" />
+      </Principal>
+      <Dependent Role="StockInDepot">
+        <PropertyRef Name="PPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepot_Depots1">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="StockInDepot">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepot_Stocks">
+    <End Role="Stocks" Type="Self.Stocks" Multiplicity="0..1" />
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stocks">
+        <PropertyRef Name="StockID" />
+      </Principal>
+      <Dependent Role="StockInDepot">
+        <PropertyRef Name="StockID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepot_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="StockInDepot">
+        <PropertyRef Name="SIDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepotDetail_StockInDepot">
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="1" />
+    <End Role="StockInDepotDetail" Type="Self.StockInDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockInDepot">
+        <PropertyRef Name="SIDID" />
+      </Principal>
+      <Dependent Role="StockInDepotDetail">
+        <PropertyRef Name="SIDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockInDepotDetail_StockInDepotDetail">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="StockInDepotDetail" Type="Self.StockInDepotDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="StockInDepotDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturn_Depots">
+    <End Role="Depots" Type="Self.Depots" Multiplicity="0..1" />
+    <End Role="StockReturn" Type="Self.StockReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Depots">
+        <PropertyRef Name="DepotID" />
+      </Principal>
+      <Dependent Role="StockReturn">
+        <PropertyRef Name="DepotID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturn_ProductLend">
+    <End Role="ProductLend" Type="Self.ProductLend" Multiplicity="0..1" />
+    <End Role="StockReturn" Type="Self.StockReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductLend">
+        <PropertyRef Name="PPID" />
+      </Principal>
+      <Dependent Role="StockReturn">
+        <PropertyRef Name="PPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturn_StockInDepot">
+    <End Role="StockInDepot" Type="Self.StockInDepot" Multiplicity="0..1" />
+    <End Role="StockReturn" Type="Self.StockReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockInDepot">
+        <PropertyRef Name="SIDID" />
+      </Principal>
+      <Dependent Role="StockReturn">
+        <PropertyRef Name="SIDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturn_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="StockReturn" Type="Self.StockReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="StockReturn">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturnDetail_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="StockReturnDetail" Type="Self.StockReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProID" />
+      </Principal>
+      <Dependent Role="StockReturnDetail">
+        <PropertyRef Name="ProID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockReturnDetail_StockReturn">
+    <End Role="StockReturn" Type="Self.StockReturn" Multiplicity="0..1" />
+    <End Role="StockReturnDetail" Type="Self.StockReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockReturn">
+        <PropertyRef Name="KRID" />
+      </Principal>
+      <Dependent Role="StockReturnDetail">
+        <PropertyRef Name="KRID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stocks_ProductLend">
+    <End Role="ProductLend" Type="Self.ProductLend" Multiplicity="0..1" />
+    <End Role="Stocks" Type="Self.Stocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductLend">
+        <PropertyRef Name="PPID" />
+      </Principal>
+      <Dependent Role="Stocks">
+        <PropertyRef Name="PPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stocks_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Stocks" Type="Self.Stocks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="Stocks">
+        <PropertyRef Name="StockUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRole_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="UsersRole" Type="Self.UsersRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UsersID" />
+      </Principal>
+      <Dependent Role="UsersRole">
+        <PropertyRef Name="UsersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="myProc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tbName" Type="varchar" Mode="In" />
+    <Parameter Name="keyFiled" Type="varchar" Mode="In" />
+    <Parameter Name="showFiled" Type="varchar" Mode="In" />
+    <Parameter Name="where" Type="varchar" Mode="In" />
+    <Parameter Name="orderBy" Type="varchar" Mode="In" />
+    <Parameter Name="pageIndex" Type="int" Mode="In" />
+    <Parameter Name="pageSize" Type="int" Mode="In" />
+  </Function>
+  <Function Name="OtherInDepot_proc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="OtherInDepotProc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="varchar" Mode="In" />
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="pro_cursor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="pro_order" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tbName" Type="varchar" Mode="In" />
+    <Parameter Name="keyName" Type="varchar" Mode="In" />
+    <Parameter Name="qz" Type="varchar" Mode="In" />
+    <Parameter Name="DD" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="proc_RestoreDataBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="proc_SaveDataBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sqltest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="columnName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sqltest2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tbName" Type="varchar" Mode="In" />
+    <Parameter Name="count" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="StockProc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="PSSEntitiesStoreContainer">
+    <EntitySet Name="CheckDepot" EntityType="Self.CheckDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CheckDepotDetail" EntityType="Self.CheckDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compose" EntityType="Self.Compose" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComposeDetail" EntityType="Self.ComposeDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerLevel" EntityType="Self.CustomerLevel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerOrder" EntityType="Self.CustomerOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerOrderDetail" EntityType="Self.CustomerOrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Depots" EntityType="Self.Depots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepotStock" EntityType="Self.DepotStock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DevolveDetail" EntityType="Self.DevolveDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Devolves" EntityType="Self.Devolves" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InOutDepot" EntityType="Self.InOutDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InOutDepotDetail" EntityType="Self.InOutDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LostDetail" EntityType="Self.LostDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Losts" EntityType="Self.Losts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherInDepot" EntityType="Self.OtherInDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherInDepotDetail" EntityType="Self.OtherInDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherOutDepot" EntityType="Self.OtherOutDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OtherOutDepotDetail" EntityType="Self.OtherOutDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayOffDetail" EntityType="Self.PayOffDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PayOffs" EntityType="Self.PayOffs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PopedomRole" EntityType="Self.PopedomRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Popedoms" EntityType="Self.Popedoms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceInDepot" EntityType="Self.ProduceInDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceInDepotDeteil" EntityType="Self.ProduceInDepotDeteil" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceOutDepot" EntityType="Self.ProduceOutDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProduceOutDepotDetail" EntityType="Self.ProduceOutDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductColor" EntityType="Self.ProductColor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductLend" EntityType="Self.ProductLend" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductSpec" EntityType="Self.ProductSpec" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductUnit" EntityType="Self.ProductUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuotePrice" EntityType="Self.QuotePrice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QuotePriceDetail" EntityType="Self.QuotePriceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleDepot" EntityType="Self.SaleDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleDepotDetail" EntityType="Self.SaleDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleReturn" EntityType="Self.SaleReturn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleReturnDetail" EntityType="Self.SaleReturnDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SplitDetail" EntityType="Self.SplitDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Splits" EntityType="Self.Splits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockDetail" EntityType="Self.StockDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockInDepot" EntityType="Self.StockInDepot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockInDepotDetail" EntityType="Self.StockInDepotDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockReturn" EntityType="Self.StockReturn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockReturnDetail" EntityType="Self.StockReturnDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stocks" EntityType="Self.Stocks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemLog" EntityType="Self.SystemLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersRole" EntityType="Self.UsersRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CheckDepot_Depots" Association="Self.FK_CheckDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="CheckDepot" EntitySet="CheckDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckDepot_Users" Association="Self.FK_CheckDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CheckDepot" EntitySet="CheckDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckDepotDetail_CheckDepot" Association="Self.FK_CheckDepotDetail_CheckDepot">
+      <End Role="CheckDepot" EntitySet="CheckDepot" />
+      <End Role="CheckDepotDetail" EntitySet="CheckDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CheckDepotDetail_Products" Association="Self.FK_CheckDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CheckDepotDetail" EntitySet="CheckDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrder_Customers" Association="Self.FK_CustomerOrder_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrder_Users" Association="Self.FK_CustomerOrder_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrderDetail_CustomerOrder" Association="Self.FK_CustomerOrderDetail_CustomerOrder">
+      <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+      <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerOrderDetail_Products" Association="Self.FK_CustomerOrderDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="CustomerOrderDetail" EntitySet="CustomerOrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_CustomerLevel" Association="Self.FK_Customers_CustomerLevel">
+      <End Role="CustomerLevel" EntitySet="CustomerLevel" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepotStock_Depots" Association="Self.FK_DepotStock_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="DepotStock" EntitySet="DepotStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepotStock_Products" Association="Self.FK_DepotStock_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DepotStock" EntitySet="DepotStock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DevolveDetail_Devolves" Association="Self.FK_DevolveDetail_Devolves">
+      <End Role="Devolves" EntitySet="Devolves" />
+      <End Role="DevolveDetail" EntitySet="DevolveDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DevolveDetail_Products" Association="Self.FK_DevolveDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="DevolveDetail" EntitySet="DevolveDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Devolves_Depots" Association="Self.FK_Devolves_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="Devolves" EntitySet="Devolves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Devolves_Depots1" Association="Self.FK_Devolves_Depots1">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="Devolves" EntitySet="Devolves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Devolves_Users" Association="Self.FK_Devolves_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Devolves" EntitySet="Devolves" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InOutDepot_Depots" Association="Self.FK_InOutDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="InOutDepot" EntitySet="InOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InOutDepot_Users" Association="Self.FK_InOutDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="InOutDepot" EntitySet="InOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InOutDepotDetail_InOutDepotDetail" Association="Self.FK_InOutDepotDetail_InOutDepotDetail">
+      <End Role="InOutDepot" EntitySet="InOutDepot" />
+      <End Role="InOutDepotDetail" EntitySet="InOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InOutDepotDetail_Products" Association="Self.FK_InOutDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="InOutDepotDetail" EntitySet="InOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostDetail_Losts" Association="Self.FK_LostDetail_Losts">
+      <End Role="Losts" EntitySet="Losts" />
+      <End Role="LostDetail" EntitySet="LostDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostDetail_Products" Association="Self.FK_LostDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="LostDetail" EntitySet="LostDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Losts_Depots" Association="Self.FK_Losts_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="Losts" EntitySet="Losts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Losts_Users" Association="Self.FK_Losts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Losts" EntitySet="Losts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherInDepot_Depots" Association="Self.FK_OtherInDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="OtherInDepot" EntitySet="OtherInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherInDepot_Users" Association="Self.FK_OtherInDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OtherInDepot" EntitySet="OtherInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherInDepotDetail_OtherInDepot" Association="Self.FK_OtherInDepotDetail_OtherInDepot">
+      <End Role="OtherInDepot" EntitySet="OtherInDepot" />
+      <End Role="OtherInDepotDetail" EntitySet="OtherInDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherInDepotDetail_Products" Association="Self.FK_OtherInDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OtherInDepotDetail" EntitySet="OtherInDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherOutDepot_Depots" Association="Self.FK_OtherOutDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="OtherOutDepot" EntitySet="OtherOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherOutDepot_Users" Association="Self.FK_OtherOutDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OtherOutDepot" EntitySet="OtherOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherOutDepotDetail_OtherOutDepot" Association="Self.FK_OtherOutDepotDetail_OtherOutDepot">
+      <End Role="OtherOutDepot" EntitySet="OtherOutDepot" />
+      <End Role="OtherOutDepotDetail" EntitySet="OtherOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OtherOutDepotDetail_Products" Association="Self.FK_OtherOutDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="OtherOutDepotDetail" EntitySet="OtherOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayOffDetail_PayOffs" Association="Self.FK_PayOffDetail_PayOffs">
+      <End Role="PayOffs" EntitySet="PayOffs" />
+      <End Role="PayOffDetail" EntitySet="PayOffDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayOffDetail_Products" Association="Self.FK_PayOffDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="PayOffDetail" EntitySet="PayOffDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayOffs_Depots" Association="Self.FK_PayOffs_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="PayOffs" EntitySet="PayOffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PayOffs_Users" Association="Self.FK_PayOffs_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PayOffs" EntitySet="PayOffs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PopedomRole_Popedoms" Association="Self.FK_PopedomRole_Popedoms">
+      <End Role="Popedoms" EntitySet="Popedoms" />
+      <End Role="PopedomRole" EntitySet="PopedomRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PopedomRole_Roles" Association="Self.FK_PopedomRole_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="PopedomRole" EntitySet="PopedomRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceInDepot_Depots" Association="Self.FK_ProduceInDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="ProduceInDepot" EntitySet="ProduceInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceInDepot_Users" Association="Self.FK_ProduceInDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ProduceInDepot" EntitySet="ProduceInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceInDepotDeteil_ProduceInDepot" Association="Self.FK_ProduceInDepotDeteil_ProduceInDepot">
+      <End Role="ProduceInDepot" EntitySet="ProduceInDepot" />
+      <End Role="ProduceInDepotDeteil" EntitySet="ProduceInDepotDeteil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceInDepotDeteil_Products" Association="Self.FK_ProduceInDepotDeteil_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProduceInDepotDeteil" EntitySet="ProduceInDepotDeteil" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceOutDepot_Depots" Association="Self.FK_ProduceOutDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="ProduceOutDepot" EntitySet="ProduceOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceOutDepot_Users" Association="Self.FK_ProduceOutDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ProduceOutDepot" EntitySet="ProduceOutDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceOutDepotDetail_ProduceOutDepot" Association="Self.FK_ProduceOutDepotDetail_ProduceOutDepot">
+      <End Role="ProduceOutDepot" EntitySet="ProduceOutDepot" />
+      <End Role="ProduceOutDepotDetail" EntitySet="ProduceOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProduceOutDepotDetail_Products" Association="Self.FK_ProduceOutDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProduceOutDepotDetail" EntitySet="ProduceOutDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Depots" Association="Self.FK_Products_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductColor" Association="Self.FK_Products_ProductColor">
+      <End Role="ProductColor" EntitySet="ProductColor" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductSpec" Association="Self.FK_Products_ProductSpec">
+      <End Role="ProductSpec" EntitySet="ProductSpec" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductTypes" Association="Self.FK_Products_ProductTypes">
+      <End Role="ProductTypes" EntitySet="ProductTypes" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductUnit" Association="Self.FK_Products_ProductUnit">
+      <End Role="ProductUnit" EntitySet="ProductUnit" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuotePrice_Customers" Association="Self.FK_QuotePrice_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="QuotePrice" EntitySet="QuotePrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuotePrice_Users" Association="Self.FK_QuotePrice_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="QuotePrice" EntitySet="QuotePrice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuotePriceDetail_Products" Association="Self.FK_QuotePriceDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="QuotePriceDetail" EntitySet="QuotePriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuotePriceDetail_QuotePrice" Association="Self.FK_QuotePriceDetail_QuotePrice">
+      <End Role="QuotePrice" EntitySet="QuotePrice" />
+      <End Role="QuotePriceDetail" EntitySet="QuotePriceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepot_CustomerOrder" Association="Self.FK_SaleDepot_CustomerOrder">
+      <End Role="CustomerOrder" EntitySet="CustomerOrder" />
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepot_Customers" Association="Self.FK_SaleDepot_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepot_Depots" Association="Self.FK_SaleDepot_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepot_Users" Association="Self.FK_SaleDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepotDetail_Products" Association="Self.FK_SaleDepotDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleDepotDetail" EntitySet="SaleDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDepotDetail_SaleDepot" Association="Self.FK_SaleDepotDetail_SaleDepot">
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+      <End Role="SaleDepotDetail" EntitySet="SaleDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_Customers" Association="Self.FK_SaleReturn_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_Depots" Association="Self.FK_SaleReturn_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_SaleDepot" Association="Self.FK_SaleReturn_SaleDepot">
+      <End Role="SaleDepot" EntitySet="SaleDepot" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_Users" Association="Self.FK_SaleReturn_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturnDetail_Products" Association="Self.FK_SaleReturnDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturnDetail_SaleReturn" Association="Self.FK_SaleReturnDetail_SaleReturn">
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+      <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SplitDetail_Products" Association="Self.FK_SplitDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SplitDetail" EntitySet="SplitDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SplitDetail_Splits" Association="Self.FK_SplitDetail_Splits">
+      <End Role="Splits" EntitySet="Splits" />
+      <End Role="SplitDetail" EntitySet="SplitDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Splits_Depots" Association="Self.FK_Splits_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="Splits" EntitySet="Splits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Splits_Products" Association="Self.FK_Splits_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Splits" EntitySet="Splits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Splits_Users" Association="Self.FK_Splits_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Splits" EntitySet="Splits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockDetail_Products" Association="Self.FK_StockDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="StockDetail" EntitySet="StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockDetail_Stocks" Association="Self.FK_StockDetail_Stocks">
+      <End Role="Stocks" EntitySet="Stocks" />
+      <End Role="StockDetail" EntitySet="StockDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepot_Depots" Association="Self.FK_StockInDepot_Depots">
+      <End Role="ProductLend" EntitySet="ProductLend" />
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepot_Depots1" Association="Self.FK_StockInDepot_Depots1">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepot_Stocks" Association="Self.FK_StockInDepot_Stocks">
+      <End Role="Stocks" EntitySet="Stocks" />
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepot_Users" Association="Self.FK_StockInDepot_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepotDetail_StockInDepot" Association="Self.FK_StockInDepotDetail_StockInDepot">
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+      <End Role="StockInDepotDetail" EntitySet="StockInDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockInDepotDetail_StockInDepotDetail" Association="Self.FK_StockInDepotDetail_StockInDepotDetail">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="StockInDepotDetail" EntitySet="StockInDepotDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturn_Depots" Association="Self.FK_StockReturn_Depots">
+      <End Role="Depots" EntitySet="Depots" />
+      <End Role="StockReturn" EntitySet="StockReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturn_ProductLend" Association="Self.FK_StockReturn_ProductLend">
+      <End Role="ProductLend" EntitySet="ProductLend" />
+      <End Role="StockReturn" EntitySet="StockReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturn_StockInDepot" Association="Self.FK_StockReturn_StockInDepot">
+      <End Role="StockInDepot" EntitySet="StockInDepot" />
+      <End Role="StockReturn" EntitySet="StockReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturn_Users" Association="Self.FK_StockReturn_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="StockReturn" EntitySet="StockReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturnDetail_Products" Association="Self.FK_StockReturnDetail_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="StockReturnDetail" EntitySet="StockReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockReturnDetail_StockReturn" Association="Self.FK_StockReturnDetail_StockReturn">
+      <End Role="StockReturn" EntitySet="StockReturn" />
+      <End Role="StockReturnDetail" EntitySet="StockReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stocks_ProductLend" Association="Self.FK_Stocks_ProductLend">
+      <End Role="ProductLend" EntitySet="ProductLend" />
+      <End Role="Stocks" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stocks_Users" Association="Self.FK_Stocks_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Stocks" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole_Roles" Association="Self.FK_UsersRole_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersRole" EntitySet="UsersRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRole_Users" Association="Self.FK_UsersRole_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRole" EntitySet="UsersRole" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

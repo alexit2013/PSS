@@ -1,0 +1,69 @@
+﻿<link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+<script src="~/Scripts/assets/js/jquery.min.js"></script>
+<script src="~/Scripts/assets/js/amazeui.js"></script>
+<script src="~/Scripts/js/modal.js"></script>
+
+<style>
+    .home {
+        float: left;
+        background-color: #00A3E8;
+        cursor:pointer;
+        color: white;
+        margin:2px;
+    }
+  input,button, a{
+            outline: 0 none !important;
+            blr: expression(this.onFocus=this.blur());
+        }
+    /*#myhome:hover{
+      
+       margin-top:1px;
+    }
+    #showfull:hover {
+        margin:1px;
+    }*/
+</style>
+
+    <header class="am-topbar admin-header" style="height: 100%; background-color: #00A3E8">
+        <div class="home" id="myhome">
+            <div class="am-dropdown am-text-xs" data-am-dropdown id="dropdown1">
+                <a style="color:white;" id="d1" >
+                    <i class="am-header-icon am-icon-bars" style=" font-size: 24px;"></i>
+                </a>
+                <ul class="am-dropdown-content" style="font-size:10px;font-weight:bold;">
+                    <li><a href="/Home/Loginout" onclick="javascript: return confirm('确认注销登录吗？');" style="color: #0094ff;" class="am-icon-sign-out">&nbsp;&nbsp;注销</a></li>
+                </ul>
+            </div>
+        </div>
+        @*主页logo*@
+        <div  style="margin-left: 37%; float: left; width: 17%; height: 58%; margin-top: 2px;" >
+            <img src="../../Images/logomin.jpg" />
+        </div>
+        @*主页菜单*@
+        <div style="float:right; height:20px;color:white;cursor:pointer;font-size:20px;"><i id="showfull" class="am-icon-arrows-alt"></i></div>
+      
+       <div style="border:0px solid red;height:20px;width:230px;float:right;margin-top:40px;color:white;font-size:13px;" id="newtime"></div>
+        <script>
+            $(function () {
+                $("#showfull").click(function () {
+                    if ($.AMUI.fullscreen.enabled) {
+                        $.AMUI.fullscreen.toggle();
+                    } else {
+                        alert("你的浏览器不支持该功能！");
+                       // $.AMUI.fullscreen.exit();
+                        // Ignore or do something else
+                        // window.open('/Home/Index', 'big', 'fullscreen=yes');
+                        //document.documentElement.msRequestFullscreen();
+
+                    }
+                });
+            $("#d1").click(function () {
+                $("#dropdown1").dropdown('toggle');
+            });
+            });
+            function showtime() {
+                $("#newtime").text("当前时间："+new Date().toLocaleString());
+            }
+            setInterval("showtime()", 1000);
+        </script>
+    </header>

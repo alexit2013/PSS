@@ -1,0 +1,11 @@
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\Model.dll
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\Model.pdb
+J:\桌面文件夹\PSS\PSS\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+J:\桌面文件夹\PSS\PSS\Model\obj\Debug\Model.dll
+J:\桌面文件夹\PSS\PSS\Model\obj\Debug\Model.pdb
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\Model.dll.config
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\EntityFramework.dll
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\EntityFramework.SqlServer.dll
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\EntityFramework.xml
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\EntityFramework.SqlServer.xml
+J:\桌面文件夹\PSS\PSS\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll

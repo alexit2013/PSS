@@ -1,0 +1,125 @@
+﻿@using UI.Models.Model;
+
+@{ 
+    List<PopedomRole> list = Session["toolList"] as List<PopedomRole>;
+
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Left</title>
+
+    <link href="~/Scripts/assets/css/admin.css" rel="stylesheet" />
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <link href="~/Scripts/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css" rel="stylesheet" />
+   
+    <style>
+       
+        div ul li ul li {
+            padding-left: 20px;
+        }
+        div ul li {
+            padding-left: 25px;
+        }
+     
+        ul li a {
+            font-size:15px;
+            font-weight:bold;
+        }
+      
+        /*去除选中状态时的虚线*/
+            input, button, a{
+            outline: 0 none !important;
+            blr: expression(this.onFocus=this.blur());
+        }
+        .lix {
+            color: #ff0000;
+        }
+    </style>
+   </head>
+<body>
+  
+    <div>
+        @*@Html.Hidden("uname", Session["name"])*@
+        <div class="am-topbar" style="font-size:15px;text-align:center;cursor:pointer;color:white;background-color:#b1862d;height:70px;">
+            [当前登录用户]<br />
+            <i class="am-icon-user"></i>  <span id="spuname">@Session["name"].ToString()</span>
+        </div>
+        <div class="content" style="background-color:white;width:100%;height:500px;border:0px solid silver;padding-bottom:25px;overflow:auto;">
+            <ul class="am-list admin-sidebar-list">
+                @*菜单*@
+                @{
+                    bool fs = false;
+                    foreach (PopedomRole item in list)
+                    {
+                        if (item.Popedoms.PopValue.ToLower() == "/home/maindefault")
+                        {
+                            fs = true;
+                            break;
+                        }
+                    }
+                    if (fs)
+                    {
+                        <li><a href="/Home/maindefault" target="default" style="color: #808080; "><span class="am-icon-info-circle"></span> 系统提醒</a></li>
+                    }
+                }
+                <li class="admin-parent">
+                    @{
+                        foreach (PopedomRole item in list)
+                        {
+                            if (Convert.ToBoolean(item.Popedoms.PopIsMenu) && item.Popedoms.PopParentID == 0)
+                            {
+                                <a class="am-cf" data-am-collapse="{target: '#@item.Popedoms.PopID'}" target="default" href="@item.Popedoms.PopValue"><span class="@item.Popedoms.PopDesc"></span> @item.Popedoms.PopName <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                                <ul class="am-list am-collapse admin-sidebar-sub " id="@item.Popedoms.PopID">
+                                    @{
+                                        foreach (var it in list)
+                                        {
+                                            if (it.Popedoms.PopParentID == item.Popedoms.PopID)
+                                            {
+                                                <li><a href="@it.Popedoms.PopValue" target="default"><span class="@it.Popedoms.PopDesc"> </span>@it.Popedoms.PopName</a></li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                                            }
+                                        }
+                        }
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/js/minified/jquery-1.11.0.min.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/js/minified/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/js/minified/jquery.mousewheel.min.js"></script>
+    <script src="~/Scripts/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.js"></script>
+    <script>
+        (function ($) {
+            $("a[class=am-cf]").click(function () {
+                var css = $(this).find("span").next("span").attr("class");
+                var sp = $(this).find("span").next("span");
+                css.indexOf("am-icon-angle-right") != -1 ? sp.removeClass("am-icon-angle-right").addClass("am-icon-angle-down") : sp.removeClass("am-icon-angle-down").addClass("am-icon-angle-right");
+            });
+            $("ul li a").click(function () {
+                $("ul li a").css("color", "#0094ff");
+                $(this).css("color", "#b1862d");
+            });
+            $(".am-cf").attr("href", "#").attr("target", ""); //取消视图菜单样式
+        $(window).load(function () {
+            $(".content").mCustomScrollbar({
+                theme: "inset-dark", //主题颜色
+                set_width: 170,
+                scrollButtons: { enable: true, scrollAmount: 150 },
+                mouseWheel:{ scrollAmount: 400 }
+            });
+        });
+    })(jQuery);
+    </script>
+</body>
+
+</html>

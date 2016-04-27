@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+ 
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <style>
+      
+        div ul li a span {
+            padding-top: 2px;
+        }
+        i {
+            color: #ff0000;
+        }
+        li{
+            cursor:pointer;
+        }
+        li:hover {
+            background-color:#ffd800;
+        }
+       li>a{
+           color:#ff6a00;
+       }
+
+    </style>
+</head>
+<body>
+    <div style="background-color:#ffffff;overflow:hidden;">
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/InStock/Home/StocksOrder" class="am-text-sm"><span class="am-icon-btn"><i class="am-icon-cubes"></i></span><br />采购订单未完成数<br />@ViewData["c1"]</a></li>
+            <li><a href="/InStock/Home/StocksOrder" class="am-text-sm"><span class="am-icon-btn "><i class="am-icon-cubes"></i></span><br />待审核采购订单数<br />@ViewData["c2"]</a></li>
+            <li><a href="/InStock/Home/InStock" class="am-text-sm"><span class="am-icon-btn "><i class="am-icon-cubes"></i></span><br />待审核采购入库数<br />@ViewData["c3"]</a></li>
+            
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/InOut/Home/CusOrders" class="am-text-sm"><span class="am-icon-btn"><i class="am-icon-bell"></i></span><br />销售订单未完成数<br />@ViewData["c4"]</a></li>
+            <li><a href="/InOut/Home/CusOrders" class="am-text-sm"><span class="am-icon-btn "><i class="am-icon-bell"></i></span><br />待审核客户订单数<br />@ViewData["c5"]</a></li>
+            <li><a href="/InOut/Home/SaleOut" class="am-text-sm"><span class="am-icon-btn "><i class="am-icon-bell"></i></span><br />待审核销售出库数<br />@ViewData["c6"]</a></li>
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/Stock/Home/NewStock" class="am-text-sm"><span class="am-icon-btn"><i class="am-icon-exclamation-circle"></i></span><br />库存上下限预警数<br />@ViewData["c8"]</a></li>
+            <li><a href="/Stock/Home/StockAllot" class="am-text-sm"><span class="am-icon-btn "><i class="am-icon-exclamation-circle"></i></span><br />库存待审核调拨数<br />@ViewData["c7"]</a></li>
+        </ul>
+    </div>
+</body>
+</html>

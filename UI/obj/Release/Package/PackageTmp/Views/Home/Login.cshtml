@@ -1,0 +1,97 @@
+﻿@{
+    //获取页面标记，判断登录是否成功
+    var  fg = Session["pwderror"];
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <link href="~/Content/CSS/LoginCSS.css" rel="stylesheet" />
+   
+  
+</head>
+<body>
+    @*<button type="button" class="am-btn am-btn-default" style="margin-left:2%;">默认样式</button>
+    <button type="button" class="am-btn am-btn-primary">主色按钮</button>
+    <button type="button" class="am-btn am-btn-secondary">次色按钮</button>
+    <button type="button" class="am-btn am-btn-success">绿色按钮</button>
+    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
+    <button type="button" class="am-btn am-btn-danger">红色按钮</button>
+    <button type="button" class="am-btn am-btn-default">默认样式</button>
+    <button type="button" class="am-btn am-btn-primary">主色按钮</button>
+    <button type="button" class="am-btn am-btn-secondary">次色按钮</button>
+    <button type="button" class="am-btn am-btn-success">绿色按钮</button>
+    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
+    <button type="button" class="am-btn am-btn-danger">红色按钮</button>
+    <button type="button" class="am-btn am-btn-default">默认样式</button>*@
+        <div id="showlogin" style="width:340px;margin-left:35%;padding-top:5%;display:none;">
+            @*<div class="am-form-group" style="font-size:36px;font-weight:bold;font-family:'楷体';margin-bottom:10%;color:white;padding-left:10%;margin-top:20%;"><span style="color:white"><i class="am-icon-cubes" style="color:#0094ff"></i>进销存管理系统</span></div>*@
+            <div class="am-form-group" style="margin-bottom:20%;margin-left:13%;border:0px solid red;width:350px;">@*<img src="~/Images/logo.jpg" />*@
+                <img src="~/Images/logo.png" style="width:58px;height:60px;margin-bottom:25px;" />
+            <font style="font-size:35px;color:white;font-family:'Microsoft YaHei'">进销存管理系统</font>
+            </div>
+            
+            <div class="am-input-group am-input-group-sm" style="margin-bottom:10px;width:300px;margin-left:50px;">
+                <span class="am-input-group-label"><i class="am-icon-user" style="color:#0094ff;"></i></span>
+                <input type="text" class="am-form-field am-radius" name="UserLoginName" id="UserLoginName"maxlength="15"data-am-popover="{content:'用户名长度为6-15个字符！',trigger:'hover'}" value="methodname" placeholder="请输入用户名">
+            </div>
+            <div class="am-input-group am-input-group-sm" style="margin-bottom:20px;width:300px;margin-left:50px;">
+                <span class="am-input-group-label"><i class="am-icon-lock" style="color:#0094ff;"></i></span>
+                <input type="password" class="am-form-field am-radius am-text-sm" name="UserLoginPwd" id="UserLoginPwd"data-am-popover="{content:'密码长度为3-20个字符！',trigger:'hover'}"maxlength="20" value="123" placeholder="请输入密码">
+            </div>
+            <div class="am-form-group ">
+                <div class="am-u-sm-10 am-u-sm-offset-2">
+                    <button type="submit" class="am-btn am-btn-group-lg am-radius am-btn-sm" style="color:#0094ff; font-weight: bold;margin-right:8%;" id="loginsub"><i class="am-icon-spinner am-icon-spin hi" id="hico"></i> 提交登入</button>
+                    <a href="#doc2" data-am-offcanvas style="color:white" data-am-popover="{content:'不想用旧密码了？点击修改密码！',trigger:'hover'}">&nbsp;<i class="am-icon-cog am-close am-close-spin" style="color:white;"></i>修改密码</a>
+                </div>
+            </div>
+        </div>
+
+    <div style="position:absolute;margin-left:95%;">
+        <a style="margin-left:20px;"data-am-popover="{content:'查看帮助',trigger:'hover focus'}"class="am-close am-close-alt am-close-spin" data-am-modal="{target:'#my-popup'}">?</a>
+    </div>
+
+    <div id="modeling" class="am-modal"></div>
+
+
+    <form class="am-form">
+        <div id="doc2" class="am-offcanvas">
+            <div class="am-offcanvas-bar">
+                <div class="am-offcanvas-content">
+                    修改密码<br />
+                    （按照提示填写完信息后，点击确认修改按钮，修改密码！）
+                </div>
+                <div class="am-offcanvas-content">
+                    <fieldset class="am-form-set">
+                        <input type="text" id="Rename" name="Uname" placeholder="用户名（6-20个字符）">
+                        <input type="password" id="Repwd" name="Upwd" placeholder="旧密码（3-20个字符）">
+                        <input type="password" id="Newpwd" placeholder="设个密码（3-20个字符）">
+                        <input type="password" id="ReNewpwd" placeholder="确认密码（两次密码须一致）">
+                    </fieldset>
+                    <button type="button" id="editpwd" class="am-btn am-btn-primary am-btn-block am-disabled am-radius"
+                            data-am-modal="{target:'#myloading',closeViaDimmer: 0}">
+                        确认修改
+                    </button>
+                    <button type="reset"class="am-btn am-btn-primary am-btn-block am-radius"> 清空 </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/LoginJavaScript.js"></script>
+    <script src="~/Scripts/assets/img/jquery.backstretch.min.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script>
+    $(function () {
+        new login();
+    });
+    </script>
+
+
+</body>
+</html>

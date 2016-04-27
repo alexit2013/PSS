@@ -1,0 +1,50 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <style>
+        li:hover {
+            background-color: #ffd800;
+        }
+
+        li {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:40px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">财务管理</span>
+        </div>
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " >
+            <li><a href="/Finance/Home/MustProceeds" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-sort-amount-asc"></i></span><br />应收款汇总<br /></a></li>
+            <li><a href="/Finance/Home/MustRemittance" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-sort-amount-desc"></i></span><br />应付款汇总<br /></a></li>
+           
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " style="margin-bottom:50px; margin-top:50px;">
+            <li><a href="/Finance/Home/SaleProceeds" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-shekel"></i></span><br />销售收款<br /></a></li>
+            <li><a href="/Finance/Home/ProRemittance" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-sheqel"></i></span><br />采购付款<br /></a></li>
+            <li><a href="/Finance/Home/Income" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-retweet"></i></span><br />收入<br /></a></li>
+            <li><a href="/Finance/Home/Expenditure" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-sign-out"></i></span><br />支出<br /></a></li>
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/Finance/Home/AccessMoney" class="am-text-sm" style="color:silver;"><br /><span class="am-icon-btn"><i class="am-icon-suitcase"></i></span><br />存取款<br /></a></li>
+            <li><a href="/Finance/Home/BankAccounts" class="am-text-sm" style="color:silver;"><br /><span class="am-icon-btn "><i class="am-icon-cny"></i></span><br />银行账务<br /></a></li>
+            <li><a href="/Finance/Home/BankNewMoney" class="am-text-sm" style="color:silver;"><br /><span class="am-icon-btn "><i class="am-icon-bank"></i></span><br />现金银行<br /></a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <style>
+        li:hover {
+            background-color: #ffd800;
+        }
+
+        li {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:40px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">统计报表</span>
+        </div>
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " >
+            <li><a href="/ReportForms/Home/StocksOrder" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-check"></i></span><br />采购订单<br /></a></li>
+            <li><a href="/ReportForms/Home/CusOrders" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-hospital-o"></i></span><br />客户订单<br /></a></li>
+            <li><a href="/ReportForms/Home/InStock" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-sign-in"></i></span><br />采购入库<br /></a></li>
+            <li><a href="/ReportForms/Home/PSS" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-paypal"></i></span><br />进销存<br /></a></li>
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " style="margin-bottom:50px;margin-top:50px;">
+            <li><a href="/ReportForms/Home/SaleOut" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-bus"></i></span><br />销售出库<br /></a></li>
+            <li><a href="/ReportForms/Home/ProductionGet" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-exchange"></i></span><br />生产领料<br /></a></li>
+            <li><a href="/ReportForms/Home/InStockProduction" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-random"></i></span><br />生产入库<br /></a></li>
+            <li><a href="/ReportForms/Home/ReturnStock" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-sign-out"></i></span><br />采购退货<br /></a></li>
+
+        </ul>
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/ReportForms/Home/ReturnSale" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-ambulance"></i></span><br />销售退货<br /></a></li>
+        </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                //$(this).find("i").removeClass("hide");
+                $(this).html('&nbsp;备份中...');
+                $(this).prepend('<i class="am-icon-spinner am-icon-spin"></i>');
+                $("#top").modal({ closeViaDimmer: 0 });
+                $.post("/System/Home/SaveDataBase", {}, function (data) {
+                    if (data == "yes") {
+                        new tmm_alert1("add_modal", "提示", "添加成功");
+                    } else {
+                        new tmm_alert("add_modal", "提示", data);
+                    }
+                    $("#top").modal('close');
+                    $("#add_modal").modal({ closeViaDimmer: 0 });
+                });
+            });
+        });
+    </script>
+    <style>
+        .hide{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:40px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/System/Home/Index" class="am-icon-cog">&nbsp;&nbsp;系统管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">数据备份</span>
+        </div>
+    </div>
+    <div style="float:left;width:30%;height:500px;border:1px solid #0094ff;text-align:left;padding:10px;">
+          <font >
+            &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;备份数据会默认保存到C盘的根目录中,还原数据可以选择一个备份文件进行还原
+        </font>
+    </div>
+    <div style="margin-left:100px;float:left;">
+        <button class=" am-btn am-btn-primary am-radius" id="save"> &nbsp;备份数据</button><br/><br /><br /><br /><br />
+
+        <input type="file" value="还原数据" /><br />
+        <button class=" am-btn am-btn-primary am-radius am-icon-rotate-left" id="restore">还原数据</button>
+
+
+        @*<i class="am-icon-spinner am-icon-spin"></i>
+        <i class="am-icon-refresh am-icon-spin"></i>
+        <i class="am-icon-circle-o-notch am-icon-spin"></i>
+        <i class="am-icon-cog am-icon-spin"></i>
+        <i class="am-icon-gear am-icon-spin"></i>*@
+
+
+    </div>
+
+    <div class="am-modal" id="top">
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <style>
+        li:hover {
+            background-color: #ffd800;
+        }
+
+        li {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:80px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">库存管理</span>
+        </div>
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " style="margin-bottom:50px;">
+            <li><a href="/Stock/Home/NewStock" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-th"></i></span><br />当前库存<br /></a></li>
+            <li><a href="/Stock/Home/StockAllot" class="am-text-sm"><br /><span class="am-icon-btn"><i class="am-icon-cc"></i></span><br />库存调拨<br /></a></li>
+            <li><a href="/Stock/Home/StockBreakage" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-trash"></i></span><br />库存报损<br /></a></li>
+            <li><a href="/Stock/Home/StockOverflow" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-cc-amex"></i></span><br />库存溢出<br /></a></li>
+        </ul>
+
+        <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+            <li><a href="/Stock/Home/StockChange" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-outdent"></i></span><br />库存异动<br /></a></li>
+            <li><a href="/Stock/Home/StockCheck" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-credit-card"></i></span><br />库存盘点<br /></a></li>
+            <li><a href="/Stock/Home/ProductSplit" class="am-text-sm"><br /><span class="am-icon-btn "><i class="am-icon-pie-chart"></i></span><br />商品拆分<br /></a></li>
+            <li><a href="/Stock/Home/ProductAssemble" class="am-text-sm" style="color:silver"><br /><span class="am-icon-btn "><i class="am-icon-support"></i></span><br />商品组装<br /></a></li>
+        </ul>
+    </div>
+</body>
+</html>

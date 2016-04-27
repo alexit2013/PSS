@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+    <FunctionImportMapping FunctionImportName="proc_RestoreDataBase" FunctionName="masterModel.Store.proc_RestoreDataBase" />
+    <FunctionImportMapping FunctionImportName="proc_SaveDataBase" FunctionName="masterModel.Store.proc_SaveDataBase" />
+  </EntityContainerMapping>
+</Mapping>

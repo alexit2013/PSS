@@ -1,0 +1,9 @@
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\BLL.dll
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\BLL.pdb
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\DAL.dll
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\Model.dll
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\DAL.pdb
+J:\桌面文件夹\PSS\PSS\BLL\bin\Debug\Model.pdb
+J:\桌面文件夹\PSS\PSS\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+J:\桌面文件夹\PSS\PSS\BLL\obj\Debug\BLL.dll
+J:\桌面文件夹\PSS\PSS\BLL\obj\Debug\BLL.pdb

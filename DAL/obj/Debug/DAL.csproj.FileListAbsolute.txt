@@ -1,0 +1,7 @@
+J:\桌面文件夹\PSS\PSS\DAL\bin\Debug\DAL.dll
+J:\桌面文件夹\PSS\PSS\DAL\bin\Debug\DAL.pdb
+J:\桌面文件夹\PSS\PSS\DAL\bin\Debug\Model.dll
+J:\桌面文件夹\PSS\PSS\DAL\bin\Debug\Model.pdb
+J:\桌面文件夹\PSS\PSS\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+J:\桌面文件夹\PSS\PSS\DAL\obj\Debug\DAL.dll
+J:\桌面文件夹\PSS\PSS\DAL\obj\Debug\DAL.pdb

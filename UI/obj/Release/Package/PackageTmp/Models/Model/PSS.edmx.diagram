@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="209a058785e841d695fbb5c1faeb2660" Name="Diagram1" ZoomLevel="116">
+        <EntityTypeShape EntityType="PSSEntities.CheckDepot" Width="1.5" PointX="3" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.CheckDepotDetail" Width="1.5" PointX="14.25" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Compose" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ComposeDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.CustomerLevel" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.CustomerOrder" Width="1.5" PointX="0.75" PointY="47.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.CustomerOrderDetail" Width="1.5" PointX="20.25" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Customers" Width="1.5" PointX="9.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Depots" Width="1.5" PointX="0.75" PointY="38.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.DepotStock" Width="1.5" PointX="6" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.DevolveDetail" Width="1.5" PointX="14.25" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Devolves" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.InOutDepot" Width="1.5" PointX="3" PointY="43.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.InOutDepotDetail" Width="1.5" PointX="17.25" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.LostDetail" Width="1.5" PointX="17.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Losts" Width="1.5" PointX="6" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.OtherInDepot" Width="1.5" PointX="6" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.OtherInDepotDetail" Width="1.5" PointX="23.25" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.OtherOutDepot" Width="1.5" PointX="9" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.OtherOutDepotDetail" Width="1.5" PointX="17.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.PayOffDetail" Width="1.5" PointX="17.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.PayOffs" Width="1.5" PointX="9" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.PopedomRole" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Popedoms" Width="1.5" PointX="3.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProduceInDepot" Width="1.5" PointX="9" PointY="43.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProduceInDepotDeteil" Width="1.5" PointX="23.25" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProduceOutDepot" Width="1.5" PointX="3" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProduceOutDepotDetail" Width="1.5" PointX="14.25" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProductColor" Width="1.5" PointX="9.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProductLend" Width="1.5" PointX="3.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Products" Width="1.5" PointX="12" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProductSpec" Width="1.5" PointX="9.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProductTypes" Width="1.5" PointX="9.75" PointY="47.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.ProductUnit" Width="1.5" PointX="9.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.QuotePrice" Width="1.5" PointX="12" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.QuotePriceDetail" Width="1.5" PointX="14.25" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Roles" Width="1.5" PointX="3.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SaleDepot" Width="1.5" PointX="3" PointY="47.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SaleDepotDetail" Width="1.5" PointX="17.25" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SaleReturn" Width="1.5" PointX="5.25" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SaleReturnDetail" Width="1.5" PointX="20.25" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SplitDetail" Width="1.5" PointX="20.25" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Splits" Width="1.5" PointX="20.25" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.StockDetail" Width="1.5" PointX="20.25" PointY="47.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.StockInDepot" Width="1.5" PointX="3.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.StockInDepotDetail" Width="1.5" PointX="14.25" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.StockReturn" Width="1.5" PointX="6" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.StockReturnDetail" Width="1.5" PointX="17.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Stocks" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.SystemLog" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.Users" Width="1.5" PointX="0.75" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PSSEntities.UsersRole" Width="1.5" PointX="6" PointY="23.25" IsExpanded="true" />
+        <AssociationConnector Association="PSSEntities.FK_CheckDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CheckDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CheckDepotDetail_CheckDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CheckDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Customers_CustomerLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CustomerOrder_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CustomerOrder_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CustomerOrderDetail_CustomerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepot_CustomerOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_CustomerOrderDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_QuotePrice_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepot_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturn_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_DepotStock_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Devolves_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Devolves_Depots1" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_InOutDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Losts_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherInDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherOutDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PayOffs_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceInDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceOutDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Products_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturn_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Splits_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturn_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_DepotStock_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_DevolveDetail_Devolves" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_DevolveDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Devolves_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_InOutDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_InOutDepotDetail_InOutDepotDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_InOutDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_LostDetail_Losts" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_LostDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Losts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherInDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherInDepotDetail_OtherInDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherInDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherOutDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherOutDepotDetail_OtherOutDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_OtherOutDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PayOffDetail_PayOffs" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PayOffDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PayOffs_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PopedomRole_Popedoms" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_PopedomRole_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceInDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceInDepotDeteil_ProduceInDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceInDepotDeteil_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceOutDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceOutDepotDetail_ProduceOutDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_ProduceOutDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Products_ProductColor" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepot_Depots" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturn_ProductLend" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Stocks_ProductLend" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Products_ProductSpec" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Products_ProductTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Products_ProductUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_QuotePriceDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepotDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturnDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SplitDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Splits_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepotDetail_StockInDepotDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturnDetail_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_QuotePrice_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_QuotePriceDetail_QuotePrice" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_UsersRole_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleDepotDetail_SaleDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturn_SaleDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturn_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SaleReturnDetail_SaleReturn" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_SplitDetail_Splits" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Splits_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockDetail_Stocks" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepot_Stocks" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepot_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepotDetail_StockInDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturn_StockInDepot" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturn_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockReturnDetail_StockReturn" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_Stocks_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_UsersRole_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="PSSEntities.FK_StockInDepot_Depots1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

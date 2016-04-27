@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PSSModelStoreContainer" CdmEntityContainer="PSSEntities">
+    <EntitySetMapping Name="ProductTypes">
+      <EntityTypeMapping TypeName="PSSModel.ProductTypes">
+        <MappingFragment StoreEntitySet="ProductTypes">
+          <ScalarProperty Name="PTID" ColumnName="PTID" />
+          <ScalarProperty Name="PTParentID" ColumnName="PTParentID" />
+          <ScalarProperty Name="PTName" ColumnName="PTName" />
+          <ScalarProperty Name="PTDes" ColumnName="PTDes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PSSModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+          <ScalarProperty Name="UserLoginName" ColumnName="UserLoginName" />
+          <ScalarProperty Name="UserLoginPwd" ColumnName="UserLoginPwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

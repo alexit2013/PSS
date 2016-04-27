@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{18359DB2-7718-49D0-8D9D-BF79BF947F7E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UI</RootNamespace>
+    <AssemblyName>UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=__MvcPagesVersion__, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Finance\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Finance\FinanceAreaRegistration.cs" />
+    <Compile Include="Areas\Foundation\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Foundation\FoundationAreaRegistration.cs" />
+    <Compile Include="Areas\InOut\Controllers\CustomerOrderController.cs" />
+    <Compile Include="Areas\InOut\Controllers\HomeController.cs" />
+    <Compile Include="Areas\InOut\Controllers\OtherOutDepotController.cs" />
+    <Compile Include="Areas\InOut\Controllers\ProduceOutDepotController.cs" />
+    <Compile Include="Areas\InOut\Controllers\QuotePriceController.cs" />
+    <Compile Include="Areas\InOut\Controllers\SaleDepotController.cs" />
+    <Compile Include="Areas\InOut\Controllers\SaleReturnController.cs" />
+    <Compile Include="Areas\InOut\InOutAreaRegistration.cs" />
+    <Compile Include="Areas\InStock\Controllers\HomeController.cs" />
+    <Compile Include="Areas\InStock\Controllers\InDepotController.cs" />
+    <Compile Include="Areas\InStock\Controllers\OtherInDepotController.cs" />
+    <Compile Include="Areas\InStock\Controllers\StockInDepotController.cs" />
+    <Compile Include="Areas\InStock\Controllers\StockReturnController.cs" />
+    <Compile Include="Areas\InStock\InStockAreaRegistration.cs" />
+    <Compile Include="Areas\ReportForms\Controllers\HomeController.cs" />
+    <Compile Include="Areas\ReportForms\Controllers\MainController.cs" />
+    <Compile Include="Areas\ReportForms\ReportFormsAreaRegistration.cs" />
+    <Compile Include="Areas\Stock\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Stock\Controllers\NowStockController.cs" />
+    <Compile Include="Areas\Stock\Controllers\PayOffsController.cs" />
+    <Compile Include="Areas\Stock\Controllers\ProductSplitController.cs" />
+    <Compile Include="Areas\Stock\Controllers\StockAllotController.cs" />
+    <Compile Include="Areas\Stock\Controllers\StockBreakageController.cs" />
+    <Compile Include="Areas\Stock\Controllers\StockChangeController.cs" />
+    <Compile Include="Areas\Stock\Controllers\StockCheckController.cs" />
+    <Compile Include="Areas\Stock\StockAreaRegistration.cs" />
+    <Compile Include="Areas\System\Controllers\HomeController.cs" />
+    <Compile Include="Areas\System\Controllers\UsersController.cs" />
+    <Compile Include="Areas\System\SystemAreaRegistration.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Filter\LoginFilter.cs" />
+    <Compile Include="Filter\ExceptionFilter.cs" />
+    <Compile Include="Filter\OpcrateFilter.cs" />
+    <Compile Include="Filter\PopedomsFilter.cs" />
+    <Compile Include="Filter\ViewFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BLL\CheckDepotBLL.cs" />
+    <Compile Include="Models\BLL\CheckDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\CustomerLevelBLL.cs" />
+    <Compile Include="Models\BLL\CustomerOrderBLL.cs" />
+    <Compile Include="Models\BLL\CustomerOrderDetailBLL.cs" />
+    <Compile Include="Models\BLL\CustomersBLL.cs" />
+    <Compile Include="Models\BLL\DepotsBLL.cs" />
+    <Compile Include="Models\BLL\DepotStockBLL.cs" />
+    <Compile Include="Models\BLL\DevolveDetailBLL.cs" />
+    <Compile Include="Models\BLL\DevolvesBLL.cs" />
+    <Compile Include="Models\BLL\InOutDepotBLL.cs" />
+    <Compile Include="Models\BLL\LostDetailBLL.cs" />
+    <Compile Include="Models\BLL\LostsBLL.cs" />
+    <Compile Include="Models\BLL\OtherInDepotBLL.cs" />
+    <Compile Include="Models\BLL\OtherInDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\OtherOutDepotBLL.cs" />
+    <Compile Include="Models\BLL\OtherOutDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\PayOffDetailBLL.cs" />
+    <Compile Include="Models\BLL\PayOffsBLL.cs" />
+    <Compile Include="Models\BLL\PopedomRoleBLL.cs" />
+    <Compile Include="Models\BLL\ProduceInDepotBLL.cs" />
+    <Compile Include="Models\BLL\ProduceInDepotDeteilBLL.cs" />
+    <Compile Include="Models\BLL\ProduceOutDepotBLL.cs" />
+    <Compile Include="Models\BLL\ProduceOutDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\ProductColorBLL.cs" />
+    <Compile Include="Models\BLL\ProductLendBLL.cs" />
+    <Compile Include="Models\BLL\ProductsBLL.cs" />
+    <Compile Include="Models\BLL\ProductSpecBLL.cs" />
+    <Compile Include="Models\BLL\ProductTypesBLL.cs" />
+    <Compile Include="Models\BLL\ProductUnitBLL.cs" />
+    <Compile Include="Models\BLL\QuotePriceBLL.cs" />
+    <Compile Include="Models\BLL\QuotePriceDetailBLL.cs" />
+    <Compile Include="Models\BLL\RolesBLL.cs" />
+    <Compile Include="Models\BLL\SaleDepotBLL.cs" />
+    <Compile Include="Models\BLL\SaleDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\SaleReturnBLL.cs" />
+    <Compile Include="Models\BLL\SaleReturnDetailBLL.cs" />
+    <Compile Include="Models\BLL\SplitDetailBLL.cs" />
+    <Compile Include="Models\BLL\SplitsBLL.cs" />
+    <Compile Include="Models\BLL\StockDetailBLL.cs" />
+    <Compile Include="Models\BLL\StockInDepotBLL.cs" />
+    <Compile Include="Models\BLL\StockInDepotDetailBLL.cs" />
+    <Compile Include="Models\BLL\StockReturnBLL.cs" />
+    <Compile Include="Models\BLL\StockReturnDetailBLL.cs" />
+    <Compile Include="Models\BLL\StocksBLL.cs" />
+    <Compile Include="Models\BLL\SystemBLL.cs" />
+    <Compile Include="Models\BLL\UserBLL.cs" />
+    <Compile Include="Models\DAL\CheckDepotDAL.cs" />
+    <Compile Include="Models\DAL\CheckDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\CustomerLevelDAL.cs" />
+    <Compile Include="Models\DAL\CustomerOrderDAL.cs" />
+    <Compile Include="Models\DAL\CustomerOrderDetailDAL.cs" />
+    <Compile Include="Models\DAL\CustomersDAL.cs" />
+    <Compile Include="Models\DAL\DepotsDAL.cs" />
+    <Compile Include="Models\DAL\DepotStockDAL.cs" />
+    <Compile Include="Models\DAL\DevolveDetailDAL.cs" />
+    <Compile Include="Models\DAL\DevolvesDAL.cs" />
+    <Compile Include="Models\DAL\InOutDepotDAL.cs" />
+    <Compile Include="Models\DAL\LostDetailDAL.cs" />
+    <Compile Include="Models\DAL\LostsDAL.cs" />
+    <Compile Include="Models\DAL\OtherInDepotDAL.cs" />
+    <Compile Include="Models\DAL\OtherInDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\OtherOutDepotDAL.cs" />
+    <Compile Include="Models\DAL\OtherOutDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\PayOffDetailDAL.cs" />
+    <Compile Include="Models\DAL\PayOffsDAL.cs" />
+    <Compile Include="Models\DAL\PopedomRoleDAL.cs" />
+    <Compile Include="Models\DAL\ProduceInDepotDAL.cs" />
+    <Compile Include="Models\DAL\ProduceInDepotDeteilDAL.cs" />
+    <Compile Include="Models\DAL\ProduceOutDepotDAL.cs" />
+    <Compile Include="Models\DAL\ProduceOutDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\ProductColorDAL.cs" />
+    <Compile Include="Models\DAL\ProductLendDAL.cs" />
+    <Compile Include="Models\DAL\ProductsDAL.cs" />
+    <Compile Include="Models\DAL\ProductSpecDAL.cs" />
+    <Compile Include="Models\DAL\ProductTypesDAL.cs" />
+    <Compile Include="Models\DAL\ProductUnitDAL.cs" />
+    <Compile Include="Models\DAL\QuotePriceDAL.cs" />
+    <Compile Include="Models\DAL\QuotePriceDetailDAL.cs" />
+    <Compile Include="Models\DAL\RolesDAL.cs" />
+    <Compile Include="Models\DAL\SaleDepotDAL.cs" />
+    <Compile Include="Models\DAL\SaleDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\SaleReturnDAL.cs" />
+    <Compile Include="Models\DAL\SaleReturnDetailDAL.cs" />
+    <Compile Include="Models\DAL\SplitDetailDAL.cs" />
+    <Compile Include="Models\DAL\SplitsDAL.cs" />
+    <Compile Include="Models\DAL\StockDetailDAL.cs" />
+    <Compile Include="Models\DAL\StockInDepotDAL.cs" />
+    <Compile Include="Models\DAL\StockInDepotDetailDAL.cs" />
+    <Compile Include="Models\DAL\StockReturnDAL.cs" />
+    <Compile Include="Models\DAL\StockReturnDetailDAL.cs" />
+    <Compile Include="Models\DAL\StocksDAL.cs" />
+    <Compile Include="Models\DAL\SystemDAL.cs" />
+    <Compile Include="Models\DAL\UsersDAL.cs" />
+    <Compile Include="Models\Model\CheckDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\CheckDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Compose.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ComposeDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\CustomerLevel.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\CustomerOrder.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\CustomerOrderDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Customers.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Depots.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\DepotStock.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\DevolveDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Devolves.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\InOutDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\InOutDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\LostDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Losts.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\OtherInDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\OtherInDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\OtherOutDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\OtherOutDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PayOffDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PayOffs.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PopedomRole.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Popedoms.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProduceInDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProduceInDepotDeteil.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProduceOutDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProduceOutDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProductColor.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProductLend.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Products.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProductSpec.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProductTypes.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\ProductUnit.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PSS.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSS.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PSS.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\PSS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PSS.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\QuotePrice.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\QuotePriceDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Roles.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SaleDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SaleDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SaleReturn.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SaleReturnDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SplitDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Splits.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\StockDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\StockInDepot.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\StockInDepotDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\StockReturn.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\StockReturnDetail.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Stocks.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\SystemLog.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\Users.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model\UsersRole.cs">
+      <DependentUpon>PSS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Option\HtmlPage\HtmlPage.cs" />
+    <Compile Include="Option\HtmlPage\HtmlPage1.cs" />
+    <Compile Include="Option\HtmlPage\HtmlPage2.cs" />
+    <Compile Include="Option\HtmlPage\HtmlPage_p.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Login.html" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CSS\LoginCSS.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logomin.jpg" />
+    <Content Include="Models\Model\PSS.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PSS.edmx</DependentUpon>
+      <LastGenOutput>PSS.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model\PSS.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PSS.edmx</DependentUpon>
+      <LastGenOutput>PSS.cs</LastGenOutput>
+    </Content>
+    <Content Include="Option\save.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Foundation\Views\web.config" />
+    <Content Include="Areas\Foundation\Views\Home\Index.cshtml" />
+    <Content Include="Areas\InStock\Views\web.config" />
+    <Content Include="Areas\InOut\Views\web.config" />
+    <Content Include="Areas\InStock\Views\Home\Index.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Stock\Views\web.config" />
+    <Content Include="Areas\Stock\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Finance\Views\web.config" />
+    <Content Include="Areas\Finance\Views\Home\Index.cshtml" />
+    <Content Include="Areas\ReportForms\Views\web.config" />
+    <Content Include="Areas\ReportForms\Views\Home\Index.cshtml" />
+    <Content Include="Areas\System\Views\web.config" />
+    <Content Include="Areas\System\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\ProductType.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\SetWarehouse.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\ProductLend.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\Customers.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\SetEmp.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\BankAccount.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\ImportData.cshtml" />
+    <Content Include="Areas\Foundation\Views\Home\Products.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\StocksOrder.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\InStock.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\NewStock.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\ReturnStock.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\InStockProduction.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\InStockOther.cshtml" />
+    <Content Include="Areas\InStock\Views\Home\StockPayment.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\Quotation.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\CusOrders.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\SaleOut.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\NewStock.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\ReturnSale.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\SaleCollection.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\ProductionGet.cshtml" />
+    <Content Include="Areas\InOut\Views\Home\OutOther.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\StockAllot.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\ProductSplit.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\StockBreakage.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\StockOverflow.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\NewStock.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\StockChange.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\StockCheck.cshtml" />
+    <Content Include="Areas\Stock\Views\Home\ProductAssemble.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\MustProceeds.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\MustRemittance.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\BankAccounts.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\AccessMoney.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\SaleProceeds.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\ProRemittance.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\Income.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\Expenditure.cshtml" />
+    <Content Include="Areas\Finance\Views\Home\BankNewMoney.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\StocksOrder.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\CusOrders.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\InStock.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\PSS.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\SaleOut.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\ProductionGet.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\InStockProduction.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\ReturnStock.cshtml" />
+    <Content Include="Areas\ReportForms\Views\Home\ReturnSale.cshtml" />
+    <Content Include="Areas\System\Views\Home\Admin.cshtml" />
+    <Content Include="Areas\System\Views\Home\ReData.cshtml" />
+    <Content Include="Areas\System\Views\Home\SetPrint.cshtml" />
+    <Content Include="Areas\System\Views\Home\SetSystem.cshtml" />
+    <Content Include="Areas\System\Views\Home\SystemLog.cshtml" />
+    <Content Include="Areas\System\Views\Home\SetPopedoms.cshtml" />
+    <EntityDeploy Include="Models\Model\PSS.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PSS.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model\PSS.edmx.diagram">
+      <DependentUpon>PSS.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\web.coofig.pubxml" />
+    <Content Include="Scripts\assets\css\admin.css" />
+    <Content Include="Scripts\assets\css\amazeui.css" />
+    <Content Include="Scripts\assets\css\amazeui.flat.css" />
+    <Content Include="Scripts\assets\css\amazeui.flat.min.css" />
+    <Content Include="Scripts\assets\css\amazeui.min.css" />
+    <Content Include="Scripts\assets\css\app.css" />
+    <Content Include="Scripts\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\assets\img\1.jpg" />
+    <Content Include="Scripts\assets\img\2.jpg" />
+    <Content Include="Scripts\assets\img\3.jpg" />
+    <Content Include="Scripts\assets\img\4.jpg" />
+    <Content Include="Scripts\assets\img\5.jpg" />
+    <Content Include="Scripts\assets\img\jquery.backstretch.min.js" />
+    <Content Include="Scripts\assets\img\login_logo.png" />
+    <Content Include="Scripts\assets\i\app-icon72x72%402x.png" />
+    <Content Include="Scripts\assets\i\examples\admin-chrome.png" />
+    <Content Include="Scripts\assets\i\examples\admin-firefox.png" />
+    <Content Include="Scripts\assets\i\examples\admin-ie.png" />
+    <Content Include="Scripts\assets\i\examples\admin-opera.png" />
+    <Content Include="Scripts\assets\i\examples\admin-safari.png" />
+    <Content Include="Scripts\assets\i\examples\adminPage.png" />
+    <Content Include="Scripts\assets\i\examples\blogPage.png" />
+    <Content Include="Scripts\assets\i\examples\landing.png" />
+    <Content Include="Scripts\assets\i\examples\landingPage.png" />
+    <Content Include="Scripts\assets\i\examples\loginPage.png" />
+    <Content Include="Scripts\assets\i\examples\sidebarPage.png" />
+    <Content Include="Scripts\assets\i\favicon.png" />
+    <Content Include="Scripts\assets\i\startup-640x1096.png" />
+    <Content Include="Scripts\assets\js\amazeui.js" />
+    <Content Include="Scripts\assets\js\amazeui.legacy.js" />
+    <Content Include="Scripts\assets\js\amazeui.legacy.min.js" />
+    <Content Include="Scripts\assets\js\amazeui.min.js" />
+    <Content Include="Scripts\assets\js\amazeui.widgets.helper.js" />
+    <Content Include="Scripts\assets\js\amazeui.widgets.helper.min.js" />
+    <Content Include="Scripts\assets\js\app.js" />
+    <Content Include="Scripts\assets\js\handlebars.min.js" />
+    <Content Include="Scripts\assets\js\jquery.min.js" />
+    <Content Include="Scripts\assets\js\polyfill\rem.min.js" />
+    <Content Include="Scripts\assets\js\polyfill\respond.min.js" />
+    <Content Include="Scripts\build\dist\chart\bar.js" />
+    <Content Include="Scripts\build\dist\chart\chord.js" />
+    <Content Include="Scripts\build\dist\chart\eventRiver.js" />
+    <Content Include="Scripts\build\dist\chart\force.js" />
+    <Content Include="Scripts\build\dist\chart\funnel.js" />
+    <Content Include="Scripts\build\dist\chart\gauge.js" />
+    <Content Include="Scripts\build\dist\chart\k.js" />
+    <Content Include="Scripts\build\dist\chart\line.js" />
+    <Content Include="Scripts\build\dist\chart\map.js" />
+    <Content Include="Scripts\build\dist\chart\pie.js" />
+    <Content Include="Scripts\build\dist\chart\radar.js" />
+    <Content Include="Scripts\build\dist\chart\scatter.js" />
+    <Content Include="Scripts\build\dist\echarts-all.js" />
+    <Content Include="Scripts\build\dist\echarts.js" />
+    <Content Include="Scripts\build\source\chart\bar.js" />
+    <Content Include="Scripts\build\source\chart\chord.js" />
+    <Content Include="Scripts\build\source\chart\eventRiver.js" />
+    <Content Include="Scripts\build\source\chart\force.js" />
+    <Content Include="Scripts\build\source\chart\funnel.js" />
+    <Content Include="Scripts\build\source\chart\gauge.js" />
+    <Content Include="Scripts\build\source\chart\k.js" />
+    <Content Include="Scripts\build\source\chart\line.js" />
+    <Content Include="Scripts\build\source\chart\map.js" />
+    <Content Include="Scripts\build\source\chart\pie.js" />
+    <Content Include="Scripts\build\source\chart\radar.js" />
+    <Content Include="Scripts\build\source\chart\scatter.js" />
+    <Content Include="Scripts\build\source\echarts-all.js" />
+    <Content Include="Scripts\build\source\echarts.js" />
+    <Content Include="Scripts\chosen-master\amazeui.chosen.css" />
+    <Content Include="Scripts\chosen-master\amazeui.chosen.js" />
+    <Content Include="Scripts\chosen-master\amazeui.chosen.min.js" />
+    <Content Include="Scripts\chosen-master\gulpfile.js" />
+    <Content Include="Scripts\js\autoSetValueGetValue.js" />
+    <Content Include="Scripts\js\easyloader.js" />
+    <Content Include="Scripts\js\FoundationJavaScript.js" />
+    <Content Include="Scripts\js\FoundationProducts.js" />
+    <Content Include="Scripts\js\InStocks\InStocksJavaScript.js" />
+    <Content Include="Scripts\js\InStocks\OtherInDepotJavaScript.js" />
+    <Content Include="Scripts\js\InStocks\ProductInDepotJavaScript.js" />
+    <Content Include="Scripts\js\InStocks\StockReturnJavaScript.js" />
+    <Content Include="Scripts\js\InStocks\StocksOrderJavaScript.js" />
+    <Content Include="Scripts\js\JavaScript_P.js" />
+    <Content Include="Scripts\js\jquery.easyui.min.js" />
+    <Content Include="Scripts\js\LoginJavaScript.js" />
+    <Content Include="Scripts\js\modal.js" />
+    <Content Include="Scripts\js\MyJs.js" />
+    <Content Include="Scripts\js\OutStocks\CusOrderJavaScript.js" />
+    <Content Include="Scripts\js\OutStocks\OtherOutJavaScript.js" />
+    <Content Include="Scripts\js\OutStocks\ProductOutJavaScript.js" />
+    <Content Include="Scripts\js\OutStocks\QuotePriceJavaScript.js" />
+    <Content Include="Scripts\js\OutStocks\SaleDepotJavaScript.js" />
+    <Content Include="Scripts\js\OutStocks\SaleReturnJavaScript.js" />
+    <Content Include="Scripts\js\Stock\NowStockJavaScript.js" />
+    <Content Include="Scripts\js\Stock\ProductSplitJavaScript.js" />
+    <Content Include="Scripts\js\Stock\StockAllotJavaScript.js" />
+    <Content Include="Scripts\js\Stock\StockBreakageJavaScript.js" />
+    <Content Include="Scripts\js\Stock\StockChangeJavaScript.js" />
+    <Content Include="Scripts\js\Stock\StockCheckJavaScript.js" />
+    <Content Include="Scripts\js\Stock\StockOverflowJavaScript.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\jquery.mCustomScrollbar.css" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\jquery.mCustomScrollbar.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery-1.11.0.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery-2.1.0.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery.mousewheel-3.0.6.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\uncompressed\jquery.mCustomScrollbar.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\uncompressed\jquery.mousewheel-3.0.6.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\uncompressed\jquery.mousewheel.js" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\LICENSE.txt" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\mCSB_buttons.png" />
+    <Content Include="Scripts\mc\jquery-1.10.2.js" />
+    <Content Include="Scripts\mc\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\chosen-master\.editorconfig" />
+    <Content Include="Scripts\chosen-master\.gitignore" />
+    <Content Include="Scripts\chosen-master\.jshintrc" />
+    <Content Include="Scripts\chosen-master\.npmignore" />
+    <Content Include="Scripts\chosen-master\docs\demo.md" />
+    <Content Include="Scripts\chosen-master\docs\options.md" />
+    <Content Include="Scripts\chosen-master\LICENSE" />
+    <Content Include="Scripts\chosen-master\package.json" />
+    <Content Include="Scripts\chosen-master\README.md" />
+    <Content Include="Scripts\chosen-master\src\amazeui.chosen.less" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\.gitignore" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\bower.json" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\js\minified\jquery.mCustomScrollbar.min.js.gz" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\malihu-custom-scrollbar-plugin.jquery.json" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\package.json" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\readme.md" />
+    <Content Include="Scripts\malihu-custom-scrollbar-plugin-master\source-files\mCSB_buttons.psd" />
+    <None Include="Scripts\mc\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\foot.cshtml" />
+    <Content Include="Views\Home\head.cshtml" />
+    <Content Include="Views\Home\maindefault.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Left.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Error404.cshtml" />
+    <Content Include="Views\Home\Error500.cshtml" />
+    <Content Include="Views\Home\Index1.cshtml" />
+    <Content Include="Views\Home\Size.cshtml" />
+    <Content Include="Scripts\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\assets\fonts\FontAwesome.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Finance\Views\Shared\" />
+    <Folder Include="Areas\Foundation\Views\Shared\" />
+    <Folder Include="Areas\InOut\Views\CustomerOrder\" />
+    <Folder Include="Areas\InOut\Views\OtherOutDepot\" />
+    <Folder Include="Areas\InOut\Views\ProduceOutDepot\" />
+    <Folder Include="Areas\InOut\Views\QuotePrice\" />
+    <Folder Include="Areas\InOut\Views\SaleDepot\" />
+    <Folder Include="Areas\InOut\Views\SaleReturn\" />
+    <Folder Include="Areas\InOut\Views\Shared\" />
+    <Folder Include="Areas\InStock\Views\InDepot\" />
+    <Folder Include="Areas\InStock\Views\OtherInDepot\" />
+    <Folder Include="Areas\InStock\Views\Shared\" />
+    <Folder Include="Areas\InStock\Views\StockInDepot\" />
+    <Folder Include="Areas\InStock\Views\StockReturn\" />
+    <Folder Include="Areas\ReportForms\Views\Main\" />
+    <Folder Include="Areas\ReportForms\Views\Shared\" />
+    <Folder Include="Areas\Stock\Views\NowStock\" />
+    <Folder Include="Areas\Stock\Views\PayOffs\" />
+    <Folder Include="Areas\Stock\Views\ProductSplit\" />
+    <Folder Include="Areas\Stock\Views\Shared\" />
+    <Folder Include="Areas\Stock\Views\StockAllot\" />
+    <Folder Include="Areas\Stock\Views\StockBreakage\" />
+    <Folder Include="Areas\Stock\Views\StockChange\" />
+    <Folder Include="Areas\Stock\Views\StockCheck\" />
+    <Folder Include="Areas\System\Views\Shared\" />
+    <Folder Include="Areas\System\Views\Users\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49279</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49279/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

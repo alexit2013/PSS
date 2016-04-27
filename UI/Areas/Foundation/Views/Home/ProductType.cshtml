@@ -1,0 +1,221 @@
+﻿@using UI.Models.Model;
+@using UI.Option.HtmlPage;
+@{ 
+    List<ProductTypes> list = ViewData["list"] as List<ProductTypes>;
+    List<ProductTypes> list1 = ViewData["list1"] as List<ProductTypes>;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductType</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/FoundationJavaScript.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+ 
+    <style>
+        .a_icon{
+            margin-right:8px;
+            cursor:pointer;
+        }
+        .trees{
+            margin-left:20px;
+            cursor:pointer;
+        }
+        .treeparent{
+            background-color:#ffffff;
+            width:22%;
+            color:#808080;
+            float:left;
+            padding-top:5px;
+            height:450px;
+            overflow:auto;
+            padding-left:2%;
+            font-size:16px;
+        }
+        .trre_head{
+            margin-top:5px;
+            margin-left:8%;
+        }
+    </style>
+</head>
+<body>
+    <div> 
+        <div style="margin-bottom:5px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Foundation/Home/Index" class="am-icon-database">&nbsp;&nbsp;基础数据&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">商品分类</span>
+        </div>
+        <div class="trre_head"><a class="am-badge am-badge-warning am-icon-tree">商品分类</a></div>
+        <div id="tree" class="treeparent">
+        </div>
+        <div style="float:left;padding-left:2%;width:65%">
+            <table class="am-table am-table-striped am-table-hover table-main" style="color:#808080;width:100%;font-size:12px;">
+                <thead>
+                    <tr style="font-size:14px;color:white; background-color:#0c9b20"><th>编号</th><th>类别名称</th><th>上级编号</th><th>描述</th><td align="center">操作</td></tr>
+                </thead>
+                <tbody id="tabbody">
+                </tbody>
+            </table>
+            <div style="width:100%">
+                @Html.GroupPage2("Foundation/Home", "ProductType1", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+                @Html.Hidden("deleteid","0")
+                @Html.Hidden("fg",TempData["fg"])
+                @Html.Hidden("addkey")
+              
+            </div>
+        </div>
+        <div style="margin-left:92%;position:absolute;margin-top:-20px;">
+            <span class="am-icon-btn am-btn-primary am-icon-twitch am-close am-close-alt am-close-spin" data-am-offcanvas="{target: '#my-id'}" style="cursor: pointer;font-size:12px;color:#ff6a00;">帮助</span>
+        </div>
+       
+    </div>
+    <div id="my-id" class="am-offcanvas">
+        <div class="am-offcanvas-bar am-offcanvas-bar-flip" style="color:white;padding:10px;">
+            <span class="am-close am-close-alt am-close-spin" style="cursor:pointer;margin-left:84%;margin-top:5px;" id="close_my"><i class="am-icon-close"></i></span>
+           &nbsp; &nbsp; &nbsp; 双击左边的树形菜单，可以为<br/>
+            指定的节点商品类型上添加下属<br />
+            类别或添加父级类型<br />
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-type">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;"> 添加类型<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a></div>
+            <div class="am-modal-bd">
+                <table align="center">
+                    <tr>
+                        <td>类别名称：</td>
+                        <td><input class="am-form-field" placeholder="请输入类别名" minlength="2" id="ptname" required /><br /></td>
+                    </tr>
+                    <tr>
+                        <td>类别描述：</td>
+                        <td><input class="am-form-field" placeholder="请输入型描述" maxlength="40" id="ptdes" required /><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="am-btn am-btn-primary am-radius" add="a" style="margin-right:40px;">添加大类</button>
+                            <button class="am-btn am-btn-primary am-radius" add="a">添加小类</button>
+                        </td>
+                    </tr>
+                </table>
+               
+               
+             
+            </div>
+        </div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-type">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;"> 编辑类型<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a></div>
+            <div class="am-modal-bd">
+                <div class="am-g">
+                    <div class="am-u-md-8 am-u-sm-centered">
+                        <form class="am-form" action="/Foundation/Home/EditProType" method="post">
+                          <table>
+                            <tr>
+                                <td>类别名称：</td>
+                                <td><input class="am-form-field" placeholder="请输入类别名" maxlength="20" name="PTName" id="PTName" required /><br /></td>
+                              </tr>
+                              <tr>
+                                  <td>类型描述：</td>
+                                  <td><input class="am-form-field" placeholder="请输入型描述" maxlength="40" name="PTDes" id="PTDes" required /><br /></td>
+                              </tr>
+                              <tr>
+                                  <td colspan="2">
+                                      @Html.Hidden("PTID")
+                                      <input class="am-btn am-btn-primary am-radius" type="submit" style="margin-right:40px;" value="保存">
+                                      <input class="am-btn am-btn-primary am-radius" type="reset" value="清空" />
+                                  </td>
+                              </tr>
+                          </table>
+                                
+                            
+                               
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //声明全局变量:表示所有的商品类型
+        var ptyes = null;
+        var PageIndex=1;
+        $(function () {
+            MaxPageIndex = $("#MaxPageIndex").val();
+            new ProType();
+            new action_alert();
+            page();
+            $("#tmm-loeading").modal('close');
+        });
+        var pageindex = 1;
+        var MaxPageIndex = 0;
+            function change(obj) {
+                pageindex = obj.value;
+                window.location.href = "/Foundation/Home/ProductType1?PageIndex=" + pageindex;
+            }
+           //删除值处理
+            function _delete(id) {
+                $("#deleteid").val(id);
+                $("#delete_com").modal({closeViaDimmer:0});
+            }
+            function _edit(PTID, PTName, PTParentID, PTDes) {
+                $("#PTID").val(PTID);
+                $("#PTName").val(PTName);
+                $("#PTDes").val(PTDes);
+                $("#edit-type").modal();
+            }
+            function shouye() {
+                PageIndex = 1;
+                page();
+            }
+            function weiye() {
+                PageIndex = MaxPageIndex;
+                page();
+            }
+            function xiayiye() {
+                PageIndex = PageIndex < MaxPageIndex ? PageIndex + 1 : PageIndex;
+                page();
+            }
+            function shangyiye() {
+                PageIndex = PageIndex > 1 ? PageIndex - 1 : PageIndex;
+                page();
+            }
+            function change(obj) {
+                PageIndex =parseInt( obj.value);
+                page();
+            }
+            function page() {
+                $("#SelPage option[value=" + PageIndex + "]").prop("selected", true);
+                $.post("/Foundation/Home/ProductType1", { PageIndex: PageIndex }, function (data) {
+                    setPage(data);
+                });
+            }
+            function setPage(data) {
+                $("#tabbody tr").remove();
+                $(data).each(function (k, v) {
+                    var tr = $("<tr></tr>");
+                    var th1 = $("<th>" + v.PTID + "</th>");
+                    var th2 = $("<th>" + v.PTName + "</th>");
+                    var th3 = $("<th>" + v.PTParentID + "</th>");
+                    var th4 = $("<th></th>");
+                    th4.text(v.PTDes == "null" ? "" : v.PTDes);
+                    var th5 = $("<td align='center'><button class='am-btn am-btn-default am-btn-xs am-text-secondary' onclick='_edit(\"" + v.PTID + "\",\"" + v.PTName + "\",\"" + v.PTParentID + "\",\"" + v.PTDes + "\")'><span class='am-icon-pencil-square-o'></span> 编辑</button>    <button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='_delete(\"" + v.PTID + "\")' ><span class='am-icon-trash-o'></span> 删除</button></th>");
+                    tr.append(th1).append(th2).append(th3).append(th4).append(th5);
+                    $("#tabbody").append(tr);
+                });
+            }
+
+    </script>
+
+</body>
+</html>

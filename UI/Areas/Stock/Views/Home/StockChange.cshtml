@@ -1,0 +1,89 @@
+﻿@using UI.Models.Model
+@using UI.Option.HtmlPage
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+    <script src="~/Scripts/js/MyJs.js"></script>
+   
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:10px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Stock/Home/Index" class="am-icon-cubes">&nbsp;&nbsp;库存管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">库存异动</span>
+        </div>
+        <div>
+            <div id="search_div" style="display:none">
+                <form class="am-form" id="" onsubmit="return false">
+                    <table style="font-size:12px;">
+                        <tr>
+                            <td>商品编号：</td>
+                            <td><input name="ProID" id="ProID" class="am-form-field am-text-xs" style="width:110px;" /></td>
+                            <td>&nbsp;&nbsp;日期：</td>
+                            <td><input class="am-form-field am-text-xs" id="BDate" style="width:150px;" data-am-datepicker readonly placeholder="点击选择日期" /> </td>
+                            <td>&nbsp;&nbsp;到&nbsp;&nbsp;</td>
+                            <td><input class="am-form-field am-text-xs" id="EDate" style="width:150px;" data-am-datepicker readonly placeholder="点击选择日期" /> </td>
+                            <td>&nbsp;&nbsp;仓库：</td>
+                            <td>
+                                <select id="DepotID" data-am-selected="{btnWidth: 150, btnSize: 'sm', btnStyle: 'secondary'}">
+                                    <option value="">选择仓库</option>
+                                    @{
+                                        foreach (Depots item in ViewData["dplist"] as List<Depots>)
+                                        {
+                                            <option value="@item.DepotID">@item.DepotName</option>
+                                        }
+                                    }
+                                </select>
+                            </td>
+                            <td><div class=""><button class="am-btn am-btn-primary am-radius am-icon-search " id="btn_search" style="width:80px;margin-left:10px;font-size:14px;">查询</button></div> </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div>
+                <i id="show_div" class="am-icon-angle-double-down am-close am-close-alt am-close-spin" data-am-popover="{content:'切换查询',trigger:'hover focus'}"
+                   style="cursor:pointer;color:#0c9b20;margin-left:97%"></i>
+            </div>
+                <div style="width:98%;float:left;margin-top:-20px;">
+                    <div>
+                        <span class="am-badge am-badge-warning">销售退货单信息</span>
+                    </div>
+                    <table class=" am-table am-table-bordered am-radius " style="font-size:11px;">
+                        <thead> <tr style="font-size:12px;color:white; background-color:#0c9b20"><td> 单据编号</td><td>发生日期</td><td>商品编号</td><td>商品名称</td><td>单位</td><td>规格</td><td>颜色</td><td>数量</td><td>单价</td><td>总金额</td><td>发生出库</td><td>业务类型</td></tr></thead>
+                        <tbody id="tab_sotck_bd"> </tbody>
+                    </table>
+                    <div style="margin-left:50px;">
+                        @Html.GroupPage2("", "", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                        @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+                        @Html.Hidden("count", ViewData["count"])
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script src="~/Scripts/js/Stock/StockChangeJavaScript.js"></script>
+    <script>
+        $(function () {
+            $("#show_div").click(function () {
+                var div = $(this);
+                if (div.attr("class").indexOf("up")>0) {
+                    div.removeClass("am-icon-angle-double-up").addClass("am-icon-angle-double-down");
+                    $("#search_div").slideUp(300);
+                } else {
+                    div.removeClass("am-icon-angle-double-down").addClass("am-icon-angle-double-up");
+                    $("#search_div").slideDown(300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+﻿@using UI.Option.HtmlPage;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StocksOrder</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+  
+    <style>
+        #tab_users>tr{
+            cursor:pointer;
+        }
+        .xx{
+            background-color:#d0cdce;
+            color:white;
+        }
+        .div_right{
+            margin-right:-250px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div style="margin-bottom:40px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/System/Home/Index" class="am-icon-cog">&nbsp;&nbsp;系统管理&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">管理员</span>
+        </div>
+    </div>
+    <div id="search_div" style="display:none;margin-left:5%">
+        <form class="am-form" id="Search_form" onsubmit="return false">
+            <table style="font-size:13px;">
+                <tr>
+                    <td>用户名：</td>
+                    <td><input id="UsersName" class="am-form-field am-text-xs" style="width:150px;" /></td>
+                    <td>&nbsp;&nbsp;登陆名：</td>
+                    <td><input id="UserLoginName" class="am-form-field am-text-xs" style="width:120px;" /></td>
+                    <td>&nbsp;&nbsp;拥有角色：</td>
+                    <td><input id="RoleName" class="am-form-field am-text-xs" style="width:120px;" /> </td>
+                    <td>&nbsp;&nbsp;<input type="radio" name="UsersTF" value="-1" checked="checked" />全部<br />&nbsp;&nbsp;<input type="radio" name="UsersTF" value="1" />启用<br />&nbsp;&nbsp;<input type="radio" name="UsersTF" value="0" />禁用</td>
+                    <td><div class=""><button class="am-btn am-btn-primary am-radius am-icon-search " id="brn_search" style="width:80px;margin-left:10px;font-size:14px;">查询</button></div> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div>
+        <i id="show_edit" class="am-close am-close-alt am-close-spin" data-am-popover="{content:'添加用户',trigger:'hover focus'}" style="cursor:pointer;color:#0c9b20;margin-left:10px;">+</i>
+    <i id="show_div" class="am-icon-angle-double-down am-close am-close-alt am-close-spin" data-am-popover="{content:'切换查询',trigger:'hover focus'}" style="cursor:pointer;color:#0c9b20;margin-left:92%"></i></div>
+    <div style="width:70%;margin-left:5%;float:left;margin-top:-20px;">
+        <table class="am-table  table-main" style="color:#808080;width:100%;font-size:12px;">
+            <thead>
+                <tr style="font-size:13px;color:white; background-color:#0c9b20"><th>用户编号</th><th>用户名称</th><th>登陆名称</th><th>状态</th><th style="text-align:center">操作</th></tr>
+            </thead>
+            <tbody id="tab_users"></tbody>
+        </table>
+        <div style="margin-left:50px;">
+            @Html.GroupPage2("", "", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+            @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+            @Html.Hidden("count", ViewData["count"])
+        </div>
+    </div>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-users">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-user">编辑用户</span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <form id="user_form" class="am-form" onsubmit="return false">
+                    <table align="center">
+                        <tr><td>用户名称：</td><td><input class="am-form-field am-text-sm" id="UsersName1" required />@Html.Hidden("id")</td></tr>
+                        <tr><td>登陆名称：</td><td><input class="am-form-field am-text-sm" id="UserLoginName1" required /></td></tr>
+                        <tr><td>用户密码：</td><td><input type="password" class="am-form-field am-text-sm" id="UserLoginPwd1" required /></td></tr>
+                        <tr><td id="newid">确认密码：</td><td><input type="password" class="am-form-field am-text-sm" id="UserLoginPwd2" required /></td></tr>
+                        <tr><td >是否启用：</td><td align="left">启用&nbsp;&nbsp;<input type="checkbox"  id="UsersTF"  /></td></tr>
+                        <tr>
+                            <td colspan="2">
+                                <br />
+                                <button class="am-btn am-btn-primary am-radius am-icon-save" id="btn_save" style="margin-right:20px;">保存</button><input class="am-btn am-btn-primary am-radius am-icon-refresh" type="reset" value="重置" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div style="width:20%;height:500px;float:left;margin-left:5%;margin-top:0px;" id="main"></div>
+    <script src="~/Scripts/build/dist/echarts-all.js"></script>
+    <script>
+        $(function () {
+            option = {
+                title: {
+                    text: '用户角色',
+                    subtext: '及时数据'
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'right',
+                    data: []
+                },
+                calculable: true,
+                series: [
+                    {
+                        name: '拥有权限',
+                        type: 'pie',
+                        radius: ['45%', '70%'],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            },
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    position: 'center',
+                                    textStyle: {
+                                        fontSize: '16',
+                                        fontWeight: 'bold'
+                                    }
+                                }
+                            }
+                        },
+                        data: []
+                    }
+                ]
+            };
+            var mp = echarts.init(document.getElementById("main"));
+            $("#tab_users").delegate("tr", "click", function () {
+                $("#tab_users tr").removeClass("xx");
+                $(this).addClass("xx");
+                var id = $(this).children("th")[0].innerHTML;
+                mp.dispose();
+                mp = echarts.init(document.getElementById("main"));
+                $.post("/System/Users/GetRole", { id: id }, function (data) {
+                    option.legend.data = data;
+                    option.series[0].data = [];
+                    $(data).each(function (k, v) {
+                        option.series[0].data.push({ value: k, name: v });
+                    });
+                    mp.setOption(option);
+                });
+            });
+        });
+    </script>
+
+    @*授权*@
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-roles">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-user">编辑角色</span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd" style="height:300px;">
+               <div style="height:300px;float:left;width:500px;display:none;" id="add_role">
+                   <form class="am-form" onsubmit="return false">
+                       <table class="am-table">
+                           <tr style="background-color:#0c9b20;font-size:14px;color:white;">
+                               <td colspan="2" align="center">添加角色</td>
+                           </tr>
+                           <tr>
+                               <td>角色名称：</td>
+                               <td><input class="am-form-field am-text-sm" id="RoleName1" required /></td>
+                           </tr>
+                           <tr>
+                               <td>角色说明：</td>
+                               <td><input class="am-form-field am-text-sm" id="RoleDesc" /></td>
+                           </tr>
+                           <tr>
+                               <td colspan="2">
+                               <br />
+                               <button class="am-btn am-btn-primary am-icon-save am-radius" style="margin-right:30px;" id="btn_save_role">保存</button>
+                               <input type="reset" value="重置" class="am-btn am-btn-primary am-radius" /></td>
+                           </tr>
+                       </table>
+                   </form>
+               </div>
+                <div style="height:300px;float:left;width:20px;">
+                    <i id="show_role" class="am-icon-angle-double-right am-close am-close-alt am-close-spin" title="添加角色"  style="cursor:pointer;color:#0c9b20;"></i>
+                </div>
+                <div style="height:300px;float:left;width:500px;" id="show_edit_role">
+                    <table class="am-table">
+                        <tr style="background-color:#0c9b20;font-size:14px;color:white;">
+                            <td colspan="2" align="center">修改用户角色</td>
+                        </tr>
+                        <tr>
+                            <td style="width:100px;">角色选择：</td>
+                            <td align="left" id="roles_html">
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td colspan="2">
+                                <br />
+                                <button id="save_roles" class="am-btn am-btn-primary am-icon-save am-radius" style="margin-right:30px;">保存</button>
+                                <input type="reset" value="重置" class="am-btn am-btn-primary am-radius" />
+                            </td>
+                        </tr>
+                        <tr><td>@Html.Hidden("role_userid")</td><td></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        font{
+            color:red;
+            cursor:pointer;
+        }
+        .role_font{
+            color:#ff6a00;
+            font-size:16px;
+            font-weight:bold;
+            margin-right:30px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $.post("/System/Users/GetRoleAll", {}, function (data) {
+                var index = 0;
+                $(data).each(function (k,v) {
+                    var ck = $("<input  type='checkbox' name='RoleID' value='" + v.RoleID + "' /><font class='role_font' title='" + v.RoleDesc + "'>" + v.RoleName + "</font>");
+                    index = index + 1;
+                    $("#roles_html").append(ck);
+                    if (index == 3) {
+                        var br = $("<br/>");
+                        $("#roles_html").append(br);
+                        index = 0;
+                    }
+                });
+            });
+            $("#btn_save_role").click(function () {
+                var RoleName = $("#RoleName1").val();
+                var RoleDesc = $("#RoleDesc").val();
+                if (RoleName.trim().length == 0) {
+                    $("#RoleName1").focus();
+                } else {
+                    var obj = { RoleName: RoleName, RoleDesc: RoleDesc };
+                  
+                    $.post("/System/Users/AddRole", obj, function (data) {
+                        if (data == "add_yes") {
+                            new tmm_alert1("add_modal", "提示", "添加成功");
+                            $("#edit-roles").modal('close');
+                        } else if (data == "add_no") {
+                            new tmm_alert("add_modal", "提示", "添加失败");
+                        } else {
+                            new tmm_alert("add_modal", "提示", data);
+                        }
+                        $("#add_modal").modal({ closeViaDimmer: 0 });
+                    });
+                }
+            });
+        });
+        function roleedit(UsersID) {
+            $("#role_userid").val(UsersID);
+            $("input[type=checkbox][name=RoleID]").removeAttr("checked");
+            $.post("/System/Users/GetRoles", { id: UsersID }, function (data) {
+                $(data).each(function (k,v) {
+                    $("input[type=checkbox][name=RoleID][value=" + v + "]").prop("checked", true);
+                });
+            });
+            $("#edit-roles").modal({ width: '600' });
+           
+        }
+    </script>
+    <script>
+        var PageIndex = 1;
+        var MaxPageIndex = 0;
+        var type = 1;
+        $(function () {
+            //修改角色
+            $("#save_roles").click(function () {
+                var role_ids = [];
+                $("input[type=checkbox][name=RoleID]:checked").each(function (k,v) {
+                    role_ids.push(v.value);
+                });
+                var userid = $("#role_userid").val();
+                var obj = { userid: userid, roles: role_ids };
+                $.post("/System/Users/EditUserRoles",obj, function (data) {
+                    if (data == "edit_yes") {
+                        $("#edit-roles").modal('close');
+                        new tmm_alert1("edit_modal", "提示", "成功！");
+                        Page();
+                    } else if (data == "edit_no") {
+                        new tmm_alert("edit_modal", "提示", "失败！");
+                    } else {
+                        new tmm_alert("edit_modal", "提示", data);
+                    }
+                    $("#edit_modal").modal({ closeViaDimmer: 0, height: '135', width: '400' });
+                });
+            });
+
+            //显示添加角色
+            $("#show_role").click(function () {
+                var tx = $(this);
+                if (tx.attr("class").indexOf("right") > 0) {
+                    tx.removeClass("am-icon-angle-double-right").addClass("am-icon-angle-double-left");
+                    $("#show_edit_role").addClass("div_right");
+                    $("#show_edit_role").hide(300);
+                    $("#add_role").show(300);
+                } else {
+                    tx.removeClass("am-icon-angle-double-left").addClass("am-icon-angle-double-right");
+                    $("#show_edit_role").removeClass("div_right");
+                    $("#show_edit_role").show(300);
+                    $("#add_role").hide(300);
+                }
+
+            });
+          //添加修改
+            $("#btn_save").click(function () {
+                var UsersName = $("#UsersName1").val();
+                var UserLoginName = $("#UserLoginName1").val();
+                var UserLoginPwd1 = $("#UserLoginPwd1").val();
+                var UserLoginPwd2 = $("#UserLoginPwd2").val();
+                if (UsersName.trim().length == 0) {
+                    return;
+                }
+                if (UserLoginName.trim().length == 0) {
+                    return;
+                }
+                if (UserLoginPwd1.trim().length == 0) {
+                    return;
+                }
+                var UsersTF = document.getElementById("UsersTF").checked;
+                var UsersID = $("#id").val();
+                var obj = { UsersName: UsersName, UserLoginName: UserLoginName, UserLoginPwd: UserLoginPwd1, UsersTF: UsersTF };
+                var obj1 = null;
+                if (UserLoginPwd2.trim().length>0) {
+                     obj1 = { UsersID: UsersID, UsersName: UsersName, UserLoginName: UserLoginName, UserLoginPwd: UserLoginPwd2, UsersTF: UsersTF };
+                } else {
+                    obj1 = { UsersID: UsersID, UsersName: UsersName, UserLoginName: UserLoginName, UserLoginPwd: UserLoginPwd1, UsersTF: UsersTF };
+                }
+                if (type == 1) {
+                    if (UserLoginPwd1 != UserLoginPwd2) {
+                        new tmm_alert("ck1", "提示", "确认密码不一致！");
+                        $("#ck1").modal({ width: '300', height: '200', closeViaDimmer: 0 });
+                        $(UserLoginPwd2).focus();
+                    } else{
+                    $.post("/System/Users/Add", obj, function (data) {
+                        if (data == "add_yes") {
+                            $("#edit-users").modal('close');
+                            new tmm_alert1("add_modal", "提示", "添加成功");
+                        } else if (data == "add_no") {
+                            new tmm_alert("add_modal", "提示", "添加失败");
+                        } else {
+                            new tmm_alert("add_modal", "提示", "未知错误，添加失败");
+                        }
+                        $("#add_modal").modal({ closeViaDimmer: 0 });
+                    });
+                    }
+                } else if(type==2) {
+                    $.post("/System/Users/Edit", obj1, function (data) {
+                        if (data == "edit_yes") {
+                            $("#edit-users").modal('close');
+                            new tmm_alert1("edit_modal", "提示", "修改成功");
+                            Page();
+                        } else if (data == "edit_no") {
+                            new tmm_alert("edit_modal", "提示", "修改失败");
+                        } else {
+                            new tmm_alert("edit_modal", "提示", data);
+                        }
+                        $("#edit_modal").modal({ closeViaDimmer: 0,height:'135',width:'400' });
+                    });
+                }
+
+            });
+            $("#show_edit").click(function () {
+                $("#btn_save").text("保存");
+                type = 1;
+                $("#UserLoginName1").removeAttr("readonly");
+                $("#UserLoginPwd2").attr("required");
+                $("#UserLoginPwd1").removeAttr("readonly");
+                document.getElementById("user_form").reset();
+                $("#edit-users").modal();
+            });
+            $("#brn_search").click(function () {
+                PageIndex = 1;
+                Page();
+            });
+            Page();
+            $("#show_div").click(function () {
+                var div = $(this);
+                if (div.attr("class").indexOf("up") > 0) {
+                    div.removeClass("am-icon-angle-double-up").addClass("am-icon-angle-double-down");
+                    $("#search_div").slideUp(300);
+                } else {
+                    div.removeClass("am-icon-angle-double-down").addClass("am-icon-angle-double-up");
+                    $("#search_div").slideDown(300);
+                }
+            });
+        });
+        function Page() {
+            var UsersName = $("#UsersName").val();
+            var UserLoginName = $("#UserLoginName").val();
+            var RoleName = $("#RoleName").val();
+            var UsersTF = $("input[name=UsersTF]:checked").val();
+            var obj = { UsersName: UsersName, UserLoginName: UserLoginName, RoleName: RoleName, PageIndex: PageIndex, UsersTF: UsersTF };
+            $.post("/System/Users/Find", obj, function (data) {
+                if (data) {
+                    $("#SelPage option").remove();
+                    $("#tab_users tr").remove();
+                    if (data[0].UsersID == "") {
+                        return;
+                    }
+                    MaxPageIndex = data[0].MaxPageIndex;
+                    for (var i = 1; i <= MaxPageIndex; i++) {
+                        $("<option value='" + i + "'>" + i + "/" + MaxPageIndex + "</option>").appendTo("#SelPage");
+                    }
+                    $("#SelPage option[value=" + PageIndex + "]").prop("selected","selected");
+                    $(data).each(function (k,v) {
+                        var tr = $("<tr ><th>" + v.UsersID + "</th><th>" + v.UsersName + "</th><th>" + v.UserLoginName + "</th><th>" + (v.UsersTF == "1" ? "启用" : "禁用") + "</th><th style='text-align:center'><button style='font-size:10px;' class='am-btn am-btn-warning am-radius   am-btn-xs '   onclick='orderedit(\"" + v.UsersID + "\",\"" + v.UsersName + "\",\"" + v.UserLoginName + "\",\"" + v.UserLoginPwd + "\",\"" + v.UsersTF + "\")'><span class='am-icon-pencil-square-o'></span> 编辑</button>  <button style='font-size:10px;' class='am-btn am-btn-warning am-radius   am-btn-xs '   onclick='roleedit(\"" + v.UsersID + "\")'><span class='am-icon-pencil-square-o'></span>分配角色</button></th></tr>");
+                        $("#tab_users").append(tr);
+                    });
+                }
+            });
+        }
+        //修改用户信息
+        function orderedit(UsersID, UsersName, UserLoginName, UserLoginPwd, UsersTF) {
+            type = 2;
+            $("#UserLoginPwd2").removeAttr("required");
+            document.getElementById("user_form").reset();
+            $("#id").val(UsersID);
+            $("#UsersName1").val(UsersName);
+            $("#UserLoginName1").val(UserLoginName);
+            $("#UserLoginPwd1").val(UserLoginPwd);
+            $("#UserLoginName1").attr("readonly", "readonly");
+            $("#UserLoginPwd1").attr("readonly", "readonly");
+            if (UsersTF == "true")
+            {
+                document.getElementById("UsersTF").checked = true;
+            }
+            $("#newid").text("新密码：");
+            $("#btn_save").text("修改");
+            $("#edit-users").modal();
+        }
+        function shouye() {
+            PageIndex = 1;
+            Page();
+        }
+        function weiye() {
+            PageIndex = MaxPageIndex;
+            Page();
+        }
+        function xiayiye() {
+            PageIndex = PageIndex < MaxPageIndex ? PageIndex + 1 : PageIndex;
+            Page();
+        }
+        function shangyiye() {
+            PageIndex = PageIndex > 1 ? PageIndex - 1 : PageIndex;
+            Page();
+        }
+        function change(obj) {
+            PageIndex = parseInt(obj.value);
+            Page();
+        }
+    </script>
+   
+</body>
+</html>

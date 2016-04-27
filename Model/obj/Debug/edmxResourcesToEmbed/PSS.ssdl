@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ProductTypes">
+    <Key>
+      <PropertyRef Name="PTID" />
+    </Key>
+    <Property Name="PTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PTParentID" Type="int" />
+    <Property Name="PTName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PTDes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UsersID" />
+    </Key>
+    <Property Name="UsersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UsersName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserLoginName" Type="varchar" MaxLength="20" />
+    <Property Name="UserLoginPwd" Type="char" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="PSSModelStoreContainer">
+    <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

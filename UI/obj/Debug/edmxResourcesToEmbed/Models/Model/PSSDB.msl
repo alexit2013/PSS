@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PSSModelStoreContainer" CdmEntityContainer="PSSEntities">
+    <EntitySetMapping Name="CustomerLevel">
+      <EntityTypeMapping TypeName="PSSModel.CustomerLevel">
+        <MappingFragment StoreEntitySet="CustomerLevel">
+          <ScalarProperty Name="CLID" ColumnName="CLID" />
+          <ScalarProperty Name="CLName" ColumnName="CLName" />
+          <ScalarProperty Name="CLAgio" ColumnName="CLAgio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="PSSModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="CLID" ColumnName="CLID" />
+          <ScalarProperty Name="CusName" ColumnName="CusName" />
+          <ScalarProperty Name="CusCompany" ColumnName="CusCompany" />
+          <ScalarProperty Name="CusMan" ColumnName="CusMan" />
+          <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Depots">
+      <EntityTypeMapping TypeName="PSSModel.Depots">
+        <MappingFragment StoreEntitySet="Depots">
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="DepotName" ColumnName="DepotName" />
+          <ScalarProperty Name="DepotMan" ColumnName="DepotMan" />
+          <ScalarProperty Name="DepotTel" ColumnName="DepotTel" />
+          <ScalarProperty Name="DepotAddress" ColumnName="DepotAddress" />
+          <ScalarProperty Name="DepotDesc" ColumnName="DepotDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductColor">
+      <EntityTypeMapping TypeName="PSSModel.ProductColor">
+        <MappingFragment StoreEntitySet="ProductColor">
+          <ScalarProperty Name="PCID" ColumnName="PCID" />
+          <ScalarProperty Name="PCName" ColumnName="PCName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductLend">
+      <EntityTypeMapping TypeName="PSSModel.ProductLend">
+        <MappingFragment StoreEntitySet="ProductLend">
+          <ScalarProperty Name="PPID" ColumnName="PPID" />
+          <ScalarProperty Name="PPName" ColumnName="PPName" />
+          <ScalarProperty Name="PPCompany" ColumnName="PPCompany" />
+          <ScalarProperty Name="PPMan" ColumnName="PPMan" />
+          <ScalarProperty Name="PPTel" ColumnName="PPTel" />
+          <ScalarProperty Name="PPAddress" ColumnName="PPAddress" />
+          <ScalarProperty Name="PPFax" ColumnName="PPFax" />
+          <ScalarProperty Name="PPEmail" ColumnName="PPEmail" />
+          <ScalarProperty Name="PPUrl" ColumnName="PPUrl" />
+          <ScalarProperty Name="PPBank" ColumnName="PPBank" />
+          <ScalarProperty Name="PPGoods" ColumnName="PPGoods" />
+          <ScalarProperty Name="PPDesc" ColumnName="PPDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="PSSModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="PTID" ColumnName="PTID" />
+          <ScalarProperty Name="PUID" ColumnName="PUID" />
+          <ScalarProperty Name="PCID" ColumnName="PCID" />
+          <ScalarProperty Name="PSID" ColumnName="PSID" />
+          <ScalarProperty Name="ProName" ColumnName="ProName" />
+          <ScalarProperty Name="ProJP" ColumnName="ProJP" />
+          <ScalarProperty Name="ProTM" ColumnName="ProTM" />
+          <ScalarProperty Name="ProWorkShop" ColumnName="ProWorkShop" />
+          <ScalarProperty Name="ProMax" ColumnName="ProMax" />
+          <ScalarProperty Name="ProMin" ColumnName="ProMin" />
+          <ScalarProperty Name="ProInPrice" ColumnName="ProInPrice" />
+          <ScalarProperty Name="ProPrice" ColumnName="ProPrice" />
+          <ScalarProperty Name="ProDesc" ColumnName="ProDesc" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSpec">
+      <EntityTypeMapping TypeName="PSSModel.ProductSpec">
+        <MappingFragment StoreEntitySet="ProductSpec">
+          <ScalarProperty Name="PSID" ColumnName="PSID" />
+          <ScalarProperty Name="PSName" ColumnName="PSName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductTypes">
+      <EntityTypeMapping TypeName="PSSModel.ProductTypes">
+        <MappingFragment StoreEntitySet="ProductTypes">
+          <ScalarProperty Name="PTID" ColumnName="PTID" />
+          <ScalarProperty Name="PTParentID" ColumnName="PTParentID" />
+          <ScalarProperty Name="PTName" ColumnName="PTName" />
+          <ScalarProperty Name="PTDes" ColumnName="PTDes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductUnit">
+      <EntityTypeMapping TypeName="PSSModel.ProductUnit">
+        <MappingFragment StoreEntitySet="ProductUnit">
+          <ScalarProperty Name="PUID" ColumnName="PUID" />
+          <ScalarProperty Name="PUName" ColumnName="PUName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuotePrice">
+      <EntityTypeMapping TypeName="PSSModel.QuotePrice">
+        <MappingFragment StoreEntitySet="QuotePrice">
+          <ScalarProperty Name="QPID" ColumnName="QPID" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="QPDate" ColumnName="QPDate" />
+          <ScalarProperty Name="QPState" ColumnName="QPState" />
+          <ScalarProperty Name="QPDesc" ColumnName="QPDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PSSModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UsersTF" ColumnName="UsersTF" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+          <ScalarProperty Name="UserLoginName" ColumnName="UserLoginName" />
+          <ScalarProperty Name="UserLoginPwd" ColumnName="UserLoginPwd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockDetail">
+      <EntityTypeMapping TypeName="PSSModel.StockDetail">
+        <MappingFragment StoreEntitySet="StockDetail">
+          <ScalarProperty Name="SDetailDesc" ColumnName="SDetailDesc" />
+          <ScalarProperty Name="SDetailDepAmount" ColumnName="SDetailDepAmount" />
+          <ScalarProperty Name="SDetailPrice" ColumnName="SDetailPrice" />
+          <ScalarProperty Name="SDetailAmount" ColumnName="SDetailAmount" />
+          <ScalarProperty Name="StockID" ColumnName="StockID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="SDetailID" ColumnName="SDetailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="PSSModel.Stocks">
+        <MappingFragment StoreEntitySet="Stocks">
+          <ScalarProperty Name="StockDesc" ColumnName="StockDesc" />
+          <ScalarProperty Name="StockState" ColumnName="StockState" />
+          <ScalarProperty Name="StockUser" ColumnName="StockUser" />
+          <ScalarProperty Name="StockInDate" ColumnName="StockInDate" />
+          <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+          <ScalarProperty Name="PPID" ColumnName="PPID" />
+          <ScalarProperty Name="StockID" ColumnName="StockID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="myProc" FunctionName="PSSModel.Store.myProc" />
+    <FunctionImportMapping FunctionImportName="pro_order" FunctionName="PSSModel.Store.pro_order" />
+    <EntitySetMapping Name="StockInDepot">
+      <EntityTypeMapping TypeName="PSSModel.StockInDepot">
+        <MappingFragment StoreEntitySet="StockInDepot">
+          <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
+          <ScalarProperty Name="SIDData" ColumnName="SIDData" />
+          <ScalarProperty Name="SIDUser" ColumnName="SIDUser" />
+          <ScalarProperty Name="SIDFreight" ColumnName="SIDFreight" />
+          <ScalarProperty Name="SIDDeliver" ColumnName="SIDDeliver" />
+          <ScalarProperty Name="SIDDate" ColumnName="SIDDate" />
+          <ScalarProperty Name="StockID" ColumnName="StockID" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="PPID" ColumnName="PPID" />
+          <ScalarProperty Name="SIDID" ColumnName="SIDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockInDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.StockInDepotDetail">
+        <MappingFragment StoreEntitySet="StockInDepotDetail">
+          <ScalarProperty Name="SIDDesc" ColumnName="SIDDesc" />
+          <ScalarProperty Name="SIDPrice" ColumnName="SIDPrice" />
+          <ScalarProperty Name="SIDAmount" ColumnName="SIDAmount" />
+          <ScalarProperty Name="SIDID" ColumnName="SIDID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="SIDDID" ColumnName="SIDDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DepotStock">
+      <EntityTypeMapping TypeName="PSSModel.DepotStock">
+        <MappingFragment StoreEntitySet="DepotStock">
+          <ScalarProperty Name="DSPrice" ColumnName="DSPrice" />
+          <ScalarProperty Name="DSAmount" ColumnName="DSAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="DSID" ColumnName="DSID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InOutDepot">
+      <EntityTypeMapping TypeName="PSSModel.InOutDepot">
+        <MappingFragment StoreEntitySet="InOutDepot">
+          <ScalarProperty Name="IODDesc" ColumnName="IODDesc" />
+          <ScalarProperty Name="IODUser" ColumnName="IODUser" />
+          <ScalarProperty Name="IODDate" ColumnName="IODDate" />
+          <ScalarProperty Name="IODNum" ColumnName="IODNum" />
+          <ScalarProperty Name="IODType" ColumnName="IODType" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="IODID" ColumnName="IODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InOutDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.InOutDepotDetail">
+        <MappingFragment StoreEntitySet="InOutDepotDetail">
+          <ScalarProperty Name="IODDPrice" ColumnName="IODDPrice" />
+          <ScalarProperty Name="IODDAmount" ColumnName="IODDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="IODID" ColumnName="IODID" />
+          <ScalarProperty Name="IODDID" ColumnName="IODDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceInDepot">
+      <EntityTypeMapping TypeName="PSSModel.ProduceInDepot">
+        <MappingFragment StoreEntitySet="ProduceInDepot">
+          <ScalarProperty Name="PDIDesc" ColumnName="PDIDesc" />
+          <ScalarProperty Name="PIDState" ColumnName="PIDState" />
+          <ScalarProperty Name="PIDUser" ColumnName="PIDUser" />
+          <ScalarProperty Name="PIDDate" ColumnName="PIDDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="PIDID" ColumnName="PIDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceInDepotDeteil">
+      <EntityTypeMapping TypeName="PSSModel.ProduceInDepotDeteil">
+        <MappingFragment StoreEntitySet="ProduceInDepotDeteil">
+          <ScalarProperty Name="PIDDDesc" ColumnName="PIDDDesc" />
+          <ScalarProperty Name="PIDDPrice" ColumnName="PIDDPrice" />
+          <ScalarProperty Name="PIDDAmount" ColumnName="PIDDAmount" />
+          <ScalarProperty Name="PIDID" ColumnName="PIDID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="PIDDID" ColumnName="PIDDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherInDepot">
+      <EntityTypeMapping TypeName="PSSModel.OtherInDepot">
+        <MappingFragment StoreEntitySet="OtherInDepot">
+          <ScalarProperty Name="OIDDesc" ColumnName="OIDDesc" />
+          <ScalarProperty Name="OIDState" ColumnName="OIDState" />
+          <ScalarProperty Name="OIDUser" ColumnName="OIDUser" />
+          <ScalarProperty Name="OIDDate" ColumnName="OIDDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherInDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.OtherInDepotDetail">
+        <MappingFragment StoreEntitySet="OtherInDepotDetail">
+          <ScalarProperty Name="OIDDDesc" ColumnName="OIDDDesc" />
+          <ScalarProperty Name="OIDDPrice" ColumnName="OIDDPrice" />
+          <ScalarProperty Name="OIDDAmount" ColumnName="OIDDAmount" />
+          <ScalarProperty Name="OIDID" ColumnName="OIDID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="OIDDID" ColumnName="OIDDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuotePriceDetail">
+      <EntityTypeMapping TypeName="PSSModel.QuotePriceDetail">
+        <MappingFragment StoreEntitySet="QuotePriceDetail">
+          <ScalarProperty Name="QPDDesc" ColumnName="QPDDesc" />
+          <ScalarProperty Name="QPDDisPrice" ColumnName="QPDDisPrice" />
+          <ScalarProperty Name="QPDDiscont" ColumnName="QPDDiscont" />
+          <ScalarProperty Name="QPDPrice" ColumnName="QPDPrice" />
+          <ScalarProperty Name="QPDAmount" ColumnName="QPDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="QPID" ColumnName="QPID" />
+          <ScalarProperty Name="QPDID" ColumnName="QPDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerOrder">
+      <EntityTypeMapping TypeName="PSSModel.CustomerOrder">
+        <MappingFragment StoreEntitySet="CustomerOrder">
+          <ScalarProperty Name="CODesc" ColumnName="CODesc" />
+          <ScalarProperty Name="COState" ColumnName="COState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CORefDate" ColumnName="CORefDate" />
+          <ScalarProperty Name="CODate" ColumnName="CODate" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="COID" ColumnName="COID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerOrderDetail">
+      <EntityTypeMapping TypeName="PSSModel.CustomerOrderDetail">
+        <MappingFragment StoreEntitySet="CustomerOrderDetail">
+          <ScalarProperty Name="CODDesc" ColumnName="CODDesc" />
+          <ScalarProperty Name="CODSale" ColumnName="CODSale" />
+          <ScalarProperty Name="CODDisPrice" ColumnName="CODDisPrice" />
+          <ScalarProperty Name="CODDiscont" ColumnName="CODDiscont" />
+          <ScalarProperty Name="CODPrice" ColumnName="CODPrice" />
+          <ScalarProperty Name="CODAmount" ColumnName="CODAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="COID" ColumnName="COID" />
+          <ScalarProperty Name="CODID" ColumnName="CODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleDepot">
+      <EntityTypeMapping TypeName="PSSModel.SaleDepot">
+        <MappingFragment StoreEntitySet="SaleDepot">
+          <ScalarProperty Name="COID" ColumnName="COID" />
+          <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
+          <ScalarProperty Name="SDState" ColumnName="SDState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SDDate" ColumnName="SDDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="SDID" ColumnName="SDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.SaleDepotDetail">
+        <MappingFragment StoreEntitySet="SaleDepotDetail">
+          <ScalarProperty Name="SDDAmount" ColumnName="SDDAmount" />
+          <ScalarProperty Name="SDDDesc" ColumnName="SDDDesc" />
+          <ScalarProperty Name="SDDDisPrice" ColumnName="SDDDisPrice" />
+          <ScalarProperty Name="SDDDiscount" ColumnName="SDDDiscount" />
+          <ScalarProperty Name="SDDPrice" ColumnName="SDDPrice" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="SDID" ColumnName="SDID" />
+          <ScalarProperty Name="SDDID" ColumnName="SDDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherOutDepot">
+      <EntityTypeMapping TypeName="PSSModel.OtherOutDepot">
+        <MappingFragment StoreEntitySet="OtherOutDepot">
+          <ScalarProperty Name="OODDesc" ColumnName="OODDesc" />
+          <ScalarProperty Name="OODState" ColumnName="OODState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="OODDate" ColumnName="OODDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="OODID" ColumnName="OODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherOutDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.OtherOutDepotDetail">
+        <MappingFragment StoreEntitySet="OtherOutDepotDetail">
+          <ScalarProperty Name="OODDDesc" ColumnName="OODDDesc" />
+          <ScalarProperty Name="OODDPrice" ColumnName="OODDPrice" />
+          <ScalarProperty Name="OODDAmount" ColumnName="OODDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="OODID" ColumnName="OODID" />
+          <ScalarProperty Name="OODDID" ColumnName="OODDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceOutDepot">
+      <EntityTypeMapping TypeName="PSSModel.ProduceOutDepot">
+        <MappingFragment StoreEntitySet="ProduceOutDepot">
+          <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
+          <ScalarProperty Name="PODState" ColumnName="PODState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="PODDate" ColumnName="PODDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="PODID" ColumnName="PODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProduceOutDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.ProduceOutDepotDetail">
+        <MappingFragment StoreEntitySet="ProduceOutDepotDetail">
+          <ScalarProperty Name="PODDDesc" ColumnName="PODDDesc" />
+          <ScalarProperty Name="PODDPrice" ColumnName="PODDPrice" />
+          <ScalarProperty Name="PODDAmount" ColumnName="PODDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="PODID" ColumnName="PODID" />
+          <ScalarProperty Name="PODDID" ColumnName="PODDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockReturn">
+      <EntityTypeMapping TypeName="PSSModel.StockReturn">
+        <MappingFragment StoreEntitySet="StockReturn">
+          <ScalarProperty Name="KRDesc" ColumnName="KRDesc" />
+          <ScalarProperty Name="KRState" ColumnName="KRState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="KRDate" ColumnName="KRDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="SIDID" ColumnName="SIDID" />
+          <ScalarProperty Name="PPID" ColumnName="PPID" />
+          <ScalarProperty Name="KRID" ColumnName="KRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockReturnDetail">
+      <EntityTypeMapping TypeName="PSSModel.StockReturnDetail">
+        <MappingFragment StoreEntitySet="StockReturnDetail">
+          <ScalarProperty Name="KRDDesc" ColumnName="KRDDesc" />
+          <ScalarProperty Name="KRDPrice" ColumnName="KRDPrice" />
+          <ScalarProperty Name="KRDAmount" ColumnName="KRDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="KRID" ColumnName="KRID" />
+          <ScalarProperty Name="KRDID" ColumnName="KRDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleReturn">
+      <EntityTypeMapping TypeName="PSSModel.SaleReturn">
+        <MappingFragment StoreEntitySet="SaleReturn">
+          <ScalarProperty Name="SRDesc" ColumnName="SRDesc" />
+          <ScalarProperty Name="SRState" ColumnName="SRState" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SRDate" ColumnName="SRDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="CusID" ColumnName="CusID" />
+          <ScalarProperty Name="SDID" ColumnName="SDID" />
+          <ScalarProperty Name="SRID" ColumnName="SRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleReturnDetail">
+      <EntityTypeMapping TypeName="PSSModel.SaleReturnDetail">
+        <MappingFragment StoreEntitySet="SaleReturnDetail">
+          <ScalarProperty Name="SRDDesc" ColumnName="SRDDesc" />
+          <ScalarProperty Name="SRDPrice" ColumnName="SRDPrice" />
+          <ScalarProperty Name="SRDAmount" ColumnName="SRDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="SRID" ColumnName="SRID" />
+          <ScalarProperty Name="SRDID" ColumnName="SRDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LostDetail">
+      <EntityTypeMapping TypeName="PSSModel.LostDetail">
+        <MappingFragment StoreEntitySet="LostDetail">
+          <ScalarProperty Name="LDDesc" ColumnName="LDDesc" />
+          <ScalarProperty Name="LDPrice" ColumnName="LDPrice" />
+          <ScalarProperty Name="LDAmount" ColumnName="LDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="LostID" ColumnName="LostID" />
+          <ScalarProperty Name="LDID" ColumnName="LDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Losts">
+      <EntityTypeMapping TypeName="PSSModel.Losts">
+        <MappingFragment StoreEntitySet="Losts">
+          <ScalarProperty Name="LostState" ColumnName="LostState" />
+          <ScalarProperty Name="LostDesc" ColumnName="LostDesc" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LostDate" ColumnName="LostDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="LostID" ColumnName="LostID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayOffDetail">
+      <EntityTypeMapping TypeName="PSSModel.PayOffDetail">
+        <MappingFragment StoreEntitySet="PayOffDetail">
+          <ScalarProperty Name="PODDesc" ColumnName="PODDesc" />
+          <ScalarProperty Name="PODPrice" ColumnName="PODPrice" />
+          <ScalarProperty Name="PODAmount" ColumnName="PODAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="POID" ColumnName="POID" />
+          <ScalarProperty Name="PODID" ColumnName="PODID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PayOffs">
+      <EntityTypeMapping TypeName="PSSModel.PayOffs">
+        <MappingFragment StoreEntitySet="PayOffs">
+          <ScalarProperty Name="POState" ColumnName="POState" />
+          <ScalarProperty Name="PODesc" ColumnName="PODesc" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="POID" ColumnName="POID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DevolveDetail">
+      <EntityTypeMapping TypeName="PSSModel.DevolveDetail">
+        <MappingFragment StoreEntitySet="DevolveDetail">
+          <ScalarProperty Name="DevDDesc" ColumnName="DevDDesc" />
+          <ScalarProperty Name="DevDAmount" ColumnName="DevDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="DevID" ColumnName="DevID" />
+          <ScalarProperty Name="DevDID" ColumnName="DevDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devolves">
+      <EntityTypeMapping TypeName="PSSModel.Devolves">
+        <MappingFragment StoreEntitySet="Devolves">
+          <ScalarProperty Name="DevState" ColumnName="DevState" />
+          <ScalarProperty Name="DevDesc" ColumnName="DevDesc" />
+          <ScalarProperty Name="DevDate" ColumnName="DevDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="DevInID" ColumnName="DevInID" />
+          <ScalarProperty Name="DevOutID" ColumnName="DevOutID" />
+          <ScalarProperty Name="DevID" ColumnName="DevID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckDepot">
+      <EntityTypeMapping TypeName="PSSModel.CheckDepot">
+        <MappingFragment StoreEntitySet="CheckDepot">
+          <ScalarProperty Name="CDState" ColumnName="CDState" />
+          <ScalarProperty Name="CDDesc" ColumnName="CDDesc" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="CDDate" ColumnName="CDDate" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="CDID" ColumnName="CDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckDepotDetail">
+      <EntityTypeMapping TypeName="PSSModel.CheckDepotDetail">
+        <MappingFragment StoreEntitySet="CheckDepotDetail">
+          <ScalarProperty Name="CDDDesc" ColumnName="CDDDesc" />
+          <ScalarProperty Name="DevAmount2" ColumnName="DevAmount2" />
+          <ScalarProperty Name="CDDAmount1" ColumnName="CDDAmount1" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="CDID" ColumnName="CDID" />
+          <ScalarProperty Name="CDDID" ColumnName="CDDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SplitDetail">
+      <EntityTypeMapping TypeName="PSSModel.SplitDetail">
+        <MappingFragment StoreEntitySet="SplitDetail">
+          <ScalarProperty Name="SDDesc" ColumnName="SDDesc" />
+          <ScalarProperty Name="SDPrice" ColumnName="SDPrice" />
+          <ScalarProperty Name="SDAmount" ColumnName="SDAmount" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="SplitID" ColumnName="SplitID" />
+          <ScalarProperty Name="SDID" ColumnName="SDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Splits">
+      <EntityTypeMapping TypeName="PSSModel.Splits">
+        <MappingFragment StoreEntitySet="Splits">
+          <ScalarProperty Name="SplitPrice" ColumnName="SplitPrice" />
+          <ScalarProperty Name="SplitAmount" ColumnName="SplitAmount" />
+          <ScalarProperty Name="SplitState" ColumnName="SplitState" />
+          <ScalarProperty Name="SplitDesc" ColumnName="SplitDesc" />
+          <ScalarProperty Name="SplitDate" ColumnName="SplitDate" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="DepotID" ColumnName="DepotID" />
+          <ScalarProperty Name="SplitID" ColumnName="SplitID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="PSSModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersRole">
+      <EntityTypeMapping TypeName="PSSModel.UsersRole">
+        <MappingFragment StoreEntitySet="UsersRole">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="URID" ColumnName="URID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopedomRole">
+      <EntityTypeMapping TypeName="PSSModel.PopedomRole">
+        <MappingFragment StoreEntitySet="PopedomRole">
+          <ScalarProperty Name="PopID" ColumnName="PopID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="PRID" ColumnName="PRID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Popedoms">
+      <EntityTypeMapping TypeName="PSSModel.Popedoms">
+        <MappingFragment StoreEntitySet="Popedoms">
+          <ScalarProperty Name="PopDesc" ColumnName="PopDesc" />
+          <ScalarProperty Name="PopValue" ColumnName="PopValue" />
+          <ScalarProperty Name="PopIsMenu" ColumnName="PopIsMenu" />
+          <ScalarProperty Name="PopParentID" ColumnName="PopParentID" />
+          <ScalarProperty Name="PopName" ColumnName="PopName" />
+          <ScalarProperty Name="PopID" ColumnName="PopID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemLog">
+      <EntityTypeMapping TypeName="PSSModel.SystemLog">
+        <MappingFragment StoreEntitySet="SystemLog">
+          <ScalarProperty Name="islog" ColumnName="islog" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

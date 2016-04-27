@@ -1,0 +1,292 @@
+﻿@using UI.Models.Model;
+@using UI.Option.HtmlPage;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Customers</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/FoundationJavaScript.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+
+    <style>
+     .add{
+         /*position:absolute;*/
+         margin-left:1%;
+         width:40px;
+         float:left;
+     }
+    .tabcontent{
+         overflow:auto;
+    }
+    </style>
+</head>
+<body>
+   
+    <div>
+        <div style="margin-bottom:10px;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Foundation/Home/Index" class="am-icon-database">&nbsp;&nbsp;基础数据&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">客户资料</span>
+        </div>
+
+        <div class="am-tabs am-margin" data-am-tabs>
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active"><a href="#tab1">基本信息</a></li>
+                <li ><a href="#tab2">客户等级</a></li>
+            </ul>
+            <div class="am-tabs-bd">
+                <div class="tabcontent am-tab-panel am-fade am-in am-active" id="tab1">
+                    <div class="add"><span id="addsp" class="am-icon-btn am-close am-close-alt am-close-spin" style="color:white;font-size:40px;background-color:#b7b6b6">+</span></div>
+
+                    <table class="am-table am-table-striped am-table-hover table-main" style="color:#808080;width:90%;font-size:12px;margin-left:8%">
+                        <thead>
+                            <tr style="font-size:14px;color:white; background-color:#0c9b20"><td>客户编号</td><td>客户名称</td><td>客户等级</td><td>公司名称</td><td>联系人</td><td>备注</td><td align="center">操作</td></tr>
+                        </thead>
+                        <tbody id="tabbody"></tbody>
+                    </table>
+                    <div style="padding-left:20%">
+                        @Html.GroupPage2("Foundation/Home", "CustomersPage", ViewData["count"], "", 10, 1, "am-btn-secondary")
+                        @Html.Hidden("PageIndex", ViewData["PageIndex"])
+                        @Html.Hidden("fg", TempData["fg"])
+                        @Html.Hidden("deleteid", "0")
+                        @Html.Hidden("MaxPageIndex", ViewData["MaxPageIndex"])
+                        @Html.Hidden("tabIndex",TempData["tabIndex"])
+                    </div>
+                </div>
+               
+                <div class="am-tab-panel am-fad " id="tab2" style="margin-left:1%;">
+                    <div class="add"><span id="addsplevel" class="am-icon-btn am-close am-close-alt am-close-spin" style="color:white;font-size:40px;background-color:#b7b6b6">+</span></div>
+                    <div style="width:89%;float:left;">
+                        <table class="am-table am-table-striped am-table-hover table-main" style="color:#808080;width:100%;font-size:12px;float:left;margin-left:3%">
+                            <thead>
+                                <tr style="font-size:14px;color:white; background-color:#0c9b20"><th>等级编号</th><th>等级名称</th><th>等级折扣</th><th>删除</th></tr>
+                            </thead>
+                            <tbody id="tabbody1">
+                                @{
+                                foreach (CustomerLevel item in ViewData["levelList"] as List<CustomerLevel>)
+                                {
+                                        <tr ondblclick="edit_level('@item.CLID','@item.CLName','@item.CLAgio')">
+                                            <th>@item.CLID</th>
+                                            <th>@item.CLName</th>
+                                            <th>@item.CLAgio</th>
+                                            <th>
+                                                <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit_level('@item.CLID','@item.CLName','@item.CLAgio')"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                <span class="am-btn am-btn-default am-btn-xs am-text-danger"><a class="am-icon-trash-o" onclick="javascript: return confirm('确认要删除吗？')" href='/Foundation/Home/DeleteCusLevel?id=@item.CLID'>删除</a> </span>
+                                            </th>
+                                        </tr>
+                                }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    @Html.Hidden("delcuslevelid")
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-cus">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-male"  id="modaltitle"></span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                
+                        <form id="cusform" class="am-form"  method="post">
+                         <table align="center">
+                             <tr>
+                                 <td>客户编号：</td>
+                                 <td><input type="text" maxlength="14" name="CusID" id="CusID" readonly="readonly" placeholder="请输入客户编号（CK开头）" required /></td>
+                             </tr>
+                             <tr>
+                                 <td>客户等级：</td>
+                                 <td>@Html.DropDownList("CLID", ViewData["slist"] as SelectList) </td>
+                             </tr>
+                             <tr>
+                                 <td>客户名称：</td>
+                                 <td><input type="text" maxlength="20" id="CusName" name="CusName" placeholder="请输入客户名称" required /></td>
+                             </tr>
+                             <tr>
+                                 <td>公司名称：</td>
+                                 <td><input type="text" maxlength="20" id="CusCompany" name="CusCompany" placeholder="请输入公司名称" required /></td>
+                             </tr>
+                             <tr>
+                                 <td>联系人：</td>
+                                 <td><input type="text" maxlength="50" id="CusMan" name="CusMan" placeholder="请输入联系人" required /></td>
+                             </tr>
+                             <tr>
+                                 <td> 备注：</td>
+                                 <td><input type="text" maxlength="30" id="CusDesc" name="CusDesc" placeholder="请输入备注" required /><br /></td>
+                             </tr>
+                             <tr>
+                                 <td colspan="2" align="center">
+                                     <input class="am-btn am-btn-primary am-radius" type="submit" style="margin-right:20px;" value="保存">
+                                    <input class="am-btn am-btn-primary am-radius" type="reset" value="清空" />
+                                 </td>
+                             </tr>
+                         </table>
+                        </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-cuslevel">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-male"  id="modaltitlelevel"></span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd" style="padding-top:10px;">
+                <form id="cuslevelform">
+                    <table align="center">
+                        <tr id="tr_levelid">
+                            <td>等级编号：</td>
+                            <td><input class="am-form-field am-input-sm"  name="CLID"  required /></td>
+                        </tr>
+                        <tr>
+                            <td>等级名称：</td>
+                            <td><input class="am-form-field am-input-sm" id="CLName" name="CLName" required /></td>
+                        </tr>
+                        <tr>
+                            <td>等级折扣：</td>
+                            <td><input class="am-form-field am-input-sm" type="number" id="CLAgio" name="CLAgio" max="100" min="10" required /></td>
+                        </tr>
+                        <tr align="center">
+                            <td colspan="2">
+                                <br />
+                                <input type="submit" class="am-btn am-btn-primary am-radius" value="保存" style="margin-right:20px;" /><input class="am-btn am-btn-primary am-radius" type="reset" value="重置" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        var MaxPageIndex = 0;
+        var PageIndex = 1;
+        $(function () {
+            //添加客户等级
+            $("#addsplevel").click(function () {
+                document.getElementById("cuslevelform").reset();
+                $("#tr_levelid").hide();
+                $("input[name=CLID]").attr("disabled", true);
+                $("#cuslevelform").attr("action", "/Foundation/Home/AddCusLevel");
+                $("#modaltitlelevel").text("添加客户等级");
+                $("#add-cuslevel").modal({ closeViaDimmer: 0 });
+            });
+            //添加客户
+            $("#addsp").click(function () {
+                document.getElementById("cusform").reset();
+                $.post("/Foundation/Home/GetCusID", {}, function (data) {
+                    if (data) {
+                        $("#CusID").val(data);
+                    } else {
+                        $("#CusID").val("KH201501010001");
+                    }
+                });
+                $("#modaltitle").text("添加客户");
+                $("#cusform").attr("action", "/Foundation/Home/AddCus");
+                $("#add-cus").modal({ closeViaDimmer: 0 });
+            });
+            //删除消息框
+            var del1 = new tmm_confirm("delete_com", "提示", "确认要删除吗？", function () {
+                var id = $("#deleteid").val();
+                window.location.href = "/Foundation/Home/DeleteCus?id=" + id;
+            }, function () {
+                $("#delete_com").modal('close');
+            });
+            //初始化消息框
+            new action_alert();
+            MaxPageIndex = $("#MaxPageIndex").val();
+            page();
+            $("#tmm-loeading").modal("close");
+        });
+           function edit_level(CLID, CLName, CLAgio) {
+               document.getElementById("cuslevelform").reset();
+               $("input[name=CLID]").attr("disabled", false);
+               $("#cuslevelform").attr("action", "/Foundation/Home/EditCusLevel");
+               $("#modaltitlelevel").text("修改客户等级");
+               $("#tr_levelid").show();
+               $("input[name=CLID]").val(CLID);
+               $("input[name=CLID]").attr("readonly", true);
+               $("#CLName").val(CLName);
+               $("#CLAgio").val(CLAgio);
+               $("#add-cuslevel").modal({ closeViaDimmer: 0 });
+           }
+           function page() {
+               $("#SelPage option[value=" + PageIndex + "]").attr("selected", true);
+               $.post("/Foundation/Home/CustomersPage", { PageIndex: PageIndex }, function (dd) {
+                   setpage(dd);
+               },"json");
+           }
+            //删除客户值处理
+           function _delete(id) {
+               $("#deleteid").val(id);
+               $("#delete_com").modal({ closeViaDimmer: 0 });
+           }
+            //显示数据
+           function setpage(data) {
+               $("#tabbody tr").remove();
+               $(data).each(function (k, v) {
+                   var tr = $("<tr  ondblclick='_edit(\"" + v.CusID + "\",\"" + v.CLID + "\",\"" + v.CusName + "\",\"" + v.CusCompany + "\",\"" + v.CusMan + "\",\"" + v.CusDesc + "\")'></tr>");
+                   var th1 = $("<td>" + v.CusID + "</td>");
+                   var th2 = $("<td>" + v.CusName + "</td>");
+                   var th3 = $("<td>" + v.CLName + "</td>");
+                   var th4 = $("<td>" + v.CusCompany + "</td>");
+                   var th5 = $("<td>" + v.CusMan + "</td>");
+                   var th6 = $("<td>" + v.CusDesc + "</td>");
+                   var th7 = $("<td align='center'> <button class='am-btn am-btn-default am-btn-xs am-text-secondary' onclick='_edit(\"" + v.CusID + "\",\"" + v.CLID + "\",\"" + v.CusName + "\",\"" + v.CusCompany + "\",\"" + v.CusMan + "\",\"" + v.CusDesc + "\")'><span class='am-icon-pencil-square-o'></span> 编辑</button><button class='am-btn am-btn-default am-btn-xs am-text-danger' onclick='_delete(\"" + v.CusID + "\")' ><span class='am-icon-trash-o'></span> 删除</button></td>");
+                   tr.append(th1).append(th2).append(th3).append(th4).append(th5).append(th6).append(th7);
+                   $("#tabbody").append(tr);
+               });
+           }
+           function shouye() {
+               PageIndex = 1;
+               page();
+           }
+           function weiye() {
+               PageIndex = MaxPageIndex;
+               page();
+           }
+           function xiayiye() {
+               PageIndex = PageIndex < MaxPageIndex ? PageIndex + 1 : PageIndex;
+               page();
+           }
+           function shangyiye() {
+               PageIndex = PageIndex > 1 ? PageIndex - 1 : PageIndex;
+               page();
+           }
+           function change(obj) {
+               PageIndex = parseInt(obj.value);
+               page();
+           }
+            //修改客户
+           function _edit(CusID, CLID, CusName, CusCompany, CusMan, CusDesc) {
+               $("#modaltitle").text("编辑客户");
+               $("#CusID").val(CusID);
+               $("#CLID option[value=" + CLID + "]").attr("selected", true);
+               $("#CusName").val(CusName);
+               $("#CusCompany").val(CusCompany);
+               $("#CusMan").val(CusMan);
+               $("#CusDesc").val(CusDesc);
+               $("#cusform").attr("action", "/Foundation/Home/EditCus");
+               $("#add-cus").modal({ closeViaDimmer: 0 });
+           }
+
+    </script>
+</body>
+</html>

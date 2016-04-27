@@ -1,0 +1,213 @@
+﻿@using UI.Models.Model;
+@using UI.Option.HtmlPage;
+@{
+    List<Depots> list = ViewData["depotList"] as List<Depots>;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SetWarehouse</title>
+    <link href="~/Scripts/assets/css/amazeui.css" rel="stylesheet" />
+    <script src="~/Scripts/assets/js/jquery.min.js"></script>
+    <script src="~/Scripts/assets/js/amazeui.js"></script>
+    <script src="~/Scripts/js/FoundationJavaScript.js"></script>
+    <script src="~/Scripts/js/modal.js"></script>
+  
+    <style>
+         .a_icon{
+            margin-right:8px;
+            cursor:pointer;
+        }
+         .add{
+             position:absolute;
+             cursor:pointer;
+             margin-top:4%;
+             margin-left:1px;
+         }
+        
+    </style>
+</head>
+<body>
+    <div class="add"><span id="addsp"class="am-icon-btn am-close am-close-alt am-close-spin" style="color:white;font-size:40px;background-color:#b7b6b6">+</span></div>
+    <div> 
+        <div style="margin-bottom:2%;">
+            <a href="/Home/maindefault" class="am-icon-home">&nbsp;&nbsp;进销存&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <a href="/Foundation/Home/Index" class="am-icon-database">&nbsp;&nbsp;基础数据&nbsp;<i class="am-icon-arrow-circle-right"></i>&nbsp;&nbsp;</a>
+            <span style="font-size:14px;font-weight:bolder;">仓库设置</span>
+        </div>
+        
+        <div style="width:90%;margin-left:5%;">
+            <table class="am-table am-table-striped am-table-hover table-main" style="color:#808080;width:100%;font-size:12px;">
+                <thead>
+                    <tr style="font-size:14px;color:white; background-color:#0c9b20"><th>仓库编号</th><th>仓库名称</th><th>联系人</th><th>电话</th><th>地址</th><th>备注</th><th>操作</th></tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (Depots item in list)
+                        {
+                            <tr><th>@item.DepotID</th><th>@item.DepotName</th><th>@item.DepotMan</th><th>@item.DepotTel</th><th>@item.DepotAddress</th><th>@item.DepotDesc</th>
+                                    <th>
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="edit_depots('@item.DepotID','@item.DepotName','@item.DepotMan','@item.DepotTel','@item.DepotAddress','@item.DepotDesc')"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-danger" onclick="_delete('@item.DepotID')"><span class="am-icon-trash-o"></span> 删除</button>
+                                  </th>
+                            </tr>
+                        }
+                    }
+                </tbody>
+           </table>
+            <div style="width:100%;padding-left:15%;">
+                @Html.GroupPage("Foundation/Home", "SetWarehousePage", ViewData["count"], "", 10, ViewData["PageIndex"], "am-btn-secondary")
+                @Html.Hidden("PageIndex", ViewData["PageIndex"])
+                @Html.Hidden("fg", TempData["fg"])
+                @Html.Hidden("deleteid", "0")
+            </div>
+</div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="add-depot">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-bank" style="color:#0094ff">添加仓库</span>    
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                   <div class="am-g">
+                       <div class="am-u-md-8 am-u-sm-centered">
+                           <form class="am-form" action="/Foundation/Home/AddDepots" method="post">
+                              <table>
+                                  <tr>
+                                      <td>仓库编号：</td>
+                                      <td><input type="text" maxlength="6" id="DepotID1" name="DepotID" readonly="readonly" placeholder="请输入仓库编号（CK开头）" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td>仓库名称：</td><td><input type="text" maxlength="20" name="DepotName" placeholder="请输入联系人" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td>联系人：</td>
+                                      <td><input type="text" maxlength="20" name="DepotMan" placeholder="请输入联系人" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td>联系电话：</td>
+                                      <td><input type="text" maxlength="20" name="DepotTel" placeholder="请输入联系电话" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td>地址：</td>
+                                      <td><input type="text" maxlength="50" name="DepotAddress" placeholder="请输入地址" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td>备注：</td>
+                                      <td><input type="text" maxlength="30" name="DepotDesc" placeholder="请输入备注" required /></td>
+                                  </tr>
+                                  <tr>
+                                      <td colspan="2">
+                                          <br />
+                                      <input class="am-btn am-btn-primary am-radius" type="submit" style="margin-right:20px;" value="保存">
+                                     <input class="am-btn am-btn-primary am-radius" type="reset" value="清空" />
+                                      </td>
+                                  </tr>
+                              </table>
+                                 
+                           </form>
+                       </div>
+                   </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="edit-depot">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd" style="background-color:#0094ff;color:white;margin-bottom:30px;">
+                <span class="am-icon-bank" >编辑仓库</span>
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <div class="am-g">
+                    <div class="am-u-md-8 am-u-sm-centered">
+                        <form class="am-form" action="/Foundation/Home/EditDepot" method="post">
+                            <table>
+                                <tr>
+                                    <td>仓库编号：</td>
+                                    <td><input type="text" maxlength="6" id="DepotID" name="DepotID" readonly="readonly" placeholder="请输入仓库编号（CK开头）" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>仓库名称：</td>
+                                    <td><input type="text" maxlength="20" id="DepotName" name="DepotName" placeholder="请输入联系人" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>联系人：</td>
+                                    <td><input type="text" maxlength="20" id="DepotMan" name="DepotMan" placeholder="请输入联系人" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>联系电话：</td>
+                                    <td><input type="text" maxlength="20" id="DepotTel" name="DepotTel" placeholder="请输入联系电话" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>地址：</td>
+                                    <td><input type="text" maxlength="50" id="DepotAddress" name="DepotAddress" placeholder="请输入地址" required /></td>
+                                </tr>
+                                <tr>
+                                    <td>备注：</td>
+                                    <td><input type="text" maxlength="30" id="DepotDesc" name="DepotDesc" placeholder="请输入备注" required /></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <br />
+                                        <input class="am-btn am-btn-primary am-radius" type="submit" style="margin-right:20px;" value="保存">
+                                        <input class="am-btn am-btn-primary am-radius" type="reset" value="清空" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function change(obj) {
+            pageindex = obj.value;
+            window.location.href = "/Foundation/Home/SetWarehousePage?PageIndex=" + pageindex;
+        }
+        function _delete(id) {
+            $("#deleteid").val(id);
+            $("#delete_com").modal({ closeViaDimmer: 0 });
+        }
+        function edit_depots(DepotID, DepotName, DepotMan, DepotTel, DepotAddress, DepotDesc) {
+            $("#DepotID").val(DepotID);
+            $("#DepotName").val(DepotName);
+            $("#DepotMan").val(DepotMan);
+            $("#DepotTel").val(DepotTel);
+            $("#DepotAddress").val(DepotAddress);
+            $("#DepotDesc").val(DepotDesc);
+            $("#edit-depot").modal({ closeViaDimmer: 0 });
+        }
+        $(function () {
+            new action_alert();
+
+            //删除确认框
+            new tmm_confirm("delete_com", "提示", "确认要删除吗？", function () {
+                var id = $("#deleteid").val();
+                window.location.href = "/Foundation/Home/DeleteDepot?id=" + id;
+            }, function () {
+                $("#delete_com").modal('close');
+            });
+            //添加
+            $("#addsp").click(function () {
+                $.post("/Foundation/Home/GetDPID", {}, function (data) {
+                    if (data) {
+                        $("#DepotID1").val(data);
+                    }
+                });
+                $("#add-depot").modal({closeViaDimmer:0});
+            });
+            $("#tmm-loeading").modal("close");
+        });
+    </script>
+
+</body>
+</html>
